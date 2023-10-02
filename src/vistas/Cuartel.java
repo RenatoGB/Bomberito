@@ -6,7 +6,7 @@
 package vistas;
 
 /**
- *
+ *ifgmniodfjiojiodfjiodf
  * @author renat
  */
 public class Cuartel extends javax.swing.JInternalFrame {
