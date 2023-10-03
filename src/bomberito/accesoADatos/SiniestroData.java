@@ -2,6 +2,6 @@
 package bomberito.accesoADatos;
 
 
-public class cuartelData {
+public class SiniestroData {
 
 }
