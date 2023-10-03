@@ -23,6 +23,17 @@ public class Cuartel {
         this.correo = correo;
     }
 
+    public Cuartel(int idCuartel, String nombreCuartel, String direccion, int coordX, int coordY, String telefono, String correo) {
+        this.idCuartel = idCuartel;
+        this.nombreCuartel = nombreCuartel;
+        this.direccion = direccion;
+        this.coordX = coordX;
+        this.coordY = coordY;
+        this.telefono = telefono;
+        this.correo = correo;
+    }
+
+    
     public int getIdCuartel() {
         return idCuartel;
     }

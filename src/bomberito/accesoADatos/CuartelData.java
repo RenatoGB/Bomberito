@@ -67,15 +67,29 @@ public class CuartelData {
         }
         return cuart;
         }
-     public List <Cuartel> traerCuarteles(){ 
-        
-         List <Cuartel> cuartelitos = new ArrayList<>();
-         try{
-         String sql="Select * FROM cuartel WHERE IdCuartel > 0";
-         PreparedStatement ps = con.prepareStatement(sql);
-         ResultSet rs = ps.executeQuery();
-         
-}catch (SQLException ex) {
+    
+    public List<Cuartel> traerCuarteles() {
+
+        List<Cuartel> cuartelitos = new ArrayList<>();
+        try {
+            String sql = "Select * FROM cuartel WHERE IdCuartel > 0";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Cuartel cu = new Cuartel();
+                
+                cu.setIdCuartel(rs.getInt("idCuartel"));
+                cu.setNombreCuartel(rs.getString("nombreCuartel"));
+                cu.setDireccion(rs.getString("direccion"));
+                cu.setCoordX(rs.getInt("coordX"));
+                cu.setCoordY(rs.getInt("coordY"));
+                cu.setTelefono(rs.getString("telefono"));
+                cu.setCorreo(rs.getString("correo"));
+                cuartelitos.add(cu);
+            }
+            ps.close();
+            
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla cuartel " + ex.getMessage());
         }
         return cuartelitos;

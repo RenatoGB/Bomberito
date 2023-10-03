@@ -7,6 +7,8 @@ package bomberito.vistas;
 
 import bomberito.accesoADatos.BrigadaData;
 import bomberito.accesoADatos.CuartelData;
+import bomberito.entidades.Cuartel;
+
 
 /**
  *
@@ -47,8 +49,8 @@ CuartelData dataCuartel=null;
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jCuartelBrigada = new javax.swing.JComboBox<>();
         jGuardarBrigada = new javax.swing.JButton();
+        JCBXCuartel = new javax.swing.JComboBox<>();
 
         jLabel1.setText("Brigada");
 
@@ -58,6 +60,7 @@ CuartelData dataCuartel=null;
 
         jLabel4.setText("Estado :");
 
+        buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("Ocupada");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,6 +68,7 @@ CuartelData dataCuartel=null;
             }
         });
 
+        buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Libre");
 
         jLabel5.setText("Cuartel :");
@@ -77,19 +81,14 @@ CuartelData dataCuartel=null;
 
         jButton4.setText("Salir");
 
-        jCuartelBrigada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jCuartelBrigada.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCuartelBrigadaActionPerformed(evt);
-            }
-        });
-
         jGuardarBrigada.setText("Guardar");
         jGuardarBrigada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jGuardarBrigadaActionPerformed(evt);
             }
         });
+
+        JCBXCuartel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,7 +104,7 @@ CuartelData dataCuartel=null;
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel2)
                                         .addGap(49, 49, 49)
-                                        .addComponent(jNombreBrigada))
+                                        .addComponent(jNombreBrigada, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel3)
@@ -113,7 +112,7 @@ CuartelData dataCuartel=null;
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jEspecialidadBrigada)
-                                            .addComponent(jCuartelBrigada, 0, 159, Short.MAX_VALUE))))
+                                            .addComponent(JCBXCuartel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton1)
@@ -135,8 +134,7 @@ CuartelData dataCuartel=null;
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(28, 28, 28)
-                                        .addComponent(jButton4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(jButton4))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jRadioButton2)
                                         .addGap(0, 0, Short.MAX_VALUE))))))
@@ -165,7 +163,7 @@ CuartelData dataCuartel=null;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jButton1)
-                    .addComponent(jCuartelBrigada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JCBXCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton1)
@@ -183,6 +181,7 @@ CuartelData dataCuartel=null;
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton1ActionPerformed
+
     private void jCuartelBrigadaActionPerformed(java.awt.event.ActionEvent evt) {                                                
         // TODO add your handling code here:
     }                                               
@@ -194,24 +193,19 @@ CuartelData dataCuartel=null;
       
         
     }//GEN-LAST:event_jGuardarBrigadaActionPerformed
-
-    private void jCuartelBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCuartelBrigadaActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jCuartelBrigadaActionPerformed
-    public void cargarTabla(){  
-        for (Cuartel cuartelito : dataCuartel.traerCuartelID()){ 
-            
+    public void cargarCombo(){  
+        for (Cuartel cuar : dataCuartel.traerCuarteles()){ 
+            JCBXCuartel.addItem(new Cuartel(cuar.getIdCuartel(),cuar.getNombreCuartel(),cuar.getDireccion(),cuar.getCoordX(),cuar.getCoordY(),cuar.getTelefono(),cuar.getCorreo()));
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<Cuartel> JCBXCuartel;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jCuartelBrigada;
     private javax.swing.JTextField jEspecialidadBrigada;
     private javax.swing.JButton jGuardarBrigada;
     private javax.swing.JLabel jLabel1;
