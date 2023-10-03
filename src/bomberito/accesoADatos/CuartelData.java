@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 
@@ -64,5 +66,18 @@ public class CuartelData {
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla cuartel " + ex.getMessage());
         }
         return cuart;
+        }
+     public List <Cuartel> traerCuarteles(){ 
+        
+         List <Cuartel> cuartelitos = new ArrayList<>();
+         try{
+         String sql="Select * FROM cuartel WHERE IdCuartel > 0";
+         PreparedStatement ps = con.prepareStatement(sql);
+         ResultSet rs = ps.executeQuery();
+         
+}catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla cuartel " + ex.getMessage());
+        }
+        return cuartelitos;
     }
 }

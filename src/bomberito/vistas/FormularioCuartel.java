@@ -3,19 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vistas;
+package bomberito.vistas;
+
+import bomberito.accesoADatos.CuartelData;
+import bomberito.entidades.Cuartel;
 
 /**
  *ifgmniodfjiojiodfjiodf
  * @author renat
  */
-public class Cuartel extends javax.swing.JInternalFrame {
+public class FormularioCuartel extends javax.swing.JInternalFrame {
+CuartelData data=null;
+
 
     /**
      * Creates new form Cuartel
      */
-    public Cuartel() {
+    public FormularioCuartel() {
         initComponents();
+        data=new CuartelData();
     }
 
     /**
@@ -42,8 +48,9 @@ public class Cuartel extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jNuevoCuartel = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        Editar = new javax.swing.JButton();
 
         jLabel1.setText("Nombre del Cuartel :");
 
@@ -63,28 +70,36 @@ public class Cuartel extends javax.swing.JInternalFrame {
 
         jButton2.setText("Buscar");
 
-        jButton3.setText("Guardar");
+        jNuevoCuartel.setText("Nuevo Cuartel");
+        jNuevoCuartel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNuevoCuartelActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Salir");
+
+        Editar.setText("Editar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel5)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel6)
+                        .addComponent(jLabel1))
+                    .addComponent(Editar))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel1))
                         .addGap(80, 80, 80)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,10 +113,14 @@ public class Cuartel extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(155, 155, 155))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addComponent(jButton3)
+                        .addGap(114, 114, 114)
+                        .addComponent(jNuevoCuartel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton4)
                         .addGap(16, 16, 16)))
@@ -121,7 +140,7 @@ public class Cuartel extends javax.swing.JInternalFrame {
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 54, Short.MAX_VALUE)
+                        .addGap(0, 62, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jDirecciónCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton1)
@@ -148,19 +167,31 @@ public class Cuartel extends javax.swing.JInternalFrame {
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(jNuevoCuartel)
+                    .addComponent(jButton4)
+                    .addComponent(Editar))
                 .addGap(40, 40, 40))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jNuevoCuartelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNuevoCuartelActionPerformed
+        String nombreCuartel = jNombreCuartel.getText();
+        String direccion= jDirecciónCuartel.getText();
+        int coordX= Integer.parseInt( jCoordenaX.getText());
+        int coordY=Integer.parseInt(jCoordenadaY.getText());
+        String telefono= jTelefonoCuartel.getText();
+        String correo=jCorreoCuartel.getText();
+      Cuartel nuevo=new Cuartel(nombreCuartel, direccion, coordX, coordY, telefono, correo );
+    data.nuevoCuartel(nuevo);
+    }//GEN-LAST:event_jNuevoCuartelActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Editar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JTextField jCoordenaX;
     private javax.swing.JTextField jCoordenadaY;
@@ -174,6 +205,7 @@ public class Cuartel extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField jNombreCuartel;
+    private javax.swing.JButton jNuevoCuartel;
     private javax.swing.JTextField jTelefonoCuartel;
     // End of variables declaration//GEN-END:variables
 }
