@@ -24,6 +24,7 @@ CuartelData dataCuartel=null;
         initComponents();
         dataBrigada= new BrigadaData();
         dataCuartel= new CuartelData();
+        cargarCombo();
     }
 
     /**
@@ -89,6 +90,11 @@ CuartelData dataCuartel=null;
         });
 
         JCBXCuartel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        JCBXCuartel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JCBXCuartelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -193,6 +199,10 @@ CuartelData dataCuartel=null;
       
         
     }//GEN-LAST:event_jGuardarBrigadaActionPerformed
+
+    private void JCBXCuartelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBXCuartelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JCBXCuartelActionPerformed
     public void cargarCombo(){  
         for (Cuartel cuar : dataCuartel.traerCuarteles()){ 
             JCBXCuartel.addItem(new Cuartel(cuar.getIdCuartel(),cuar.getNombreCuartel(),cuar.getDireccion(),cuar.getCoordX(),cuar.getCoordY(),cuar.getTelefono(),cuar.getCorreo()));
