@@ -28,8 +28,8 @@ public class Brigada {
         this.nombreBrigada = nombreBrigada;
         this.especialidad = especialidad;
     }
-    
-    
+
+   
 
     public int getIdBrigada() {
         return idBrigada;

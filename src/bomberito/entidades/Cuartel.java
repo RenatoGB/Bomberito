@@ -11,6 +11,13 @@ public class Cuartel {
     private String telefono;
     private String correo;
 
+    public Cuartel(String nombreCuartel) {
+        this.nombreCuartel = nombreCuartel;
+    }
+
+    
+    
+    
     public Cuartel() {
     }
 
@@ -33,7 +40,7 @@ public class Cuartel {
         this.correo = correo;
     }
 
-    
+  
     public int getIdCuartel() {
         return idCuartel;
     }
@@ -88,6 +95,11 @@ public class Cuartel {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    @Override
+    public String toString() {
+        return nombreCuartel;
     }
     
     

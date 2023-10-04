@@ -7,7 +7,10 @@ package bomberito.vistas;
 
 import bomberito.accesoADatos.BrigadaData;
 import bomberito.accesoADatos.CuartelData;
+import bomberito.entidades.Brigada;
 import bomberito.entidades.Cuartel;
+import javax.swing.ButtonModel;
+
 
 
 /**
@@ -17,6 +20,7 @@ import bomberito.entidades.Cuartel;
 public class FormularioBrigada extends javax.swing.JInternalFrame {
 BrigadaData dataBrigada=null;
 CuartelData dataCuartel=null;
+
     /**
      * Creates new form Brigadas
      */
@@ -41,8 +45,8 @@ CuartelData dataCuartel=null;
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        BotonOcup = new javax.swing.JRadioButton();
+        BotonLibre = new javax.swing.JRadioButton();
         jNombreBrigada = new javax.swing.JTextField();
         jEspecialidadBrigada = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -61,16 +65,16 @@ CuartelData dataCuartel=null;
 
         jLabel4.setText("Estado :");
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText("Ocupada");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(BotonOcup);
+        BotonOcup.setText("Ocupada");
+        BotonOcup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                BotonOcupActionPerformed(evt);
             }
         });
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("Libre");
+        buttonGroup1.add(BotonLibre);
+        BotonLibre.setText("Libre");
 
         jLabel5.setText("Cuartel :");
 
@@ -89,7 +93,6 @@ CuartelData dataCuartel=null;
             }
         });
 
-        JCBXCuartel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         JCBXCuartel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JCBXCuartelActionPerformed(evt);
@@ -132,7 +135,7 @@ CuartelData dataCuartel=null;
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel4)
                                         .addGap(42, 42, 42)
-                                        .addComponent(jRadioButton1))
+                                        .addComponent(BotonOcup))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(83, 83, 83)
                                         .addComponent(jGuardarBrigada)))
@@ -141,9 +144,8 @@ CuartelData dataCuartel=null;
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(28, 28, 28)
                                         .addComponent(jButton4))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jRadioButton2)
-                                        .addGap(0, 0, Short.MAX_VALUE))))))
+                                    .addComponent(BotonLibre))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(167, 167, 167)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -172,8 +174,8 @@ CuartelData dataCuartel=null;
                     .addComponent(JCBXCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2)
+                    .addComponent(BotonOcup)
+                    .addComponent(BotonLibre)
                     .addComponent(jLabel4))
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -184,9 +186,9 @@ CuartelData dataCuartel=null;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void BotonOcupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonOcupActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_BotonOcupActionPerformed
 
     private void jCuartelBrigadaActionPerformed(java.awt.event.ActionEvent evt) {                                                
         // TODO add your handling code here:
@@ -194,22 +196,36 @@ CuartelData dataCuartel=null;
 
     private void jGuardarBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGuardarBrigadaActionPerformed
         // TODO add your handling code here:
+        boolean s=false;
+            if(BotonLibre.isSelected()){
+            s=true;
+        }else{
+            s=false;
+        }
+            
         String nombreBrigada=jNombreBrigada.getText();
         String Especialidad= jEspecialidadBrigada.getText();
-      
+        Cuartel cuartelselec=(Cuartel)JCBXCuartel.getSelectedItem();
+        
+        Brigada asd=new Brigada(nombreBrigada,Especialidad,s,dataCuartel.traerCuartelID(cuartelselec.getIdCuartel()));
+        
+        dataBrigada.nuevaBrigada(asd);
+        //dataCuartel.traerCuartelID(idcuartel);
         
     }//GEN-LAST:event_jGuardarBrigadaActionPerformed
 
     private void JCBXCuartelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBXCuartelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JCBXCuartelActionPerformed
-    public void cargarCombo(){  
-        for (Cuartel cuar : dataCuartel.traerCuarteles()){ 
-            JCBXCuartel.addItem(new Cuartel(cuar.getIdCuartel(),cuar.getNombreCuartel(),cuar.getDireccion(),cuar.getCoordX(),cuar.getCoordY(),cuar.getTelefono(),cuar.getCorreo()));
+    private void cargarCombo(){  
+        for (Cuartel lista : dataCuartel.traerCuarteles()){ 
+            JCBXCuartel.addItem(new Cuartel(lista.getNombreCuartel()));
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton BotonLibre;
+    private javax.swing.JRadioButton BotonOcup;
     private javax.swing.JComboBox<Cuartel> JCBXCuartel;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
@@ -224,7 +240,5 @@ CuartelData dataCuartel=null;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField jNombreBrigada;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     // End of variables declaration//GEN-END:variables
 }
