@@ -10,6 +10,7 @@ import bomberito.accesoADatos.CuartelData;
 import bomberito.entidades.Brigada;
 import bomberito.entidades.Cuartel;
 import javax.swing.ButtonModel;
+import javax.swing.table.DefaultTableModel;
 
 
 
@@ -18,8 +19,15 @@ import javax.swing.ButtonModel;
  * @author renat
  */
 public class FormularioBrigada extends javax.swing.JInternalFrame {
-BrigadaData dataBrigada=null;
-CuartelData dataCuartel=null;
+
+    private DefaultTableModel modelo = new DefaultTableModel() {
+        public boolean isCellEditable(int f, int c) {
+            return false;
+        }
+    };
+    BrigadaData dataBrigada = null;
+    CuartelData dataCuartel = null;
+    int guardarID;
 
     /**
      * Creates new form Brigadas
@@ -29,6 +37,8 @@ CuartelData dataCuartel=null;
         dataBrigada= new BrigadaData();
         dataCuartel= new CuartelData();
         cargarCombo();
+        encabezadoTabla();
+        cargarTabla();
     }
 
     /**
@@ -48,14 +58,14 @@ CuartelData dataCuartel=null;
         BotonOcup = new javax.swing.JRadioButton();
         BotonLibre = new javax.swing.JRadioButton();
         jNombreBrigada = new javax.swing.JTextField();
-        jEspecialidadBrigada = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnSeleccionar = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jGuardarBrigada = new javax.swing.JButton();
         JCBXCuartel = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbBrigada = new javax.swing.JTable();
+        jEspecialidadBrigada = new javax.swing.JComboBox<>();
 
         jLabel1.setText("Brigada");
 
@@ -78,11 +88,12 @@ CuartelData dataCuartel=null;
 
         jLabel5.setText("Cuartel :");
 
-        jButton1.setText("Mostrar Cuartel");
-
-        jButton2.setText("Buscar");
-
-        jButton3.setText("Buscar");
+        btnSeleccionar.setText("Seleccionar");
+        btnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeleccionarActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Salir");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -104,22 +115,62 @@ CuartelData dataCuartel=null;
             }
         });
 
+        tbBrigada.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tbBrigada);
+
+        jEspecialidadBrigada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1- Incendios en viviendas, e industrias ", "2- Salvamento en derrumbes", "3- Rescates en ámbito montaña ", "4- Rescate de personas atrapadas en accidentes de tráfico", "5- Socorrer inundaciones", "6- Operativos de prevención" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(JCBXCuartel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(123, 123, 123))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jEspecialidadBrigada, 0, 1, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addGap(49, 49, 49)
-                                        .addComponent(jNombreBrigada, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel4)
+                                                .addGap(42, 42, 42)
+                                                .addComponent(BotonOcup))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(83, 83, 83)
+                                                .addComponent(jGuardarBrigada)))
+                                        .addGap(58, 58, 58)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(28, 28, 28)
+                                                .addComponent(jButton4))
+                                            .addComponent(BotonLibre)))
                                     .addGroup(layout.createSequentialGroup()
+<<<<<<< Updated upstream
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel3)
                                             .addComponent(jLabel5))
@@ -155,6 +206,19 @@ CuartelData dataCuartel=null;
                         .addGap(167, 167, 167)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
+=======
+                                        .addGap(161, 161, 161)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 152, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(49, 49, 49)
+                                .addComponent(jNombreBrigada)
+                                .addGap(25, 25, 25)
+                                .addComponent(btnSeleccionar)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+>>>>>>> Stashed changes
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -165,19 +229,16 @@ CuartelData dataCuartel=null;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jNombreBrigada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(btnSeleccionar))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jEspecialidadBrigada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton3)))
-                .addGap(20, 20, 20)
+                    .addComponent(jEspecialidadBrigada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jButton1)
                     .addComponent(JCBXCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotonOcup)
                     .addComponent(BotonLibre)
@@ -186,6 +247,10 @@ CuartelData dataCuartel=null;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
                     .addComponent(jGuardarBrigada)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -200,7 +265,6 @@ CuartelData dataCuartel=null;
     }                                               
 
     private void jGuardarBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGuardarBrigadaActionPerformed
-        // TODO add your handling code here:
         boolean s=false;
             if(BotonLibre.isSelected()){
             s=true;
@@ -209,7 +273,7 @@ CuartelData dataCuartel=null;
         }
             
         String nombreBrigada=jNombreBrigada.getText();
-        String Especialidad= jEspecialidadBrigada.getText();
+        String Especialidad= jEspecialidadBrigada.getSelectedItem()+"";
         Cuartel cuartelselec=(Cuartel)JCBXCuartel.getSelectedItem();
         
         Brigada asd=new Brigada(nombreBrigada,Especialidad,s,cuartelselec);
@@ -226,6 +290,34 @@ CuartelData dataCuartel=null;
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
+        int id = Integer.parseInt(String.valueOf(tbBrigada.getValueAt(tbBrigada.getSelectedRow(), 0)));
+        for (Brigada bri : dataBrigada.traerBrigadas()) {
+            if (id == bri.getIdBrigada()) {
+                jNombreBrigada.setText(bri.getNombreBrigada());
+                int itemCount = jEspecialidadBrigada.getItemCount();
+                for (int i = 0; i < itemCount; i++) {
+                    String item = jEspecialidadBrigada.getItemAt(i);
+                    String probando = String.valueOf(tbBrigada.getValueAt(tbBrigada.getSelectedRow(), 2));
+                    if (item.contains(probando)) {
+                        jEspecialidadBrigada.setSelectedIndex(i);
+                    }
+                }
+                int itemCount2 = JCBXCuartel.getItemCount();
+                for (int i = 0; i < itemCount2; i++) {
+                    String item = JCBXCuartel.getItemAt(i).getNombreCuartel();
+                    for (Cuartel object : dataCuartel.traerCuarteles()) {
+                        if (item.equals(object.getNombreCuartel())) {
+                            JCBXCuartel.setSelectedIndex(i);
+                        }
+                    }
+                }
+                bri.setLibre(closable);
+            }
+        }
+   
+    }//GEN-LAST:event_btnSeleccionarActionPerformed
     private void cargarCombo(){  
         for (Cuartel lista : dataCuartel.traerCuarteles()){ 
             JCBXCuartel.addItem(new Cuartel(lista.getIdCuartel() ,lista.getNombreCuartel()));
@@ -236,12 +328,10 @@ CuartelData dataCuartel=null;
     private javax.swing.JRadioButton BotonLibre;
     private javax.swing.JRadioButton BotonOcup;
     private javax.swing.JComboBox<Cuartel> JCBXCuartel;
+    private javax.swing.JButton btnSeleccionar;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JTextField jEspecialidadBrigada;
+    private javax.swing.JComboBox<String> jEspecialidadBrigada;
     private javax.swing.JButton jGuardarBrigada;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -249,5 +339,27 @@ CuartelData dataCuartel=null;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField jNombreBrigada;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tbBrigada;
     // End of variables declaration//GEN-END:variables
+    private void encabezadoTabla() {
+        modelo.addColumn("ID");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Especialidad");
+        modelo.addColumn("Libre");
+        tbBrigada.setModel(modelo);
+    }
+
+    private void cargarTabla() {
+        for (Brigada bri : dataBrigada.traerBrigadas()) {
+            modelo.addRow(new Object[]{
+                bri.getIdBrigada(),
+                bri.getNombreBrigada(),
+                bri.getEspecialidad(),
+                bri.isLibre()});
+        }
+    }
+
 }
+
+

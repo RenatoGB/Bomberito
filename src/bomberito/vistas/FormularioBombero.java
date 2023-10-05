@@ -272,6 +272,15 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
                     dcNacimiento.setDate(date);
                     txtGrupo.setText(listaBombero.getGrupoSanguineo());
                     txtCelular.setText(listaBombero.getCelular());
+                    int itemCount = cbxBrigadas.getItemCount();
+                    for (int i = 0; i < itemCount; i++) {
+                        String item = cbxBrigadas.getItemAt(i).getNombreBrigada();
+                        for (Brigada object : controlBri.traerBrigadas()) {
+                            if (item.equals(object.getNombreBrigada())) {
+                                cbxBrigadas.setSelectedIndex(i);
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -325,7 +334,7 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
                 modelo.addRow(new Object[]{
                     prod.getDni(),
                     prod.getApellido(),
-                    prod.getNombre(),});
+                    prod.getNombre()});
             }
         }
     }//GEN-LAST:event_txtApellidoActionPerformed
