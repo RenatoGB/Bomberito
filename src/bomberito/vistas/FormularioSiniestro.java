@@ -9,12 +9,12 @@ package bomberito.vistas;
  *
  * @author renat
  */
-public class Siniestros extends javax.swing.JInternalFrame {
+public class FormularioSiniestro extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Siniestros
      */
-    public Siniestros() {
+    public FormularioSiniestro() {
         initComponents();
     }
 
@@ -43,7 +43,7 @@ public class Siniestros extends javax.swing.JInternalFrame {
         dcFechaResolucionSiniestro = new com.toedter.calendar.JDateChooser();
         jPuntuacionSiniestro = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        JBGuardar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
@@ -65,10 +65,10 @@ public class Siniestros extends javax.swing.JInternalFrame {
 
         jButton1.setText("Editar");
 
-        jButton2.setText("Guardar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        JBGuardar.setText("Guardar");
+        JBGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                JBGuardarActionPerformed(evt);
             }
         });
 
@@ -112,7 +112,7 @@ public class Siniestros extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2)
+                                .addComponent(JBGuardar)
                                 .addGap(91, 91, 91))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -169,7 +169,7 @@ public class Siniestros extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2)
+                    .addComponent(JBGuardar)
                     .addComponent(jButton3))
                 .addGap(4, 4, 4))
         );
@@ -177,9 +177,9 @@ public class Siniestros extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void JBGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBGuardarActionPerformed
+        
+    }//GEN-LAST:event_JBGuardarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         dispose();
@@ -187,10 +187,10 @@ public class Siniestros extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBGuardar;
     private com.toedter.calendar.JDateChooser dcFechaResolucionSiniestro;
     private com.toedter.calendar.JDateChooser dcFechaSiniestro;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JTextField jDetalleSinietro;
