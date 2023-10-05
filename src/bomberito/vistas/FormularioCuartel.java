@@ -78,6 +78,11 @@ CuartelData data=null;
         });
 
         jButton4.setText("Salir");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         Editar.setText("Editar");
 
@@ -186,6 +191,10 @@ CuartelData data=null;
       Cuartel nuevo=new Cuartel(nombreCuartel, direccion, coordX, coordY, telefono, correo );
     data.nuevoCuartel(nuevo);
     }//GEN-LAST:event_jNuevoCuartelActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

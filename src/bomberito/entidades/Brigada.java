@@ -12,6 +12,12 @@ public class Brigada {
     public Brigada() {
     }
 
+    public Brigada(int idBrigada, String nombreBrigada) {
+        this.idBrigada = idBrigada;
+        this.nombreBrigada = nombreBrigada;
+    }
+
+    
     public Brigada(String nombreBrigada, String especialidad, boolean libre, Cuartel nroCuartel) {
         this.nombreBrigada = nombreBrigada;
         this.especialidad = especialidad;

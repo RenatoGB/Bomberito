@@ -15,7 +15,11 @@ public class Cuartel {
         this.nombreCuartel = nombreCuartel;
     }
 
-    
+    public Cuartel(int idCuartel, String nombreCuartel) {
+        this.idCuartel = idCuartel;
+        this.nombreCuartel = nombreCuartel;
+    }
+
     
     
     public Cuartel() {

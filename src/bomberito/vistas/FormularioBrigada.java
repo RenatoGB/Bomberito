@@ -85,6 +85,11 @@ CuartelData dataCuartel=null;
         jButton3.setText("Buscar");
 
         jButton4.setText("Salir");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jGuardarBrigada.setText("Guardar");
         jGuardarBrigada.addActionListener(new java.awt.event.ActionListener() {
@@ -207,7 +212,7 @@ CuartelData dataCuartel=null;
         String Especialidad= jEspecialidadBrigada.getText();
         Cuartel cuartelselec=(Cuartel)JCBXCuartel.getSelectedItem();
         
-        Brigada asd=new Brigada(nombreBrigada,Especialidad,s,dataCuartel.traerCuartelID(cuartelselec.getIdCuartel()));
+        Brigada asd=new Brigada(nombreBrigada,Especialidad,s,cuartelselec);
         
         dataBrigada.nuevaBrigada(asd);
         //dataCuartel.traerCuartelID(idcuartel);
@@ -217,9 +222,13 @@ CuartelData dataCuartel=null;
     private void JCBXCuartelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBXCuartelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JCBXCuartelActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
     private void cargarCombo(){  
         for (Cuartel lista : dataCuartel.traerCuarteles()){ 
-            JCBXCuartel.addItem(new Cuartel(lista.getNombreCuartel()));
+            JCBXCuartel.addItem(new Cuartel(lista.getIdCuartel() ,lista.getNombreCuartel()));
         }
     }
 
