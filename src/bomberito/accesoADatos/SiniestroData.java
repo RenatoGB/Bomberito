@@ -45,7 +45,7 @@ public class SiniestroData {
         }  
     }
     
-    /*public List<Siniestro> traerSiniestros(){
+    public List<Siniestro> traerSiniestros(){
         List<Siniestro> siniestres = new ArrayList<>();
         try{
             String sql = "SELECT * FROM siniestro";
@@ -55,9 +55,15 @@ public class SiniestroData {
                 Siniestro sin= new Siniestro();
                 BrigadaData brig = new BrigadaData();
                 sin.setIdSiniestro(rs.getInt("IdSiniestro"));
-                
-                
-                
+                sin.setTipo(rs.getString("tipo"));
+                sin.setFechaSiniestro(rs.getDate("fechaSiniestro").toLocalDate());
+                sin.setCoordX(rs.getInt("coordX"));
+                sin.setCoordY(rs.getInt("coordY"));
+                sin.setDetalles(rs.getString("detalles"));
+                sin.setFechaResolucion(rs.getDate("fechaResolucion").toLocalDate());
+                sin.setPuntuacion(rs.getInt("puntuacion"));
+                sin.setCodBrigada(brig.traerBrigadaID(rs.getInt("codBrigada")));
+                sin.setActivo(true);
                 
                 siniestres.add(sin);
             }
@@ -65,7 +71,8 @@ public class SiniestroData {
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Siniestro");
         }
-    }*/
-    //return siniestres;
+        return siniestres;
+    }
+    
     
 }

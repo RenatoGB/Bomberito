@@ -16,6 +16,7 @@ public class Siniestro {
     private int puntuacion;
     private Brigada codBrigada;
     private boolean activo;
+    
     public Siniestro() {
     }
 
