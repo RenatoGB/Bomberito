@@ -13,11 +13,12 @@ public class Bombero {
     private String grupoSanguineo;
     private String celular;
     private Brigada codBrigada;
+    private boolean activo;
 
     public Bombero() {
     }
 
-    public Bombero(int dni, String apellido, String nombre, LocalDate fechaNacimiento, String grupoSanguineo, String celular, Brigada codBrigada) {
+    public Bombero(int dni, String apellido, String nombre, LocalDate fechaNacimiento, String grupoSanguineo, String celular, Brigada codBrigada, boolean activo) {
         this.dni = dni;
         this.apellido = apellido;
         this.nombre = nombre;
@@ -25,6 +26,7 @@ public class Bombero {
         this.grupoSanguineo = grupoSanguineo;
         this.celular = celular;
         this.codBrigada = codBrigada;
+        this.activo = activo;
     }
 
     public int getIdBombero() {
@@ -90,6 +92,16 @@ public class Bombero {
     public void setCodBrigada(Brigada codBrigada) {
         this.codBrigada = codBrigada;
     }
-    
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
+
+
     
 }

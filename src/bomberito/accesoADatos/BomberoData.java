@@ -23,8 +23,8 @@ public class BomberoData {
     }
     
     public void nuevoBombero(Bombero bomberito){
-        String sql = "INSERT INTO bombero(dni,apellido,nombre,fechaNacimiento,grupoSanguineo, celular, codBrigada)"
-                + "VALUE (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO bombero(dni,apellido,nombre,fechaNacimiento,grupoSanguineo, celular, codBrigada, activo)"
+                + "VALUE (?,?,?,?,?,?,?,?)";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -35,6 +35,7 @@ public class BomberoData {
             ps.setString(5, bomberito.getGrupoSanguineo());
             ps.setString(6, bomberito.getCelular());
             ps.setInt(7, bomberito.getCodBrigada().getIdBrigada());
+            ps.setBoolean(8, true);
             ps.executeUpdate();
             
             ResultSet rs = ps.getGeneratedKeys();
@@ -51,7 +52,7 @@ public class BomberoData {
     public List<Bombero> traerBomberos() {
         List<Bombero> bomberitos = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM bombero WHERE idBombero > 0 ";
+            String sql = "SELECT * FROM bombero WHERE activo = 1 ";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -73,5 +74,41 @@ public class BomberoData {
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla bombero " + ex.getMessage());
         }
         return bomberitos;
+    }
+    
+    public void modificarBombero(Bombero bomberito){
+        String sql = "UPDATE bombero SET dni=?, apellido=?, nombre=?, fechaNacimiento=?, grupoSanguineo=?, celular=?, codBrigada=?"
+                + " WHERE idBombero=?";        
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, bomberito.getDni());
+            ps.setString(2, bomberito.getApellido());
+            ps.setString(3, bomberito.getNombre());
+            ps.setDate(4,Date.valueOf(bomberito.getFechaNacimiento()));
+            ps.setString(5, bomberito.getGrupoSanguineo());
+            ps.setString(6, bomberito.getCelular());
+            ps.setInt(7, bomberito.getCodBrigada().getIdBrigada());
+            ps.setInt(8, bomberito.getIdBombero());
+            int exito=ps.executeUpdate();
+            if (exito==1) {
+                JOptionPane.showMessageDialog(null, "Bombero modificado");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla bombero para modificar");
+        }
+    }
+    
+        public void bajaBombero(int id){
+        String sql="UPDATE bombero SET activo=0 WHERE idBombero=?";
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, id);
+            int exito = ps.executeUpdate();
+            if (exito==1) {
+                JOptionPane.showMessageDialog(null, "Bombero dado de baja");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla bombero");
+        }
     }
 }

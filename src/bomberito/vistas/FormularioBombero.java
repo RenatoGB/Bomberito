@@ -29,6 +29,7 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
     BrigadaData controlBri=null;
     BomberoData controlBom=null;
     int guardarID;
+    int numViejo;
     /**
      * Creates new form FormularioBombero
      */
@@ -67,8 +68,8 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
         btnBuscarDNI = new javax.swing.JButton();
         btnAplicar = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
+        btnDarBaja = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         dcNacimiento = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -91,9 +92,9 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
 
         jLabel8.setText("Brigada Asiganada");
 
-        txtApellido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtApellidoActionPerformed(evt);
+        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtApellidoKeyReleased(evt);
             }
         });
 
@@ -124,9 +125,19 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton5.setText("Modificar");
+        btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
 
-        jButton6.setText("Dar de Baja");
+        btnDarBaja.setText("Dar de Baja");
+        btnDarBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDarBajaActionPerformed(evt);
+            }
+        });
 
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -183,9 +194,9 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
                         .addGap(23, 23, 23)
                         .addComponent(btnNuevo)
                         .addGap(58, 58, 58)
-                        .addComponent(jButton5)
+                        .addComponent(btnModificar)
                         .addGap(57, 57, 57)
-                        .addComponent(jButton6)))
+                        .addComponent(btnDarBaja)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -243,8 +254,8 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnNuevo)
-                            .addComponent(jButton5)
-                            .addComponent(jButton6)
+                            .addComponent(btnModificar)
+                            .addComponent(btnDarBaja)
                             .addComponent(btnSalir))
                         .addGap(24, 24, 24))
                     .addGroup(layout.createSequentialGroup()
@@ -266,6 +277,7 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
             for (Bombero listaBombero : controlBom.traerBomberos()) {
                 int comparar = Integer.parseInt(txtDNI.getText());
                 if (comparar == listaBombero.getDni()) {
+                    numViejo=listaBombero.getIdBombero();
                     txtApellido.setText(listaBombero.getApellido());
                     txtNombre.setText(listaBombero.getNombre());
                     Date date = java.sql.Date.valueOf(listaBombero.getFechaNacimiento());
@@ -298,7 +310,8 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
             String grupoSan = txtGrupo.getText();
             String celular = txtCelular.getText();
             Brigada brigadaSelec = (Brigada) cbxBrigadas.getSelectedItem();
-            Bombero bomba = new Bombero(dni, apellido, nombre, fechita, grupoSan, celular, brigadaSelec);
+            boolean activo=true;
+            Bombero bomba = new Bombero(dni, apellido, nombre, fechita, grupoSan, celular, brigadaSelec, activo);
             controlBom.nuevoBombero(bomba);
         }
     }//GEN-LAST:event_btnNuevoActionPerformed
@@ -306,6 +319,7 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
     private void btnAplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarActionPerformed
         for (Bombero listaBombero : controlBom.traerBomberos()) {
             if (guardarID == listaBombero.getIdBombero()) {
+                numViejo=listaBombero.getIdBombero();
                 txtDNI.setText(listaBombero.getDni()+"");
                 txtApellido.setText(listaBombero.getApellido());
                 txtNombre.setText(listaBombero.getNombre());
@@ -326,8 +340,43 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnAplicarActionPerformed
 
-    private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
-        borrarFilas();
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        int cambio = Integer.parseInt(txtDNI.getText());
+        Date fechaNacimiento=dcNacimiento.getDate();
+        LocalDate fechita=fechaNacimiento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(); 
+        for (Bombero listita : controlBom.traerBomberos()) {         
+            if (cambio==listita.getDni()||cambio!=listita.getDni()) {
+                Bombero nuevito=new Bombero();
+                nuevito.setIdBombero(numViejo);
+                nuevito.setDni(Integer.parseInt(txtDNI.getText()));
+                nuevito.setApellido(txtApellido.getText());
+                nuevito.setNombre(txtNombre.getText());
+                nuevito.setFechaNacimiento(fechita);
+                nuevito.setGrupoSanguineo(txtGrupo.getText());
+                nuevito.setCelular(txtCelular.getText());
+                Brigada brigadaSelec = (Brigada) cbxBrigadas.getSelectedItem();
+                nuevito.setCodBrigada(brigadaSelec);
+                controlBom.modificarBombero(nuevito);
+                return;                
+            }
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnDarBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDarBajaActionPerformed
+                for (Bombero listita : controlBom.traerBomberos()) {
+            int cambio = Integer.parseInt(txtDNI.getText());
+            if (cambio==listita.getDni()) {
+                controlBom.bajaBombero(listita.getIdBombero());
+            }
+        }
+    }//GEN-LAST:event_btnDarBajaActionPerformed
+
+    private void txtApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyReleased
+                borrarFilas();
         for (Bombero prod : controlBom.traerBomberos()) {
             if (prod.getApellido().contains(txtApellido.getText())) {
                 guardarID=prod.getIdBombero();
@@ -337,22 +386,18 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
                     prod.getNombre()});
             }
         }
-    }//GEN-LAST:event_txtApellidoActionPerformed
-
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        dispose();
-    }//GEN-LAST:event_btnSalirActionPerformed
+    }//GEN-LAST:event_txtApellidoKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAplicar;
     private javax.swing.JButton btnBuscarDNI;
+    private javax.swing.JButton btnDarBaja;
+    private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnSalir;
     private javax.swing.JComboBox<Brigada> cbxBrigadas;
     private com.toedter.calendar.JDateChooser dcNacimiento;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

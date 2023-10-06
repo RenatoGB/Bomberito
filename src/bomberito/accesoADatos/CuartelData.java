@@ -1,8 +1,10 @@
 
 package bomberito.accesoADatos;
 
+import bomberito.entidades.Bombero;
 import bomberito.entidades.Cuartel;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -92,5 +94,26 @@ public class CuartelData {
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla cuartel " + ex.getMessage());
         }
         return cuartelitos;
+    }
+    
+        public void modificarCuartel(Cuartel cuartelito){
+        String sql = "UPDATE cuartel SET nombreCuartel=?, direccion=?, coordX=?, coordY=?, telefono=?, correo=?"
+                + " WHERE idCuartel=?";        
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setString(1, cuartelito.getNombreCuartel());
+            ps.setString(2, cuartelito.getDireccion());
+            ps.setInt(3, cuartelito.getCoordX());
+            ps.setInt(4,cuartelito.getCoordY());
+            ps.setString(5, cuartelito.getTelefono());
+            ps.setString(6, cuartelito.getCorreo());
+            ps.setInt(7, cuartelito.getIdCuartel());
+            int exito=ps.executeUpdate();
+            if (exito==1) {
+                JOptionPane.showMessageDialog(null, "Cuartel modificado");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla cuartel para modificar");
+        }
     }
 }
