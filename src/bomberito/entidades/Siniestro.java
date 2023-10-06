@@ -15,11 +15,11 @@ public class Siniestro {
     private LocalDate fechaResolucion;
     private int puntuacion;
     private Brigada codBrigada;
-
+    private boolean activo;
     public Siniestro() {
     }
 
-    public Siniestro(String tipo, LocalDate fechaSiniestro, int coordX, int coordY, String detalles, LocalDate fechaResolucion, int puntuacion, Brigada codBrigada) {
+    public Siniestro(String tipo, LocalDate fechaSiniestro, int coordX, int coordY, String detalles, LocalDate fechaResolucion, int puntuacion, Brigada codBrigada, boolean activo) {
         this.tipo = tipo;
         this.fechaSiniestro = fechaSiniestro;
         this.coordX = coordX;
@@ -28,6 +28,7 @@ public class Siniestro {
         this.fechaResolucion = fechaResolucion;
         this.puntuacion = puntuacion;
         this.codBrigada = codBrigada;
+        this.activo = activo;
     }
 
     public int getIdSiniestro() {
@@ -100,6 +101,14 @@ public class Siniestro {
 
     public void setCodBrigada(Brigada codBrigada) {
         this.codBrigada = codBrigada;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
     
     

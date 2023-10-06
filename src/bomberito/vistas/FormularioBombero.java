@@ -378,7 +378,7 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
     private void txtApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyReleased
                 borrarFilas();
         for (Bombero prod : controlBom.traerBomberos()) {
-            if (prod.getApellido().contains(txtApellido.getText())) {
+            if (prod.getApellido().contains(txtApellido.getText())) {  //Implementar ignoreCase
                 guardarID=prod.getIdBombero();
                 modelo.addRow(new Object[]{
                     prod.getDni(),

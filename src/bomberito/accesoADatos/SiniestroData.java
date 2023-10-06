@@ -7,6 +7,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,9 +22,8 @@ public class SiniestroData {
     }
     
     public void NuevoSiniestro(Siniestro sin){
-        String sql="INSERT INTO siniestro(tipo, fechaSiniestro, coordX, coordY, detalles, fechaResolucion, puntuacion,codBrigada)"
-                +"VALUE(?,?,?,?,?,?,?)";
-        
+        String sql="INSERT INTO siniestro(tipo, fechaSiniestro, coordX, coordY, detalles)"
+                +"VALUE(?,?,?,?,?)";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setString(1, sin.getTipo());
@@ -31,8 +31,6 @@ public class SiniestroData {
             ps.setInt(3, sin.getCoordX());
             ps.setInt(4, sin.getCoordY());
             ps.setString(5, sin.getDetalles());
-            ps.setDate(6, Date.valueOf(sin.getFechaResolucion()));
-            ps.setInt(7,sin.getPuntuacion());
             ps.executeUpdate();
             
             ResultSet rs=ps.getGeneratedKeys();
@@ -47,9 +45,27 @@ public class SiniestroData {
         }  
     }
     
- /*   public List<Siniestro> traerSiniestros(){
-        List<Siniestro>
+    /*public List<Siniestro> traerSiniestros(){
+        List<Siniestro> siniestres = new ArrayList<>();
+        try{
+            String sql = "SELECT * FROM siniestro";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs =ps.executeQuery();
+            while (rs.next()) {
+                Siniestro sin= new Siniestro();
+                BrigadaData brig = new BrigadaData();
+                sin.setIdSiniestro(rs.getInt("IdSiniestro"));
+                
+                
+                
+                
+                siniestres.add(sin);
+            }
+            ps.close();
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Siniestro");
+        }
     }*/
-    
+    //return siniestres;
     
 }
