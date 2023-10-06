@@ -7,8 +7,12 @@ package bomberito.vistas;
 
 import bomberito.accesoADatos.BrigadaData;
 import bomberito.accesoADatos.CuartelData;
+import bomberito.entidades.Bombero;
 import bomberito.entidades.Brigada;
 import bomberito.entidades.Cuartel;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import javax.swing.ButtonModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,6 +32,7 @@ public class FormularioBrigada extends javax.swing.JInternalFrame {
     BrigadaData dataBrigada = null;
     CuartelData dataCuartel = null;
     int guardarID;
+    int numViejo;
 
     /**
      * Creates new form Brigadas
@@ -61,11 +66,12 @@ public class FormularioBrigada extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         btnSeleccionar = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jGuardarBrigada = new javax.swing.JButton();
+        jNuevaBrigada = new javax.swing.JButton();
         JCBXCuartel = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbBrigada = new javax.swing.JTable();
         jEspecialidadBrigada = new javax.swing.JComboBox<>();
+        btnModificar = new javax.swing.JButton();
 
         jLabel1.setText("Brigada");
 
@@ -102,10 +108,10 @@ public class FormularioBrigada extends javax.swing.JInternalFrame {
             }
         });
 
-        jGuardarBrigada.setText("Guardar");
-        jGuardarBrigada.addActionListener(new java.awt.event.ActionListener() {
+        jNuevaBrigada.setText("Nuevo");
+        jNuevaBrigada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jGuardarBrigadaActionPerformed(evt);
+                jNuevaBrigadaActionPerformed(evt);
             }
         });
 
@@ -130,6 +136,13 @@ public class FormularioBrigada extends javax.swing.JInternalFrame {
 
         jEspecialidadBrigada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1- Incendios en viviendas, e industrias ", "2- Salvamento en derrumbes", "3- Rescates en ámbito montaña ", "4- Rescate de personas atrapadas en accidentes de tráfico", "5- Socorrer inundaciones", "6- Operativos de prevención" }));
 
+        btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -153,32 +166,32 @@ public class FormularioBrigada extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel4)
-                                                .addGap(42, 42, 42)
-                                                .addComponent(BotonOcup))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(83, 83, 83)
-                                                .addComponent(jGuardarBrigada)))
-                                        .addGap(58, 58, 58)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(28, 28, 28)
-                                                .addComponent(jButton4))
-                                            .addComponent(BotonLibre)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(161, 161, 161)
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 152, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(49, 49, 49)
                                 .addComponent(jNombreBrigada)
                                 .addGap(25, 25, 25)
-                                .addComponent(btnSeleccionar)))
+                                .addComponent(btnSeleccionar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(83, 83, 83)
+                                .addComponent(jNuevaBrigada)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton4)
+                                .addGap(20, 20, 20))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(42, 42, 42)
+                                        .addComponent(BotonOcup)
+                                        .addGap(58, 58, 58)
+                                        .addComponent(BotonLibre))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(161, 161, 161)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(228, 228, 228)
+                                        .addComponent(btnModificar)))
+                                .addGap(0, 153, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -200,7 +213,7 @@ public class FormularioBrigada extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(JCBXCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotonOcup)
                     .addComponent(BotonLibre)
@@ -208,7 +221,8 @@ public class FormularioBrigada extends javax.swing.JInternalFrame {
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
-                    .addComponent(jGuardarBrigada)))
+                    .addComponent(jNuevaBrigada)
+                    .addComponent(btnModificar)))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -226,7 +240,7 @@ public class FormularioBrigada extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }                                               
 
-    private void jGuardarBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jGuardarBrigadaActionPerformed
+    private void jNuevaBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNuevaBrigadaActionPerformed
         boolean s=false;
             if(BotonLibre.isSelected()){
             s=true;
@@ -243,7 +257,7 @@ public class FormularioBrigada extends javax.swing.JInternalFrame {
         dataBrigada.nuevaBrigada(asd);
         //dataCuartel.traerCuartelID(idcuartel);
         
-    }//GEN-LAST:event_jGuardarBrigadaActionPerformed
+    }//GEN-LAST:event_jNuevaBrigadaActionPerformed
 
     private void JCBXCuartelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBXCuartelActionPerformed
         // TODO add your handling code here:
@@ -257,6 +271,7 @@ public class FormularioBrigada extends javax.swing.JInternalFrame {
         int id = Integer.parseInt(String.valueOf(tbBrigada.getValueAt(tbBrigada.getSelectedRow(), 0)));
         for (Brigada bri : dataBrigada.traerBrigadas()) {
             if (id == bri.getIdBrigada()) {
+                numViejo=bri.getIdBrigada();
                 jNombreBrigada.setText(bri.getNombreBrigada());
                 int itemCount = jEspecialidadBrigada.getItemCount();
                 for (int i = 0; i < itemCount; i++) {
@@ -275,11 +290,33 @@ public class FormularioBrigada extends javax.swing.JInternalFrame {
                         }
                     }
                 }
-                bri.setLibre(closable);
+                System.out.println(bri.isLibre());
+                if (bri.isLibre()==true) {
+                    BotonLibre.setSelected(true);
+                    BotonOcup.setSelected(false);
+                }else if (bri.isLibre()==false) {
+                    BotonLibre.setSelected(false);
+                    BotonOcup.setSelected(true);
+                }
             }
         }
    
     }//GEN-LAST:event_btnSeleccionarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        int cambio= Integer.parseInt(String.valueOf(tbBrigada.getValueAt(tbBrigada.getSelectedRow(), 0)));
+        for (Brigada listita : dataBrigada.traerBrigadas()) {         
+            if (cambio==listita.getIdBrigada()) {
+                listita.setIdBrigada(cambio);
+                listita.setNombreBrigada(jNombreBrigada.getText());
+                listita.setEspecialidad(jEspecialidadBrigada.getSelectedItem()+"");
+                Cuartel cuartelSelec = (Cuartel) JCBXCuartel.getSelectedItem();
+                listita.setNroCuartel(cuartelSelec);
+                dataBrigada.modificarBrigada(listita);
+                return;                
+            }
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
     private void cargarCombo(){  
         for (Cuartel lista : dataCuartel.traerCuarteles()){ 
             JCBXCuartel.addItem(new Cuartel(lista.getIdCuartel() ,lista.getNombreCuartel()));
@@ -290,17 +327,18 @@ public class FormularioBrigada extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton BotonLibre;
     private javax.swing.JRadioButton BotonOcup;
     private javax.swing.JComboBox<Cuartel> JCBXCuartel;
+    private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnSeleccionar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jEspecialidadBrigada;
-    private javax.swing.JButton jGuardarBrigada;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField jNombreBrigada;
+    private javax.swing.JButton jNuevaBrigada;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbBrigada;
     // End of variables declaration//GEN-END:variables

@@ -1,9 +1,11 @@
 
 package bomberito.accesoADatos;
 
+import bomberito.entidades.Bombero;
 import bomberito.entidades.Brigada;
 import java.util.List;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -88,5 +90,23 @@ public class BrigadaData {
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla cuartel " + ex.getMessage());
         }
         return cuart;
+    }
+        
+    public void modificarBrigada(Brigada brigadita){
+        String sql = "UPDATE brigada SET nombreBrigada=?, especialidad=?, libre=?, nroCuartel=? WHERE idBrigada=?";        
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setString(1, brigadita.getNombreBrigada());
+            ps.setString(2, brigadita.getEspecialidad());
+            ps.setBoolean(3, brigadita.isLibre());
+            ps.setInt(4, brigadita.getNroCuartel().getIdCuartel());
+            ps.setInt(5, brigadita.getIdBrigada());
+            int exito=ps.executeUpdate();
+            if (exito==1) {
+                JOptionPane.showMessageDialog(null, "Brigada modificado");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla brigada para modificar "+ex);
+        }
     }
 }
