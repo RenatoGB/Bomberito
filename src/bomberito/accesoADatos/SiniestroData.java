@@ -1,6 +1,7 @@
 
 package bomberito.accesoADatos;
 
+import bomberito.entidades.Brigada;
 import bomberito.entidades.Siniestro;
 import java.sql.Connection;
 import java.sql.Date;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.mariadb.jdbc.Statement;
 
 
 public class SiniestroData {
@@ -25,7 +27,7 @@ public class SiniestroData {
         String sql="INSERT INTO siniestro(tipo, fechaSiniestro, coordX, coordY, detalles)"
                 +"VALUE(?,?,?,?,?)";
         try {
-            PreparedStatement ps=con.prepareStatement(sql);
+            PreparedStatement ps=con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, sin.getTipo());
             ps.setDate(2, Date.valueOf(sin.getFechaSiniestro()));
             ps.setInt(3, sin.getCoordX());
@@ -41,14 +43,15 @@ public class SiniestroData {
             ps.close();
             
         } catch (SQLException ex) {
-         JOptionPane.showMessageDialog(null, "Error al acceder a la tabla bombero");
+         JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Siniestro");
+         
         }  
     }
     
     public List<Siniestro> traerSiniestros(){
         List<Siniestro> siniestres = new ArrayList<>();
         try{
-            String sql = "SELECT * FROM siniestro";
+            String sql = "SELECT * FROM siniestro WHERE activo = 1";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs =ps.executeQuery();
             while (rs.next()) {
