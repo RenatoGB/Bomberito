@@ -111,4 +111,20 @@ public class BomberoData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla bombero");
         }
     }
+        
+    public  int bomberosEnUnaBrigada(int id) {
+        int count = 0;
+        try {
+            String sql = "SELECT COUNT(*) FROM bombero WHERE codBrigada="+id;
+            PreparedStatement ps= con.prepareStatement(sql);
+            ResultSet result = ps.executeQuery();
+            if (result.next()) {
+                count = result.getInt(1);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error mortal!!");
+        }
+
+        return count;
+    }
 }

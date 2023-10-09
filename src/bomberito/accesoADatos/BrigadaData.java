@@ -70,13 +70,13 @@ public class BrigadaData {
     }
     
         public Brigada traerBrigadaID(int id){
-            Brigada cuart = new Brigada();
+            Brigada bri = null;
         try {
             String sql = "SELECT * FROM brigada WHERE idBrigada= "+id;
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Brigada bri = new Brigada();
+                bri = new Brigada();
                 CuartelData cuar = new CuartelData();
                 bri.setIdBrigada(rs.getInt("idBrigada"));
                 bri.setNombreBrigada(rs.getString("nombreBrigada"));
@@ -89,7 +89,7 @@ public class BrigadaData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla cuartel " + ex.getMessage());
         }
-        return cuart;
+        return bri;
     }
         
     public void modificarBrigada(Brigada brigadita){
