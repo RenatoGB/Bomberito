@@ -14,7 +14,6 @@ import java.time.ZoneId;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import jdk.nashorn.internal.ir.BreakNode;
 
 /**
  *
@@ -75,7 +74,12 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
         btnSalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+<<<<<<< Updated upstream
         dcNacimiento = new com.toedter.calendar.JDateChooser();
+=======
+        txtCantFaltante = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+>>>>>>> Stashed changes
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText("Formulario Bomberos");
@@ -161,6 +165,10 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        txtCantFaltante.setEditable(false);
+
+        jLabel9.setText("Quedan disponibles: ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -173,7 +181,8 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
                         .addGap(58, 58, 58)
                         .addComponent(btnModificar)
                         .addGap(57, 57, 57)
-                        .addComponent(btnDarBaja))
+                        .addComponent(btnDarBaja)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,9 +205,19 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+<<<<<<< Updated upstream
                                         .addComponent(btnBuscarDNI))
                                     .addComponent(dcNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
+=======
+                                        .addComponent(btnBuscarDNI)))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtCantFaltante, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+>>>>>>> Stashed changes
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -249,6 +268,10 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel8)
                                     .addComponent(cbxBrigadas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(btnAplicar))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtCantFaltante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnNuevo)
@@ -265,7 +288,10 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbxBrigadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxBrigadasActionPerformed
-        // TODO add your handling code here:
+        Brigada brigadaSelec = (Brigada) cbxBrigadas.getSelectedItem();
+        Brigada modificar = controlBri.traerBrigadaID(brigadaSelec.getIdBrigada());
+        int muestra = controlBom.bomberosEnUnaBrigada(modificar.getIdBrigada());
+        txtCantFaltante.setText((5 - muestra) + "");
     }//GEN-LAST:event_cbxBrigadasActionPerformed
 
     private void btnBuscarDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarDNIActionPerformed
@@ -283,7 +309,6 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
                     txtGrupo.setText(listaBombero.getGrupoSanguineo());
                     txtCelular.setText(listaBombero.getCelular());
                     int maspruebas = Integer.parseInt(txtDNI.getText());
-                    System.out.println(maspruebas);
                     for (Bombero object : controlBom.traerBomberos()) {
                         if (maspruebas == object.getDni()) {
                             locuraString = object.getCodBrigada().getNombreBrigada();
@@ -303,7 +328,7 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBuscarDNIActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        if (txtDNI.getText().equals("")) {
+        if (txtDNI.getText().equals("")||txtApellido.getText().equals("")||txtCelular.getText().equals("")||txtNombre.getText().equals("")||txtGrupo.getText().equals("")||dcNacimiento.equals("")) {
             JOptionPane.showMessageDialog(null, "No puede haber campos vacios");
         } else {
             int dni = Integer.parseInt(txtDNI.getText());
@@ -394,9 +419,9 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnDarBajaActionPerformed
 
     private void txtApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyReleased
-                borrarFilas();
+        borrarFilas();
         for (Bombero prod : controlBom.traerBomberos()) {
-            if (prod.getApellido().contains(txtApellido.getText())) {  //Implementar ignoreCase
+            if (prod.getApellido().contains(txtApellido.getText())) {
                 modelo.addRow(new Object[]{
                     prod.getDni(),
                     prod.getApellido(),
@@ -423,9 +448,11 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtApellido;
+    private javax.swing.JTextField txtCantFaltante;
     private javax.swing.JTextField txtCelular;
     private javax.swing.JTextField txtDNI;
     private javax.swing.JTextField txtGrupo;
@@ -433,7 +460,9 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
     private void cargarCombo() {
         for (Brigada listita : controlBri.traerBrigadas()) {
-            cbxBrigadas.addItem(new Brigada(listita.getIdBrigada(), listita.getNombreBrigada()));
+            if (controlBom.bomberosEnUnaBrigada(listita.getIdBrigada())<5) {
+                cbxBrigadas.addItem(new Brigada(listita.getIdBrigada(), listita.getNombreBrigada()));
+            }            
         }
     }
     
