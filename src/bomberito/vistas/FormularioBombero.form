@@ -46,6 +46,7 @@
                           <Component id="txtNombre" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtCelular" alignment="0" max="32767" attributes="0"/>
                           <Component id="cbxBrigadas" alignment="0" max="32767" attributes="0"/>
+                          <Component id="dcNacimiento" max="32767" attributes="0"/>
                           <Component id="txtApellido" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -55,7 +56,6 @@
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="btnBuscarDNI" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="dcNacimiento" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
@@ -108,12 +108,18 @@
                                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                  <Component id="dcNacimiento" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="dcNacimiento" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtGrupo" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -147,7 +153,7 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jScrollPane1" min="-2" pref="399" max="-2" attributes="0"/>
-                      <EmptySpace pref="30" max="32767" attributes="0"/>
+                      <EmptySpace pref="26" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -272,6 +278,8 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalirActionPerformed"/>
       </Events>
     </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="dcNacimiento">
+    </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -293,9 +301,6 @@
         </Component>
       </SubComponents>
     </Container>
-<<<<<<< Updated upstream
-    <Component class="com.toedter.calendar.JDateChooser" name="dcNacimiento">
-=======
     <Component class="javax.swing.JTextField" name="txtCantFaltante">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
@@ -305,7 +310,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Quedan disponibles: "/>
       </Properties>
->>>>>>> Stashed changes
     </Component>
   </SubComponents>
 </Form>
