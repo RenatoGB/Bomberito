@@ -32,12 +32,13 @@ public class Siniestro {
         this.activo = activo;
     }
 
-    public Siniestro(String tipo, LocalDate fechaSiniestro, int coordX, int coordY, String detalles) {
+    public Siniestro(String tipo, LocalDate fechaSiniestro, int coordX, int coordY, String detalles,boolean activo) {
         this.tipo = tipo;
         this.fechaSiniestro = fechaSiniestro;
         this.coordX = coordX;
         this.coordY = coordY;
         this.detalles = detalles;
+        this.activo=activo;
     }
     
     

@@ -5,29 +5,41 @@
  */
 package bomberito.vistas;
 
+import bomberito.accesoADatos.CuartelData;
 import bomberito.accesoADatos.SiniestroData;
+import bomberito.entidades.Cuartel;
 import bomberito.entidades.Siniestro;
-import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
  * @author Melina
  */
 public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
+    private DefaultTableModel modelo = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+            //no me funciona, editar desde propiedades
+        }
+    };
+    
+    
     SiniestroData controlSin=null;
-private DefaultTableModel modelo=new DefaultTableModel();
+    CuartelData controlDat=null;
     /**
      * Creates new form AsignarBrigadaASiniestro
      */
     public AsignarBrigadaASiniestro() {
         initComponents();
         controlSin=new SiniestroData();
+        controlDat=new CuartelData();
         modelo=new DefaultTableModel();
-        
-        
+
         armarCabeceraTabla();
-        coso();
+        cargarTabla();
+        cargarCombo();
     }
 
     /**
@@ -42,12 +54,12 @@ private DefaultTableModel modelo=new DefaultTableModel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        JCBXCuartel = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
         JTabla = new javax.swing.JTable();
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
@@ -75,8 +87,14 @@ private DefaultTableModel modelo=new DefaultTableModel();
         jLabel5.setForeground(new java.awt.Color(0, 0, 153));
         jLabel5.setText("\"Abnegación, Sacrificio y Desinterés\"");
 
+        JTabla = new javax.swing.JTable(){
+            public boolean isCellEditable(int row, int column){
+                return false;
+            }
+        };
         JTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
@@ -86,62 +104,61 @@ private DefaultTableModel modelo=new DefaultTableModel();
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(JTabla);
+        JTabla.getTableHeader().setResizingAllowed(false);
+        JTabla.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(JTabla);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(21, 21, 21)
+                            .addComponent(jLabel5))
+                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JCBXCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(74, 74, 74)
+                        .addComponent(jLabel4)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(146, 146, 146)
-                        .addComponent(jLabel2))
+                        .addGap(212, 212, 212)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addComponent(jLabel5))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(304, 304, 304)
+                        .addComponent(jLabel2)))
+                .addContainerGap(224, Short.MAX_VALUE))
+            .addComponent(jScrollPane2)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(31, 31, 31)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(JCBXCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
-                .addGap(26, 26, 26))
+                .addGap(22, 22, 22))
         );
 
         pack();
@@ -153,30 +170,32 @@ private DefaultTableModel modelo=new DefaultTableModel();
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> JCBXCuartel;
     private javax.swing.JTable JTabla;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 
     private void armarCabeceraTabla(){
-        ArrayList<Object> filaCab = new ArrayList<>();
-        filaCab.add("Fecha");
-        filaCab.add("TIPO");
-        filaCab.add("Coord X");
-        filaCab.add("Coord Y");
-        filaCab.add("Detalles");
-        for(Object coso: filaCab){
-            modelo.addColumn(coso);
-            
-        }
-        JTabla.setModel(modelo);
+      modelo.addColumn("Fecha");
+      modelo.addColumn("Tipo");
+      modelo.addColumn("X");
+      modelo.addColumn("Y");
+      modelo.addColumn("Detalles");
+      JTabla.setModel(modelo);
+      
+      JTabla.setAutoResizeMode(JTabla.AUTO_RESIZE_OFF);
+      JTabla.getColumnModel().getColumn(0).setPreferredWidth(67);
+      JTabla.getColumnModel().getColumn(1).setPreferredWidth(330);
+      JTabla.getColumnModel().getColumn(2).setPreferredWidth(25);
+      JTabla.getColumnModel().getColumn(3).setPreferredWidth(25);
+      JTabla.getColumnModel().getColumn(4).setPreferredWidth(306);
     }
 
     private void borrarFilaTabla(){
@@ -187,20 +206,24 @@ private DefaultTableModel modelo=new DefaultTableModel();
                 
     }
 
-    private void coso(){
+    private void cargarTabla(){
         borrarFilaTabla();
-        for(Siniestro cosa: controlSin.traerSiniestros()){
+        for(Siniestro cosa: controlSin.traerSiniestrosParaAsignar()){
             modelo.addRow(new Object[]{
                 cosa.getFechaSiniestro(),
                 cosa.getTipo(),
                 cosa.getCoordX(),
                 cosa.getCoordY(),
                 cosa.getDetalles()
-                
             });
         }
     }
-
+    
+    private void cargarCombo(){
+        for(Cuartel ctl: controlDat.traerCuarteles()){
+            JCBXCuartel.addItem(ctl.getNombreCuartel());
+        }
+    }
 
 
 }

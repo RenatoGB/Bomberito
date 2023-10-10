@@ -191,7 +191,8 @@ public class FormularioSiniestro extends javax.swing.JInternalFrame {
         int coordX=Integer.parseInt(CoordX.getText());
         int coordY=Integer.parseInt(CoordY.getText());
         String detalle=JTDetalle.getText();
-        Siniestro nuevo=new Siniestro(tipo,FechaSiniestro,coordX,coordY,detalle);
+        boolean activo=true;
+        Siniestro nuevo=new Siniestro(tipo,FechaSiniestro,coordX,coordY,detalle,activo);
         control.NuevoSiniestro(nuevo);
         } catch (NumberFormatException nfe) {
             JOptionPane.showMessageDialog(null, "Coordenadas invalidas, intente nuevamente");

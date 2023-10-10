@@ -24,8 +24,8 @@ public class SiniestroData {
     }
     
     public void NuevoSiniestro(Siniestro sin){
-        String sql="INSERT INTO siniestro(tipo, fechaSiniestro, coordX, coordY, detalles)"
-                +"VALUE(?,?,?,?,?)";
+        String sql="INSERT INTO siniestro(tipo, fechaSiniestro, coordX, coordY, detalles,activo)"
+                +"VALUE(?,?,?,?,?,?)";
         try {
             PreparedStatement ps=con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, sin.getTipo());
@@ -33,6 +33,7 @@ public class SiniestroData {
             ps.setInt(3, sin.getCoordX());
             ps.setInt(4, sin.getCoordY());
             ps.setString(5, sin.getDetalles());
+            ps.setBoolean(6, sin.isActivo());
             ps.executeUpdate();
             
             ResultSet rs=ps.getGeneratedKeys();
@@ -48,26 +49,20 @@ public class SiniestroData {
         }  
     }
     
-    public List<Siniestro> traerSiniestros(){
+    public List<Siniestro> traerSiniestrosParaAsignar(){
         List<Siniestro> siniestres = new ArrayList<>();
         try{
-            String sql = "SELECT * FROM siniestro WHERE activo = 1";
+            String sql = "SELECT * FROM siniestro";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs =ps.executeQuery();
             while (rs.next()) {
                 Siniestro sin= new Siniestro();
-                BrigadaData brig = new BrigadaData();
                 sin.setIdSiniestro(rs.getInt("IdSiniestro"));
                 sin.setTipo(rs.getString("tipo"));
                 sin.setFechaSiniestro(rs.getDate("fechaSiniestro").toLocalDate());
                 sin.setCoordX(rs.getInt("coordX"));
                 sin.setCoordY(rs.getInt("coordY"));
                 sin.setDetalles(rs.getString("detalles"));
-                sin.setFechaResolucion(rs.getDate("fechaResolucion").toLocalDate());
-                sin.setPuntuacion(rs.getInt("puntuacion"));
-                sin.setCodBrigada(brig.traerBrigadaID(rs.getInt("codBrigada")));
-                sin.setActivo(true);
-                
                 siniestres.add(sin);
             }
             ps.close();
