@@ -66,6 +66,7 @@ public class BomberoData {
                 bom.setGrupoSanguineo(rs.getString("grupoSanguineo"));
                 bom.setCelular(rs.getString("celular"));
                 bom.setCodBrigada(briDa.traerBrigadaID(rs.getInt("codBrigada")));
+                bom.setActivo(rs.getBoolean("activo"));
                 bomberitos.add(bom);
             }
             ps.close();
