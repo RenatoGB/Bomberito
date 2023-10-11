@@ -43,6 +43,11 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="342" max="-2" attributes="0"/>
+              <Component id="jsalir" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -57,6 +62,7 @@
               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="184" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
+              <Component id="jsalir" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -108,6 +114,14 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Lista de Bomberos"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jsalir">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Salir"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jsalirActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
