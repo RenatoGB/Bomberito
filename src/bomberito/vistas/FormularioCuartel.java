@@ -284,7 +284,7 @@ int numViejo;
         // TODO add your handling code here:
        borrarFilas();
         for (Cuartel prod : data.traerCuarteles()) {
-            if (prod.getNombreCuartel().contains(jNombreCuartel.getText())) {  //Implementar ignoreCase
+            if (prod.getNombreCuartel().toLowerCase().contains(jNombreCuartel.getText().toLowerCase())) {  //Implementar ignoreCase
                 guardarID=prod.getIdCuartel();
                 modelo.addRow(new Object[]{
                     prod.getNombreCuartel(),
@@ -360,7 +360,19 @@ int numViejo;
 
     private void jCoordenadaXKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCoordenadaXKeyReleased
         // TODO add your handling code here:
-        
+        borrarFilas();
+        for (Cuartel prod : data.traerCuarteles()) {
+        String aux=prod.getCoordX()+"";
+            if (aux.contains(jCoordenadaX.getText())) {  //Implementar ignoreCase
+                guardarID=prod.getIdCuartel();
+                modelo.addRow(new Object[]{
+                    prod.getNombreCuartel(),
+                    prod.getDireccion(),
+                    prod.getTelefono(),
+                    prod.getCorreo()});
+                 } 
+             } 
+
     }//GEN-LAST:event_jCoordenadaXKeyReleased
 
     private void jCoordenadaYKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCoordenadaYKeyTyped
@@ -376,7 +388,18 @@ int numViejo;
 
     private void jCoordenadaYKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCoordenadaYKeyReleased
         // TODO add your handling code here:
-        
+                             borrarFilas();
+        for (Cuartel prod : data.traerCuarteles()) {
+        String aux=prod.getCoordY()+"";
+            if (aux.contains(jCoordenadaY.getText())) {  //Implementar ignoreCase
+                guardarID=prod.getIdCuartel();
+                modelo.addRow(new Object[]{
+                    prod.getNombreCuartel(),
+                    prod.getDireccion(),
+                    prod.getTelefono(),
+                    prod.getCorreo()});
+                 } 
+}
     }//GEN-LAST:event_jCoordenadaYKeyReleased
 
     private void jTelefonoCuartelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTelefonoCuartelKeyTyped
@@ -428,7 +451,7 @@ int numViejo;
         // TODO add your handling code here:
         borrarFilas();
         for (Cuartel prod : data.traerCuarteles()) {
-            if (prod.getDireccion().contains(jDirecciónCuartel.getText())) {  //Implementar ignoreCase
+            if (prod.getDireccion().toLowerCase().contains(jDirecciónCuartel.getText().toLowerCase())) {  //Implementar ignoreCase
                 guardarID=prod.getIdCuartel();
                 modelo.addRow(new Object[]{
                     prod.getNombreCuartel(),
