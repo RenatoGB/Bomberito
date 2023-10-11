@@ -34,7 +34,7 @@ public class Principio extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -75,6 +75,11 @@ public class Principio extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Brigadas");
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu2ActionPerformed(evt);
+            }
+        });
 
         jMenuItem1.setText("Formulario Brigadas");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -83,7 +88,14 @@ public class Principio extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItem1);
-        jMenu2.add(jMenuItem7);
+
+        jMenuItem8.setText("Listado de Brigada");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem8);
 
         jMenuBar1.add(jMenu2);
 
@@ -205,6 +217,24 @@ public class Principio extends javax.swing.JFrame {
         escritorio.moveToFront(listadoBombero);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        ListadoBrigada listadoBrigada=new ListadoBrigada();
+        listadoBrigada.setVisible(true);
+        escritorio.add(listadoBrigada);
+        escritorio.moveToFront(listadoBrigada);
+    }//GEN-LAST:event_jMenu2ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        ListadoBrigada listadoBrigada=new ListadoBrigada();
+        listadoBrigada.setVisible(true);
+        escritorio.add(listadoBrigada);
+        escritorio.moveToFront(listadoBrigada);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -223,6 +253,6 @@ public class Principio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     // End of variables declaration//GEN-END:variables
 }
