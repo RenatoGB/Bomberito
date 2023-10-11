@@ -5,10 +5,13 @@
  */
 package bomberito.vistas;
 
+import bomberito.accesoADatos.BrigadaData;
 import bomberito.accesoADatos.CuartelData;
 import bomberito.accesoADatos.SiniestroData;
+import bomberito.entidades.Brigada;
 import bomberito.entidades.Cuartel;
 import bomberito.entidades.Siniestro;
+import java.awt.event.ActionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
@@ -27,19 +30,22 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
     
     
     SiniestroData controlSin=null;
-    CuartelData controlDat=null;
+    CuartelData controlCuar=null;
+    BrigadaData controlBri=null;
     /**
      * Creates new form AsignarBrigadaASiniestro
      */
     public AsignarBrigadaASiniestro() {
         initComponents();
         controlSin=new SiniestroData();
-        controlDat=new CuartelData();
+        controlCuar=new CuartelData();
+        controlBri=new BrigadaData();
         modelo=new DefaultTableModel();
-
+        int idCuartel;
         armarCabeceraTabla();
         cargarTabla();
-        cargarCombo();
+        cargarComboCuartel();
+        cargarComboBrigada();
     }
 
     /**
@@ -56,7 +62,7 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         JCBXCuartel = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        JCBXBrig = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -71,6 +77,12 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel3.setText("Cuartel:");
+
+        JCBXCuartel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JCBXCuartelActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel4.setText("Brigada:");
@@ -127,7 +139,7 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
                         .addGap(74, 74, 74)
                         .addComponent(jLabel4)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(JCBXBrig, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,7 +163,7 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JCBXBrig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(JCBXCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -168,12 +180,17 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void JCBXCuartelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBXCuartelActionPerformed
+        Cuartel cuartelselec=(Cuartel)JCBXCuartel.getSelectedItem();
+        
+    }//GEN-LAST:event_JCBXCuartelActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> JCBXCuartel;
+    private javax.swing.JComboBox<String> JCBXBrig;
+    private javax.swing.JComboBox<Cuartel> JCBXCuartel;
     private javax.swing.JTable JTabla;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -219,11 +236,19 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
         }
     }
     
-    private void cargarCombo(){
-        for(Cuartel ctl: controlDat.traerCuarteles()){
-            JCBXCuartel.addItem(ctl.getNombreCuartel());
+    
+    
+    
+    
+    private void cargarComboCuartel(){
+        for(Cuartel ctl: controlCuar.traerCuarteles()){
+            JCBXCuartel.addItem(new Cuartel(ctl.getIdCuartel(),ctl.getNombreCuartel()));
         }
     }
-
-
+    
+    private void cargarComboBrigada(){
+        for(Brigada brgda: controlBri.traerBrigadas()){
+            JCBXBrig.addItem(brgda.getNombreBrigada());
+        }
+    }
 }
