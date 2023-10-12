@@ -32,6 +32,7 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
     SiniestroData controlSin=null;
     CuartelData controlCuar=null;
     BrigadaData controlBri=null;
+    
     /**
      * Creates new form AsignarBrigadaASiniestro
      */
@@ -41,11 +42,11 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
         controlCuar=new CuartelData();
         controlBri=new BrigadaData();
         modelo=new DefaultTableModel();
-        int idCuartel;
+        
         armarCabeceraTabla();
         cargarTabla();
         cargarComboCuartel();
-        cargarComboBrigada();
+        
     }
 
     /**
@@ -57,16 +58,19 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         JCBXCuartel = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         JCBXBrig = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        JBoton = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         JTabla = new javax.swing.JTable();
+
+        jLabel6.setText("jLabel6");
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 153, 51));
@@ -87,12 +91,12 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel4.setText("Brigada:");
 
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 204, 204));
-        jButton1.setText("MANDAR BRIGADA");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        JBoton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        JBoton.setForeground(new java.awt.Color(0, 204, 204));
+        JBoton.setText("MANDAR BRIGADA");
+        JBoton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                JBotonActionPerformed(evt);
             }
         });
 
@@ -131,7 +135,7 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addGap(21, 21, 21)
                             .addComponent(jLabel5))
-                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(JBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -167,7 +171,7 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
                     .addComponent(jLabel3)
                     .addComponent(JCBXCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(JBoton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addGap(22, 22, 22))
@@ -176,30 +180,46 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void JBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBotonActionPerformed
+        Brigada brigadaSelec = (Brigada) JCBXBrig.getSelectedItem();
+        int idBrigada = brigadaSelec.getIdBrigada();
+        int sinSelec =JTabla.getSelectedRow();
+        int idSin= (Integer)JTabla.getValueAt(sinSelec, 0);
+        
+    }//GEN-LAST:event_JBotonActionPerformed
 
     private void JCBXCuartelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBXCuartelActionPerformed
-        Cuartel cuartelselec=(Cuartel)JCBXCuartel.getSelectedItem();
-        
+        Cuartel cuartelselec = (Cuartel) JCBXCuartel.getSelectedItem();
+        int idCuartel = cuartelselec.getIdCuartel();
+        int sinSelec = JTabla.getSelectedRow();
+        if (sinSelec >= 0) {
+            String sintipo = (String) JTabla.getValueAt(sinSelec, 1);
+            JCBXBrig.removeAllItems();
+            for (Brigada brgda : controlBri.traerBrigadas()) {
+                if (brgda.getNroCuartel().getIdCuartel() == idCuartel && brgda.getEspecialidad().contains(sintipo) && brgda.isLibre()) {
+                    JCBXBrig.addItem(brgda.getNombreBrigada());
+                }
+            }
+        }      
     }//GEN-LAST:event_JCBXCuartelActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JBoton;
     private javax.swing.JComboBox<String> JCBXBrig;
     private javax.swing.JComboBox<Cuartel> JCBXCuartel;
     private javax.swing.JTable JTabla;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 
     private void armarCabeceraTabla(){
+      modelo.addColumn("ID");
       modelo.addColumn("Fecha");
       modelo.addColumn("Tipo");
       modelo.addColumn("X");
@@ -208,11 +228,14 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
       JTabla.setModel(modelo);
       
       JTabla.setAutoResizeMode(JTabla.AUTO_RESIZE_OFF);
-      JTabla.getColumnModel().getColumn(0).setPreferredWidth(67);
-      JTabla.getColumnModel().getColumn(1).setPreferredWidth(330);
-      JTabla.getColumnModel().getColumn(2).setPreferredWidth(25);
+      JTabla.getColumnModel().getColumn(0).setPreferredWidth(17);
+      JTabla.getColumnModel().getColumn(1).setPreferredWidth(67);
+      JTabla.getColumnModel().getColumn(2).setPreferredWidth(330);
       JTabla.getColumnModel().getColumn(3).setPreferredWidth(25);
-      JTabla.getColumnModel().getColumn(4).setPreferredWidth(306);
+      JTabla.getColumnModel().getColumn(4).setPreferredWidth(25);
+      JTabla.getColumnModel().getColumn(5).setPreferredWidth(306);
+
+      
     }
 
     private void borrarFilaTabla(){
@@ -227,6 +250,7 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
         borrarFilaTabla();
         for(Siniestro cosa: controlSin.traerSiniestrosParaAsignar()){
             modelo.addRow(new Object[]{
+                cosa.getIdSiniestro(),
                 cosa.getFechaSiniestro(),
                 cosa.getTipo(),
                 cosa.getCoordX(),
@@ -235,20 +259,25 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
             });
         }
     }
-    
-    
-    
-    
-    
+ 
     private void cargarComboCuartel(){
         for(Cuartel ctl: controlCuar.traerCuarteles()){
             JCBXCuartel.addItem(new Cuartel(ctl.getIdCuartel(),ctl.getNombreCuartel()));
         }
     }
     
-    private void cargarComboBrigada(){
-        for(Brigada brgda: controlBri.traerBrigadas()){
-            JCBXBrig.addItem(brgda.getNombreBrigada());
-        }
+    /*public void calcularDistancia(){
+       Siniestro asd=new Siniestro();
+       Cuartel asd2=new Cuartel();
+       int coordx=asd.getCoordX();
+       int coordy=asd.getCoordY();
+       
+       int cordx=asd2.getCoordX();
+       int cordy=asd2.getCoordY();
+       
+       double distancia= Math.sqrt(Math.pow(coordx - cordx, 2) + Math.pow(coordy - cordy, 2));
+       
     }
+    */
+    
 }
