@@ -181,10 +181,10 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBotonActionPerformed
-        Brigada brigadaSelec = (Brigada) JCBXBrig.getSelectedItem();
+       /* Brigada brigadaSelec = (Brigada) JCBXBrig.getSelectedItem();
         int idBrigada = brigadaSelec.getIdBrigada();
         int sinSelec =JTabla.getSelectedRow();
-        int idSin= (Integer)JTabla.getValueAt(sinSelec, 0);
+        int idSin= (Integer)JTabla.getValueAt(sinSelec, 0);*/
         
     }//GEN-LAST:event_JBotonActionPerformed
 
@@ -193,7 +193,7 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
         int idCuartel = cuartelselec.getIdCuartel();
         int sinSelec = JTabla.getSelectedRow();
         if (sinSelec >= 0) {
-            String sintipo = (String) JTabla.getValueAt(sinSelec, 1);
+            String sintipo = (String) JTabla.getValueAt(sinSelec, 2);
             JCBXBrig.removeAllItems();
             for (Brigada brgda : controlBri.traerBrigadas()) {
                 if (brgda.getNroCuartel().getIdCuartel() == idCuartel && brgda.getEspecialidad().contains(sintipo) && brgda.isLibre()) {
