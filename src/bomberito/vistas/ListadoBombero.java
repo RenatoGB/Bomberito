@@ -32,7 +32,7 @@ public class ListadoBombero extends javax.swing.JInternalFrame {
         controlBom=new BomberoData();
         initComponents();
         encabezadoTabla();
-        cargarCombo();
+        cargarCombo();       
     }
 
     /**
