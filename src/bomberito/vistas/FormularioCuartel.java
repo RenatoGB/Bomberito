@@ -1,25 +1,23 @@
-
 package bomberito.vistas;
 
 import bomberito.accesoADatos.CuartelData;
 import bomberito.entidades.Cuartel;
 import javax.swing.table.DefaultTableModel;
 
-
 public class FormularioCuartel extends javax.swing.JInternalFrame {
-CuartelData data=null;
-int guardarID;
-int numViejo;
 
-    
+    CuartelData data = null;
+    int guardarID;
+    int numViejo;
+
     public FormularioCuartel() {
         initComponents();
-        data=new CuartelData();
+        data = new CuartelData();
         cargarTabla();
         encabezadoTabla();
+        Editar.setEnabled(false);
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -43,7 +41,6 @@ int numViejo;
         jScrollPane1 = new javax.swing.JScrollPane();
         jtCuarteles = new javax.swing.JTable();
         jSeleccionar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jLimpiar = new javax.swing.JButton();
 
         jLabel1.setText("Nombre del Cuartel :");
@@ -153,8 +150,6 @@ int numViejo;
             }
         });
 
-        jButton2.setText("Consultar Brigada");
-
         jLimpiar.setText("Limpiar");
         jLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,11 +168,11 @@ int numViejo;
             .addGroup(layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addComponent(Editar)
-                .addGap(72, 72, 72)
+                .addGap(56, 56, 56)
                 .addComponent(jNuevoCuartel)
-                .addGap(78, 78, 78)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
+                .addGap(51, 51, 51)
+                .addComponent(jLimpiar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSalir))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -190,24 +185,23 @@ int numViejo;
                     .addComponent(jLabel4))
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTelefonoCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jNombreCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jDirecciónCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCoordenadaX, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(78, 78, 78)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jCoordenadaY, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
                         .addComponent(jSeleccionar)
                         .addGap(119, 119, 119))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jCorreoCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLimpiar)
-                        .addGap(129, 129, 129))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCorreoCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTelefonoCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jNombreCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jDirecciónCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jCoordenadaX, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,15 +236,14 @@ int numViejo;
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(jCorreoCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLimpiar)))
+                            .addComponent(jCorreoCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jCoordenadaY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Editar)
                     .addComponent(jNuevoCuartel)
                     .addComponent(jSalir)
-                    .addComponent(jButton2))
+                    .addComponent(jLimpiar))
                 .addContainerGap())
         );
 
@@ -259,13 +252,13 @@ int numViejo;
 
     private void jNuevoCuartelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNuevoCuartelActionPerformed
         String nombreCuartel = jNombreCuartel.getText();
-        String direccion= jCoordenadaX.getText();
-        int coordX= Integer.parseInt( jDirecciónCuartel.getText());
-        int coordY=Integer.parseInt(jCoordenadaY.getText());
-        String telefono= jTelefonoCuartel.getText();
-        String correo=jCorreoCuartel.getText();
-      Cuartel nuevo=new Cuartel(nombreCuartel, direccion, coordX, coordY, telefono, correo );
-    data.nuevoCuartel(nuevo);
+        String direccion = jDirecciónCuartel.getText();
+        int coordX = Integer.parseInt(jCoordenadaX.getText());
+        int coordY = Integer.parseInt(jCoordenadaY.getText());
+        String telefono = jTelefonoCuartel.getText();
+        String correo = jCorreoCuartel.getText();
+        Cuartel nuevo = new Cuartel(nombreCuartel, direccion, coordX, coordY, telefono, correo);
+        data.nuevoCuartel(nuevo);
     }//GEN-LAST:event_jNuevoCuartelActionPerformed
 
     private void jSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSalirActionPerformed
@@ -274,32 +267,32 @@ int numViejo;
 
     private void jNombreCuartelKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jNombreCuartelKeyReleased
         // TODO add your handling code here:
-       borrarFilas();
+        borrarFilas();
         for (Cuartel prod : data.traerCuarteles()) {
-            if (prod.getNombreCuartel().toLowerCase().contains(jNombreCuartel.getText().toLowerCase())) {  //Implementar ignoreCase
-                guardarID=prod.getIdCuartel();
+            if (prod.getNombreCuartel().toLowerCase().contains(jNombreCuartel.getText().toLowerCase())) {
+                guardarID = prod.getIdCuartel();
                 modelo.addRow(new Object[]{
                     prod.getNombreCuartel(),
                     prod.getDireccion(),
                     prod.getTelefono(),
                     prod.getCorreo()});
             }
-        } 
+        }
     }//GEN-LAST:event_jNombreCuartelKeyReleased
 
     private void jNombreCuartelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jNombreCuartelKeyTyped
         // TODO add your handling code here:
-        if (jNombreCuartel.getText().length()>=20) {
+        if (jNombreCuartel.getText().length() >= 20) {
             evt.consume();
         }
         int key = evt.getKeyChar();
-        boolean num= key >= 48 && key <= 57;
+        boolean num = key >= 48 && key <= 57;
         boolean mayusculas = key >= 65 && key <= 90;
         boolean minusculas = key >= 97 && key <= 122;
         boolean espacio = key == 32;
         boolean enieMin = key == 'ñ';
         boolean enieMay = key == 'Ñ';
-       
+
         if (!num && !mayusculas && !minusculas && !espacio && !enieMin && !enieMay) {
             evt.consume();
         }
@@ -308,29 +301,31 @@ int numViejo;
     private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
         // TODO add your handling code here:
         String nombreCuartel = jNombreCuartel.getText();
-        String direccion= jCoordenadaX.getText();
-        int coordX= Integer.parseInt( jCoordenadaX.getText());
-        int coordY=Integer.parseInt(jCoordenadaY.getText());
-        String telefono= jTelefonoCuartel.getText();
-        String correo=jCorreoCuartel.getText();
-      Cuartel nuevo=new Cuartel(nombreCuartel, direccion, coordX, coordY, telefono, correo );
-    data.modificarCuartel(nuevo);
+        String direccion = jDirecciónCuartel.getText();
+        int coordX = Integer.parseInt(jCoordenadaX.getText());
+        int coordY = Integer.parseInt(jCoordenadaY.getText());
+        String telefono = jTelefonoCuartel.getText();
+        String correo = jCorreoCuartel.getText();
+        Cuartel nuevo = new Cuartel(nombreCuartel, direccion, coordX, coordY, telefono, correo);
+        data.modificarCuartel(nuevo);
     }//GEN-LAST:event_EditarActionPerformed
 
     private void jSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSeleccionarActionPerformed
         // TODO add your handling code here:
+        Editar.setEnabled(true);
+        jNuevoCuartel.setEnabled(false);
         for (Cuartel listaCuartel : data.traerCuarteles()) {
             if (guardarID == listaCuartel.getIdCuartel()) {
-                numViejo=listaCuartel.getIdCuartel();
+                numViejo = listaCuartel.getIdCuartel();
                 jNombreCuartel.setText(listaCuartel.getNombreCuartel());
                 jDirecciónCuartel.setText(listaCuartel.getDireccion());
                 jCoordenadaX.setText(listaCuartel.getDireccion());
-                jCoordenadaX.setText(listaCuartel.getCoordX()+"");
-                jCoordenadaY.setText(listaCuartel.getCoordY()+"");
+                jCoordenadaX.setText(listaCuartel.getCoordX() + "");
+                jCoordenadaY.setText(listaCuartel.getCoordY() + "");
                 jTelefonoCuartel.setText(listaCuartel.getTelefono());
-                jCorreoCuartel.setText(listaCuartel.getCorreo()); ;
+                jCorreoCuartel.setText(listaCuartel.getCorreo());;
 
-            }           
+            }
         }
     }//GEN-LAST:event_jSeleccionarActionPerformed
 
@@ -341,11 +336,11 @@ int numViejo;
 
     private void jCoordenadaXKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCoordenadaXKeyTyped
         // TODO add your handling code here:
-        if (jCoordenadaX.getText().length()>=3) {
+        if (jCoordenadaX.getText().length() >= 3) {
             evt.consume();
         }
         int key = evt.getKeyChar();
-        boolean num= key >= 48 && key <= 57;
+        boolean num = key >= 48 && key <= 57;
         if (!num) {
             evt.consume();
         }
@@ -355,25 +350,25 @@ int numViejo;
         // TODO add your handling code here:
         borrarFilas();
         for (Cuartel prod : data.traerCuarteles()) {
-        String aux=prod.getCoordX()+"";
+            String aux = prod.getCoordX() + "";
             if (aux.contains(jCoordenadaX.getText())) {  //Implementar ignoreCase
-                guardarID=prod.getIdCuartel();
+                guardarID = prod.getIdCuartel();
                 modelo.addRow(new Object[]{
                     prod.getNombreCuartel(),
                     prod.getDireccion(),
                     prod.getTelefono(),
-                    prod.getCorreo()});
-                 } 
-             } 
+});
+            }
+        }
 
     }//GEN-LAST:event_jCoordenadaXKeyReleased
 
     private void jCoordenadaYKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCoordenadaYKeyTyped
-        if (jCoordenadaY.getText().length()>=3) {
+        if (jCoordenadaY.getText().length() >= 3) {
             evt.consume();
         }
         int key = evt.getKeyChar();
-        boolean num= key >= 48 && key <= 57;
+        boolean num = key >= 48 && key <= 57;
         if (!num) {
             evt.consume();
         }
@@ -381,27 +376,27 @@ int numViejo;
 
     private void jCoordenadaYKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCoordenadaYKeyReleased
         // TODO add your handling code here:
-                             borrarFilas();
+        borrarFilas();
         for (Cuartel prod : data.traerCuarteles()) {
-        String aux=prod.getCoordY()+"";
+            String aux = prod.getCoordY() + "";
             if (aux.contains(jCoordenadaY.getText())) {  //Implementar ignoreCase
-                guardarID=prod.getIdCuartel();
+                guardarID = prod.getIdCuartel();
                 modelo.addRow(new Object[]{
                     prod.getNombreCuartel(),
                     prod.getDireccion(),
                     prod.getTelefono(),
-                    prod.getCorreo()});
-                 } 
-}
+});
+            }
+        }
     }//GEN-LAST:event_jCoordenadaYKeyReleased
 
     private void jTelefonoCuartelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTelefonoCuartelKeyTyped
         // TODO add your handling code here:
-        if (jTelefonoCuartel.getText().length()>=20) {
+        if (jTelefonoCuartel.getText().length() >= 20) {
             evt.consume();
         }
         int key = evt.getKeyChar();
-        boolean num= key >= 48 && key <= 57 || key==45;
+        boolean num = key >= 48 && key <= 57 || key == 45;
         if (!num) {
             evt.consume();
         }
@@ -412,29 +407,29 @@ int numViejo;
         borrarFilas();
         for (Cuartel prod : data.traerCuarteles()) {
             if (prod.getTelefono().contains(jTelefonoCuartel.getText())) {  //Implementar ignoreCase
-                guardarID=prod.getIdCuartel();
+                guardarID = prod.getIdCuartel();
                 modelo.addRow(new Object[]{
                     prod.getNombreCuartel(),
                     prod.getDireccion(),
                     prod.getTelefono(),
-                    prod.getCorreo()});
-                 } 
-             }
+});
+            }
+        }
     }//GEN-LAST:event_jTelefonoCuartelKeyReleased
 
     private void jDirecciónCuartelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jDirecciónCuartelKeyTyped
         // TODO add your handling code here:
-        if (jDirecciónCuartel.getText().length()>=20) {
+        if (jDirecciónCuartel.getText().length() >= 20) {
             evt.consume();
         }
         int key = evt.getKeyChar();
-        boolean num= key >= 48 && key <= 57;
+        boolean num = key >= 48 && key <= 57;
         boolean mayusculas = key >= 65 && key <= 90;
         boolean minusculas = key >= 97 && key <= 122;
         boolean espacio = key == 32;
         boolean enieMin = key == 'ñ';
         boolean enieMay = key == 'Ñ';
-       
+
         if (!num && !mayusculas && !minusculas && !espacio && !enieMin && !enieMay) {
             evt.consume();
         }
@@ -445,27 +440,26 @@ int numViejo;
         borrarFilas();
         for (Cuartel prod : data.traerCuarteles()) {
             if (prod.getDireccion().toLowerCase().contains(jDirecciónCuartel.getText().toLowerCase())) {  //Implementar ignoreCase
-                guardarID=prod.getIdCuartel();
+                guardarID = prod.getIdCuartel();
                 modelo.addRow(new Object[]{
                     prod.getNombreCuartel(),
                     prod.getDireccion(),
                     prod.getTelefono(),
-                    prod.getCorreo()});
+});
             }
         }
     }//GEN-LAST:event_jDirecciónCuartelKeyReleased
 
     private void jCorreoCuartelKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCorreoCuartelKeyReleased
-        // TODO add your handling code here:
         borrarFilas();
         for (Cuartel prod : data.traerCuarteles()) {
             if (prod.getCorreo().contains(jCorreoCuartel.getText())) {  //Implementar ignoreCase
-                guardarID=prod.getIdCuartel();
+                guardarID = prod.getIdCuartel();
                 modelo.addRow(new Object[]{
                     prod.getNombreCuartel(),
                     prod.getDireccion(),
                     prod.getTelefono(),
-                    prod.getCorreo()});
+});
             }
         }
     }//GEN-LAST:event_jCorreoCuartelKeyReleased
@@ -473,7 +467,6 @@ int numViejo;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Editar;
-    private javax.swing.JButton jButton2;
     private javax.swing.JTextField jCoordenadaX;
     private javax.swing.JTextField jCoordenadaY;
     private javax.swing.JTextField jCorreoCuartel;
@@ -494,7 +487,7 @@ int numViejo;
     private javax.swing.JTextField jTelefonoCuartel;
     private javax.swing.JTable jtCuarteles;
     // End of variables declaration//GEN-END:variables
-    
+
     private DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
             return false;
@@ -505,7 +498,6 @@ int numViejo;
         modelo.addColumn("Nombre");
         modelo.addColumn("Dirección");
         modelo.addColumn("Teléfono");
-        modelo.addColumn("Correo");
         jtCuarteles.setModel(modelo);
     }
 
@@ -522,6 +514,7 @@ int numViejo;
     public void limpiar() {
         jNombreCuartel.setText("");
         jCorreoCuartel.setText("");
+        jDirecciónCuartel.setText("");
         jCoordenadaX.setText("");
         jCoordenadaX.setText("");
         jCoordenadaY.setText("");
