@@ -66,7 +66,7 @@ public class FormularioSiniestro extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Detalle :");
 
-        JBNuevo.setText("Nuevo");
+        JBNuevo.setText("Limpiar");
         JBNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JBNuevoActionPerformed(evt);
