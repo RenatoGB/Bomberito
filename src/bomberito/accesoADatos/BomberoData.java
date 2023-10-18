@@ -100,7 +100,7 @@ public class BomberoData {
     }
     
         public void bajaBombero(int id){
-        String sql="UPDATE bombero SET activo=0 WHERE idBombero=?";
+        String sql="UPDATE bombero SET activo=0, codBrigada=null WHERE idBombero=?";
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setInt(1, id);

@@ -43,6 +43,7 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
         cargarMiembros();
         btnModificar.setEnabled(false);
         btnDarBaja.setEnabled(false);
+        tablaLlena();
     }
 
     /**
@@ -65,10 +66,8 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
         txtDNI = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
-        txtGrupo = new javax.swing.JTextField();
         txtCelular = new javax.swing.JTextField();
         cbxBrigadas = new javax.swing.JComboBox<>();
-        btnBuscarDNI = new javax.swing.JButton();
         btnAplicar = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
@@ -99,6 +98,9 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
         jLabel8.setText("Brigada Asiganada");
 
         txtDNI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDNIKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDNIKeyTyped(evt);
             }
@@ -122,18 +124,9 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
             }
         });
 
-        txtGrupo.setEditable(false);
-
         cbxBrigadas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxBrigadasActionPerformed(evt);
-            }
-        });
-
-        btnBuscarDNI.setText("Buscar");
-        btnBuscarDNI.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarDNIActionPerformed(evt);
             }
         });
 
@@ -209,6 +202,8 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
                         .addComponent(btnModificar)
                         .addGap(57, 57, 57)
                         .addComponent(btnDarBaja)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSalir)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -228,15 +223,12 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
                             .addComponent(txtApellido)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(cbxGrupoSan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cbxGrupoSan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dcNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnBuscarDNI))
-                                    .addComponent(dcNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnAplicar)))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -245,15 +237,11 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
                         .addComponent(txtCantFaltante, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAplicar)
-                    .addComponent(btnSalir))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(362, 362, 362))
+                .addGap(298, 298, 298))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,8 +254,7 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel2)
-                                    .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnBuscarDNI))
+                                    .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel3)
@@ -283,8 +270,7 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
                                 .addGap(13, 13, 13)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel6)
-                                    .addComponent(cbxGrupoSan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cbxGrupoSan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel7)
@@ -320,44 +306,8 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
         txtCantFaltante.setText((5 - muestra) + "");
     }//GEN-LAST:event_cbxBrigadasActionPerformed
 
-    private void btnBuscarDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarDNIActionPerformed
-        btnModificar.setEnabled(true);
-        btnDarBaja.setEnabled(true);
-        btnNuevo.setEnabled(false);
-        if (txtDNI.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Coloque un DNI a buscar");
-        } else {
-            for (Bombero listaBombero : controlBom.traerBomberos()) {
-                int comparar = Integer.parseInt(txtDNI.getText());
-                if (comparar == listaBombero.getDni()) {
-                    numViejo = listaBombero.getIdBombero();
-                    txtApellido.setText(listaBombero.getApellido());
-                    txtNombre.setText(listaBombero.getNombre());
-                    Date date = java.sql.Date.valueOf(listaBombero.getFechaNacimiento());
-                    dcNacimiento.setDate(date);
-                    txtGrupo.setText(listaBombero.getGrupoSanguineo());
-                    txtCelular.setText(listaBombero.getCelular());
-                    int maspruebas = Integer.parseInt(txtDNI.getText());
-                    for (Bombero object : controlBom.traerBomberos()) {
-                        if (maspruebas == object.getDni()) {
-                            locuraString = object.getCodBrigada().getNombreBrigada();
-                        }
-                    }
-                    int itemCount = cbxBrigadas.getItemCount();
-                    for (int i = 0; i < itemCount; i++) {
-                        String item = cbxBrigadas.getItemAt(i).getNombreBrigada();
-                        if (locuraString.contains(item)) {
-                            cbxBrigadas.setSelectedIndex(i);
-                        }
-                    }
-                    break;
-                }
-            }
-        }
-    }//GEN-LAST:event_btnBuscarDNIActionPerformed
-
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        if (txtDNI.getText().equals("")||txtApellido.getText().equals("")||txtCelular.getText().equals("")||txtNombre.getText().equals("")||txtGrupo.getText().equals("")||dcNacimiento.equals("")) {
+        if (txtDNI.getText().equals("")||txtApellido.getText().equals("")||txtCelular.getText().equals("")||txtNombre.getText().equals("")||dcNacimiento.equals("")) {
             JOptionPane.showMessageDialog(null, "No puede haber campos vacios");
         } else {
             int dni = Integer.parseInt(txtDNI.getText());
@@ -365,7 +315,7 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
             String nombre = txtNombre.getText();
             Date fechaNacimiento = dcNacimiento.getDate();
             LocalDate fechita = fechaNacimiento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            String grupoSan = txtGrupo.getText();
+            String grupoSan = cbxGrupoSan.getSelectedItem()+"";
             String celular = txtCelular.getText();
             Brigada brigadaSelec = (Brigada) cbxBrigadas.getSelectedItem();
             int cant=controlBom.bomberosEnUnaBrigada(brigadaSelec.getIdBrigada());
@@ -375,9 +325,12 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
             boolean activo=true;
             Bombero bomba = new Bombero(dni, apellido, nombre, fechita, grupoSan, celular, brigadaSelec, activo);
             controlBom.nuevoBombero(bomba);
+            limpiar();
+            tablaLlena();
             }
         }
-        limpiar();
+        
+        
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnAplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarActionPerformed
@@ -395,7 +348,14 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
                     txtNombre.setText(listaBombero.getNombre());
                     Date date = java.sql.Date.valueOf(listaBombero.getFechaNacimiento());
                     dcNacimiento.setDate(date);
-                    txtGrupo.setText(listaBombero.getGrupoSanguineo());
+//                    txtGrupo.setText(listaBombero.getGrupoSanguineo());
+                                    int itemCount2 = cbxGrupoSan.getItemCount();
+                for (int i = 0; i < itemCount2; i++) {
+                    String item = cbxGrupoSan.getItemAt(i);
+                        if (listaBombero.getGrupoSanguineo().contains(item)) {
+                            cbxGrupoSan.setSelectedIndex(i);
+                        }                    
+                }
                     txtCelular.setText(listaBombero.getCelular());
 
                     String probando2 = String.valueOf(jTable1.getValueAt(jTable1.getSelectedRow(), 0));
@@ -425,6 +385,9 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        if (cbxGrupoSan.getSelectedIndex()==0) {
+            JOptionPane.showMessageDialog(null, "Seleccione un grupo sanguineo correcto");
+        }else{
         int cambio = Integer.parseInt(txtDNI.getText());
         Date fechaNacimiento=dcNacimiento.getDate();
         LocalDate fechita=fechaNacimiento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(); 
@@ -436,7 +399,7 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
                 nuevito.setApellido(txtApellido.getText());
                 nuevito.setNombre(txtNombre.getText());
                 nuevito.setFechaNacimiento(fechita);
-                nuevito.setGrupoSanguineo(txtGrupo.getText());
+                nuevito.setGrupoSanguineo(cbxGrupoSan.getSelectedItem()+"");
                 nuevito.setCelular(txtCelular.getText());
                 Brigada brigadaSelec = (Brigada) cbxBrigadas.getSelectedItem();
                 nuevito.setCodBrigada(brigadaSelec);
@@ -444,9 +407,13 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
                 limpiar();
                 btnNuevo.setEnabled(true);
                 btnModificar.setEnabled(false);
+                btnDarBaja.setEnabled(false);
+                limpiar();
+                tablaLlena();
                 return;                
             }
-        }        
+        } 
+        }
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnDarBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDarBajaActionPerformed
@@ -454,6 +421,8 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
             int cambio = Integer.parseInt(txtDNI.getText());
             if (cambio==listita.getDni()) {
                 controlBom.bajaBombero(listita.getIdBombero());
+                limpiar();
+                tablaLlena();
             }
         }
     }//GEN-LAST:event_btnDarBajaActionPerformed
@@ -526,13 +495,32 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtDNIKeyTyped
 
     private void cbxGrupoSanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxGrupoSanActionPerformed
-        txtGrupo.setText(cbxGrupoSan.getSelectedItem().toString());
+//        txtGrupo.setText(cbxGrupoSan.getSelectedItem().toString());
     }//GEN-LAST:event_cbxGrupoSanActionPerformed
+
+    private void txtDNIKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIKeyReleased
+        borrarFilas();
+        String txtDni = txtDNI.getText();
+        if (!txtDni.isEmpty()) {
+            try {
+                int dniBuscar = Integer.parseInt(txtDni);
+                for (Bombero prod : controlBom.traerBomberos()) {
+                    int dni = prod.getDni();
+                    if ((String.valueOf(dni).startsWith(String.valueOf(dniBuscar)))) {
+                        modelo.addRow(new Object[]{
+                            prod.getDni(),
+                            prod.getApellido(),
+                            prod.getNombre()});
+                    }
+                }
+            } catch (Exception e) {
+            }
+        }
+    }//GEN-LAST:event_txtDNIKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAplicar;
-    private javax.swing.JButton btnBuscarDNI;
     private javax.swing.JButton btnDarBaja;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnNuevo;
@@ -555,7 +543,6 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtCantFaltante;
     private javax.swing.JTextField txtCelular;
     private javax.swing.JTextField txtDNI;
-    private javax.swing.JTextField txtGrupo;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
     private void cargarCombo() {
@@ -571,6 +558,15 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
         modelo.addColumn("Apellido");
         modelo.addColumn("Nombre");
         jTable1.setModel(modelo);
+    }
+    
+    private void tablaLlena() {
+        for (Bombero prod : controlBom.traerBomberos()) {
+            modelo.addRow(new Object[]{
+                prod.getDni(),
+                prod.getApellido(),
+                prod.getNombre()});
+        }
     }
 
     private void borrarFilas() {
