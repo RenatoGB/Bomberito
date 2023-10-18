@@ -44,7 +44,7 @@ public class Cuartel {
         this.correo = correo;
     }
 
-  
+
     public int getIdCuartel() {
         return idCuartel;
     }

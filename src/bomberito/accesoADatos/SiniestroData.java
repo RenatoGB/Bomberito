@@ -72,6 +72,46 @@ public class SiniestroData {
         return siniestres;
     }
     
+    public void AsignarBrigada(Siniestro sin) {
+        String sql = "UPDATE siniestro SET codBrigada = ? WHERE idSiniestro = ?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, sin.getCodBrigada().getIdBrigada());
+            ps.setInt(2, sin.getIdSiniestro());
+
+            int rowsUpdated = ps.executeUpdate();
+            if (rowsUpdated > 0) {
+                JOptionPane.showMessageDialog(null, "Brigada asiganada al Siniestro");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontró el siniestro para actualizar");
+            }
+
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al actualizar el siniestro: " + ex.getMessage());
+        }
+
+    }
     
-    
+    public void actualizarBrigada(int idBrigada,boolean libre){
+        String sql ="UPDATE brigada SET libre = ? WHERE idBrigada = ?";
+        try{
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setBoolean(1, libre);
+            ps.setInt(2, idBrigada);
+           
+            int rowsUpdated = ps.executeUpdate();
+            
+            if(rowsUpdated>0){
+                JOptionPane.showMessageDialog(null, "que pasho");
+            }else{
+                JOptionPane.showMessageDialog(null, "error");
+            }
+                ps.close();
+        }catch (SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al actualizar el estado de la brigada");
+        }
+        
+    } 
 }

@@ -442,6 +442,8 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
                 nuevito.setCodBrigada(brigadaSelec);
                 controlBom.modificarBombero(nuevito);
                 limpiar();
+                btnNuevo.setEnabled(true);
+                btnModificar.setEnabled(false);
                 return;                
             }
         }        

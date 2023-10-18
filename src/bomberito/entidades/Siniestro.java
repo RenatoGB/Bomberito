@@ -40,9 +40,13 @@ public class Siniestro {
         this.detalles = detalles;
         this.activo=activo;
     }
-    
-    
 
+    public Siniestro(Brigada codBrigada, int idSiniestro) {
+        this.codBrigada = codBrigada;
+        this.idSiniestro = idSiniestro;
+    }
+
+    
     public int getIdSiniestro() {
         return idSiniestro;
     }

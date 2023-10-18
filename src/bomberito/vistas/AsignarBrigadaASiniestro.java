@@ -153,7 +153,7 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(304, 304, 304)
                         .addComponent(jLabel2)))
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addContainerGap(235, Short.MAX_VALUE))
             .addComponent(jScrollPane2)
         );
         layout.setVerticalGroup(
@@ -181,10 +181,18 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBotonActionPerformed
-       /* Brigada brigadaSelec = (Brigada) JCBXBrig.getSelectedItem();
-        int idBrigada = brigadaSelec.getIdBrigada();
+        ////////////////////////////////////////////////////////
+        Brigada codBrigada = (Brigada) JCBXBrig.getSelectedItem();
         int sinSelec =JTabla.getSelectedRow();
-        int idSin= (Integer)JTabla.getValueAt(sinSelec, 0);*/
+        int idSiniestro= (Integer)JTabla.getValueAt(sinSelec, 0);
+        Siniestro nuevo= new Siniestro(codBrigada,idSiniestro);
+        controlSin.AsignarBrigada(nuevo);
+        ///////////////////////////////////////////////////////
+        boolean libre=false;
+        int idBrigada = codBrigada.getIdBrigada();
+        //↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+        controlSin.actualizarBrigada(idBrigada,libre);  //Al asignarlos directamente te ahorras de crear un constructor en la entidad Brigada
+        //↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
         
     }//GEN-LAST:event_JBotonActionPerformed
 
@@ -197,7 +205,7 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
             JCBXBrig.removeAllItems();
             for (Brigada brgda : controlBri.traerBrigadas()) {
                 if (brgda.getNroCuartel().getIdCuartel() == idCuartel && brgda.getEspecialidad().contains(sintipo) && brgda.isLibre()) {
-                    JCBXBrig.addItem(brgda.getNombreBrigada());
+                    JCBXBrig.addItem(brgda);
                 }
             }
         }      
@@ -206,7 +214,7 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBoton;
-    private javax.swing.JComboBox<String> JCBXBrig;
+    private javax.swing.JComboBox<Brigada> JCBXBrig;
     private javax.swing.JComboBox<Cuartel> JCBXCuartel;
     private javax.swing.JTable JTabla;
     private javax.swing.JLabel jLabel1;
@@ -233,7 +241,7 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
       JTabla.getColumnModel().getColumn(2).setPreferredWidth(330);
       JTabla.getColumnModel().getColumn(3).setPreferredWidth(25);
       JTabla.getColumnModel().getColumn(4).setPreferredWidth(25);
-      JTabla.getColumnModel().getColumn(5).setPreferredWidth(306);
+      JTabla.getColumnModel().getColumn(5).setPreferredWidth(300);
 
       
     }
