@@ -5,7 +5,9 @@
  */
 package bomberito.vistas;
 
+import bomberito.accesoADatos.BrigadaData;
 import bomberito.accesoADatos.SiniestroData;
+import bomberito.entidades.Brigada;
 import bomberito.entidades.Siniestro;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,6 +19,7 @@ public class ResolucionDeSiniestro extends javax.swing.JInternalFrame {
 
     private DefaultTableModel modelo = new DefaultTableModel();
     SiniestroData controlSin=null;
+    BrigadaData controlBri=null;
     /**
      * Creates new form ResolucionDeSiniestro
      */
@@ -24,8 +27,9 @@ public class ResolucionDeSiniestro extends javax.swing.JInternalFrame {
         initComponents();
         modelo=new DefaultTableModel();
         controlSin=new SiniestroData();
+        controlBri=new BrigadaData();
         armarCabeceraTabla();
-//        cargarTabla();
+        cargarTabla();
         
     }
 
@@ -152,25 +156,24 @@ public class ResolucionDeSiniestro extends javax.swing.JInternalFrame {
       JTabla.getColumnModel().getColumn(0).setPreferredWidth(17);
       JTabla.getColumnModel().getColumn(1).setPreferredWidth(67);
       JTabla.getColumnModel().getColumn(2).setPreferredWidth(330);
-      JTabla.getColumnModel().getColumn(3).setPreferredWidth(50);
+      JTabla.getColumnModel().getColumn(3).setPreferredWidth(70);
       JTabla.getColumnModel().getColumn(4).setPreferredWidth(300);
 
       
     }
 
 
-    /*private void cargarTabla(){
-
-        for(Siniestro cosa: controlSin.traerSiniestrosParaAsignar()){
+    private void cargarTabla() {
+        for (Siniestro cosa : controlSin.traerSiniestrosParaDarBaja()) {
+            String briNombreID ="[" + cosa.getCodBrigada().getIdBrigada() +"] "+cosa.getCodBrigada().getNombreBrigada() ;
             modelo.addRow(new Object[]{
                 cosa.getIdSiniestro(),
                 cosa.getFechaSiniestro(),
                 cosa.getTipo(),
-                cosa.getCodBrigada().getIdBrigada(),
+                briNombreID, // Nombre e identificador de la brigada    cosa.getCodBrigada().getNombreBrigada(), <--- Solo sale el numero, solo puedo mostrar una cosa a la vez 
                 cosa.getDetalles()
             });
         }
-    }*/
+    }
 
 }
-

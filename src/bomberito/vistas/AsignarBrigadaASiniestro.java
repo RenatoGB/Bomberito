@@ -273,7 +273,7 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
         }
     }
     
-    /*public void calcularDistancia(){
+    public void calcularDistancia(){
        Siniestro asd=new Siniestro();
        Cuartel asd2=new Cuartel();
        int coordx=asd.getCoordX();
@@ -285,6 +285,6 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
        double distancia= Math.sqrt(Math.pow(coordx - cordx, 2) + Math.pow(coordy - cordy, 2));
        
     }
-    */
+    
     
 }

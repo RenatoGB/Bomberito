@@ -79,8 +79,6 @@ public class Brigada {
 
     @Override
     public String toString() {
-        return "Brigada: " + nombreBrigada;
+        return nombreBrigada;
     }
-    
-    
 }
