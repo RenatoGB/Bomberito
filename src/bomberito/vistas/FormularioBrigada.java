@@ -68,6 +68,7 @@ public class FormularioBrigada extends javax.swing.JInternalFrame {
         tbBrigada = new javax.swing.JTable();
         jEspecialidadBrigada = new javax.swing.JComboBox<>();
         btnModificar = new javax.swing.JButton();
+        jbLimpiar = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText("Brigada");
@@ -121,45 +122,58 @@ public class FormularioBrigada extends javax.swing.JInternalFrame {
             }
         });
 
+        jbLimpiar.setText("Limpiar");
+        jbLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLimpiarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5))
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(19, 19, 19)
-                                .addComponent(JCBXCuartel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(123, 123, 123))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel5))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(19, 19, 19)
+                                        .addComponent(JCBXCuartel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(123, 123, 123))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jEspecialidadBrigada, 0, 1, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jEspecialidadBrigada, 0, 1, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(49, 49, 49)
+                                        .addComponent(jNombreBrigada)
+                                        .addGap(25, 25, 25)
+                                        .addComponent(btnSeleccionar))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(83, 83, 83)
+                                        .addComponent(jNuevaBrigada)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnSalir)
+                                        .addGap(20, 20, 20))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(228, 228, 228)
+                                        .addComponent(btnModificar)
+                                        .addGap(0, 153, Short.MAX_VALUE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(49, 49, 49)
-                                .addComponent(jNombreBrigada)
-                                .addGap(25, 25, 25)
-                                .addComponent(btnSeleccionar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(83, 83, 83)
-                                .addComponent(jNuevaBrigada)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnSalir)
-                                .addGap(20, 20, 20))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(228, 228, 228)
-                                .addComponent(btnModificar)
-                                .addGap(0, 153, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbLimpiar)
+                        .addGap(188, 188, 188)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -185,12 +199,14 @@ public class FormularioBrigada extends javax.swing.JInternalFrame {
                     .addComponent(jLabel5)
                     .addComponent(JCBXCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbLimpiar)
+                .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalir)
                     .addComponent(jNuevaBrigada)
                     .addComponent(btnModificar)))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
+                .addContainerGap(43, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -269,6 +285,12 @@ public class FormularioBrigada extends javax.swing.JInternalFrame {
         }
         limpiar();
     }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
+        // TODO add your handling code here:
+        limpiar();
+        
+    }//GEN-LAST:event_jbLimpiarActionPerformed
     private void cargarCombo(){  
         for (Cuartel lista : dataCuartel.traerCuarteles()){ 
             JCBXCuartel.addItem(new Cuartel(lista.getIdCuartel() ,lista.getNombreCuartel()));
@@ -289,6 +311,7 @@ public class FormularioBrigada extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jNombreBrigada;
     private javax.swing.JButton jNuevaBrigada;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbLimpiar;
     private javax.swing.JTable tbBrigada;
     // End of variables declaration//GEN-END:variables
     private void encabezadoTabla() {
