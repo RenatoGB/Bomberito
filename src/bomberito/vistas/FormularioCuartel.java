@@ -12,10 +12,10 @@ public class FormularioCuartel extends javax.swing.JInternalFrame {
 
     public FormularioCuartel() {
         initComponents();
-        data = new CuartelData();
-        cargarTabla();
+        data = new CuartelData();        
         encabezadoTabla();
         Editar.setEnabled(false);
+        cargarTabla();
     }
 
     @SuppressWarnings("unchecked")
@@ -528,4 +528,5 @@ public class FormularioCuartel extends javax.swing.JInternalFrame {
             modelo.removeRow(f);
         }
     }
+    
 }

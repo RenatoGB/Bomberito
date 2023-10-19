@@ -25,7 +25,7 @@ public class ResolucionDeSiniestro extends javax.swing.JInternalFrame {
         modelo=new DefaultTableModel();
         controlSin=new SiniestroData();
         armarCabeceraTabla();
-        cargarTabla();
+//        cargarTabla();
         
     }
 
@@ -117,10 +117,9 @@ public class ResolucionDeSiniestro extends javax.swing.JInternalFrame {
                         .addComponent(jLabel3)
                         .addComponent(FechaRes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(CBPunt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel4)
+                        .addComponent(CBPunt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
