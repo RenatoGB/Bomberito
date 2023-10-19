@@ -29,7 +29,7 @@ public class ResolucionDeSiniestro extends javax.swing.JInternalFrame {
         controlSin=new SiniestroData();
         controlBri=new BrigadaData();
         armarCabeceraTabla();
-//        cargarTabla();
+        cargarTabla();
         
     }
 
