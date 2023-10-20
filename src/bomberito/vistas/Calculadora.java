@@ -209,7 +209,7 @@ public class Calculadora extends javax.swing.JInternalFrame {
      int CoorXFin= Integer.parseInt(jCoordenadaXFinal.getText());
      int CoorYIni= Integer.parseInt(jCoordenadaYInicial.getText());
      int CoorYFin= Integer.parseInt(jCoordenadaYFinal.getText());
-     Calculo = Math.sqrt((CoorXFin-CoorXIni)*(CoorXFin-CoorXIni)+(CoorYFin-CoorYIni)*(CoorYFin-CoorYIni));
+     Calculo = Math.sqrt((CoorXFin-CoorXIni)*(CoorXFin-CoorXIni))+ Math.sqrt((CoorYFin-CoorYIni)*(CoorYFin-CoorYIni));
  jDistancia.setText(Calculo+"");
         }catch (NumberFormatException nfe){
             JOptionPane.showMessageDialog(null, "No pueden existir campos vacios para este calculo");
