@@ -105,7 +105,7 @@ public class SiniestroData {
             int rowsUpdated = ps.executeUpdate();
             
             if(rowsUpdated>0){
-                JOptionPane.showMessageDialog(null, "Brigada dado de baja");
+               // JOptionPane.showMessageDialog(null, "Brigada dado de baja");
             }else{
                 JOptionPane.showMessageDialog(null, "error");
             }
@@ -213,4 +213,39 @@ public class SiniestroData {
         }
         return detalles;
     }
+    
+    public List<Siniestro> traerResDeSiniestro() {
+        List<Siniestro> siniestros = new ArrayList<>();
+        try {
+            String sql = "SELECT s.*, b.nombreBrigada FROM siniestro s "
+                    + "LEFT JOIN brigada b ON s.codBrigada = b.idBrigada "
+                    + "WHERE s.puntuacion IS NULL AND s.codBrigada IS NOT NULL AND activo = 1";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Siniestro sin = new Siniestro();
+                
+                sin.setIdSiniestro(rs.getInt("IdSiniestro"));
+                sin.setTipo(rs.getString("tipo"));
+                sin.setFechaSiniestro(rs.getDate("fechaSiniestro").toLocalDate());
+                sin.setCoordX(rs.getInt("coordX"));
+                sin.setCoordY(rs.getInt("coordY"));
+                sin.setDetalles(rs.getString("detalles"));
+                
+                Brigada bri = new Brigada();
+                bri.setIdBrigada(rs.getInt("codBrigada"));
+                bri.setNombreBrigada(rs.getString("nombreBrigada")); 
+                sin.setCodBrigada(bri);
+                
+                siniestros.add(sin);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Siniestro");
+        }
+        return siniestros;
+    }
+    
+    
+    
 }

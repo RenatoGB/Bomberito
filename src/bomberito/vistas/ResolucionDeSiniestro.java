@@ -163,7 +163,7 @@ public class ResolucionDeSiniestro extends javax.swing.JInternalFrame {
             boolean libre=true;
         controlSin.actualizarBrigada(idBrigada, libre);
         }
-        
+        actualizarTabla();
         } catch (NullPointerException npe) {
             JOptionPane.showMessageDialog(null, "Datos incorrectos, intente nuevamente");
         }
@@ -204,8 +204,8 @@ public class ResolucionDeSiniestro extends javax.swing.JInternalFrame {
 
 
     private void cargarTabla() {
-        for (Siniestro cosa : controlSin.traerSiniestrosParaDarBaja()) {
-            String briNombreID ="[" + cosa.getCodBrigada().getIdBrigada() +"] "+cosa.getCodBrigada().getNombreBrigada() ;
+        for (Siniestro cosa : controlSin.traerResDeSiniestro()) {
+            String briNombreID = "[" + cosa.getCodBrigada().getIdBrigada() + "] " + cosa.getCodBrigada().getNombreBrigada();
             modelo.addRow(new Object[]{
                 cosa.getIdSiniestro(),
                 cosa.getFechaSiniestro(),
@@ -216,9 +216,8 @@ public class ResolucionDeSiniestro extends javax.swing.JInternalFrame {
         }
     }
 
-   /* private void cargarComboPunt() {
-        for (int i = 1; i <= 10; i++) {
-            CBPunt.addItem(i);
-        }
-    }*/
+    private void actualizarTabla() {
+        modelo.setRowCount(0);
+        cargarTabla();
+    }
 }

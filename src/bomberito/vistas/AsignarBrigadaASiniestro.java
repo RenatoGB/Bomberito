@@ -192,7 +192,7 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
         //↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
         controlSin.actualizarBrigada(idBrigada,libre);  //Al asignarlos directamente te ahorras de crear un constructor en la entidad Brigada
         //↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
-        
+        actualizarTabla();
     }//GEN-LAST:event_JBotonActionPerformed
 
     private void JCBXCuartelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JCBXCuartelActionPerformed
@@ -245,16 +245,7 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
       
     }
 
-    private void borrarFilaTabla(){
-        int ind =modelo.getRowCount() -1;
-            for(int i= ind;i>=0;i--){
-                modelo.removeRow(i);
-            }
-                
-    }
-
     private void cargarTabla(){
-        borrarFilaTabla();
         for(Siniestro cosa: controlSin.traerSiniestrosParaAsignar()){
             modelo.addRow(new Object[]{
                 cosa.getIdSiniestro(),
@@ -273,18 +264,9 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
         }
     }
     
-   /* public void calcularDistancia(){
-       Siniestro asd=new Siniestro();
-       Cuartel asd2=new Cuartel();
-       int coordx=asd.getCoordX();
-       int coordy=asd.getCoordY();
-       
-       int cordx=asd2.getCoordX();
-       int cordy=asd2.getCoordY();
-       
-       double distancia= Math.sqrt(Math.pow(coordx - cordx, 2) + Math.pow(coordy - cordy, 2));
-       
-    }*/
-    
+    private void actualizarTabla() {
+        modelo.setRowCount(0);
+        cargarTabla();
+    }
     
 }
