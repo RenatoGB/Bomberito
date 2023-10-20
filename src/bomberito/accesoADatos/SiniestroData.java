@@ -167,4 +167,50 @@ public class SiniestroData {
          JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Siniestro");
         }
     }
+    
+        public Siniestro traerSiniestroID(int id){
+            Siniestro bri = null;
+        try {
+            String sql = "SELECT * FROM siniestro WHERE idSiniestro= "+id;
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                bri = new Siniestro();
+                BrigadaData cuar = new BrigadaData();
+                bri.setIdSiniestro(rs.getInt("idSiniestro"));
+                bri.setTipo(rs.getString("tipo"));
+                bri.setFechaSiniestro(rs.getDate("fechaSiniestro").toLocalDate());
+                bri.setCoordX(rs.getInt("coordX"));
+                bri.setCoordY(rs.getInt("coordY"));
+                bri.setDetalles(rs.getString("detalles"));
+                bri.setFechaResolucion(rs.getDate("fechaResolucion").toLocalDate());
+                bri.setPuntuacion(rs.getInt("puntuacion"));
+                bri.setCodBrigada(cuar.traerBrigadaID(rs.getInt("codBrigada")));
+                bri.setActivo(rs.getBoolean("activo"));
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla siniestro " + ex.getMessage());
+        }
+        return bri;
+    }
+
+    public String devolverDetalle(int id) {
+        String detalles = "";
+        try {
+            String sql = "SELECT detalles FROM siniestro"
+                    + " WHERE codBrigada = " + id;
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                detalles = rs.getString("detalles");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Siniestro " + ex.getMessage());
+        }
+        return detalles;
+    }
 }

@@ -106,5 +106,5 @@ public class BrigadaData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla brigada para modificar "+ex);
         }
-    }
+    }    
 }

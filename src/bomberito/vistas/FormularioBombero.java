@@ -40,7 +40,7 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
         initComponents();
         encabezadoTabla();
         cargarCombo();
-        cargarMiembros();
+//        cargarMiembros();
         btnModificar.setEnabled(false);
         btnDarBaja.setEnabled(false);
         tablaLlena();
@@ -598,16 +598,16 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
         }
     }
     
-    private void cargarMiembros(){
-        for (Brigada i: controlBri.traerBrigadas()) {
-            if (controlBom.bomberosEnUnaBrigada(i.getIdBrigada())>5) {
-                System.out.println("Se a superado los 5 miembros ");
-            }
-            int muestra=controlBom.bomberosEnUnaBrigada(i.getIdBrigada());
-            System.out.println("Nombre Brigada = "+i.getNombreBrigada());
-            System.out.println("Cantidad de Miembros = "+muestra);
-        }
-    }
+//    private void cargarMiembros(){
+//        for (Brigada i: controlBri.traerBrigadas()) {
+//            if (controlBom.bomberosEnUnaBrigada(i.getIdBrigada())>5) {
+//                System.out.println("Se a superado los 5 miembros ");
+//            }
+//            int muestra=controlBom.bomberosEnUnaBrigada(i.getIdBrigada());
+//            System.out.println("Nombre Brigada = "+i.getNombreBrigada());
+//            System.out.println("Cantidad de Miembros = "+muestra);
+//        }
+//    }
     
     private void limpiar(){
         txtDNI.setText("");

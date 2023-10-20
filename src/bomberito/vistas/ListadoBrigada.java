@@ -7,8 +7,10 @@ package bomberito.vistas;
 
 import bomberito.accesoADatos.BrigadaData;
 import bomberito.accesoADatos.CuartelData;
+import bomberito.accesoADatos.SiniestroData;
 import bomberito.entidades.Brigada;
 import bomberito.entidades.Cuartel;
+import bomberito.entidades.Siniestro;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,6 +25,7 @@ public class ListadoBrigada extends javax.swing.JInternalFrame {
 };
         BrigadaData controlBri=null;
         CuartelData controlCuar=null;
+        SiniestroData controlSin=null;
         int idCuartel;
     /**
      * Creates new form ListadoBrigada
@@ -30,6 +33,7 @@ public class ListadoBrigada extends javax.swing.JInternalFrame {
     public ListadoBrigada() {
         controlBri=new BrigadaData();
         controlCuar=new CuartelData();
+        controlSin=new SiniestroData();
         initComponents();
         encabezadoTabla();
         cargarCombo();
@@ -128,11 +132,20 @@ public class ListadoBrigada extends javax.swing.JInternalFrame {
         idCuartel = cuarteleleccionada.getIdCuartel();
         for (Brigada object : controlBri.traerBrigadas()) {
             if (object.getNroCuartel().getIdCuartel() == idCuartel) {
-              modelo.addRow(new Object[]{
+                if (object.isLibre()==true) {
+                  modelo.addRow(new Object[]{
                   object.getNombreBrigada(),
                   object.getEspecialidad(),
-                  object.isLibre(),
+                  "No asignada"
               });
+                }else{
+                modelo.addRow(new Object[]{
+                  object.getNombreBrigada(),
+                  object.getEspecialidad(),
+                  controlSin.devolverDetalle(object.getIdBrigada())
+                  
+              });
+                }
             }
         }
     }//GEN-LAST:event_cbxCuartelActionPerformed
@@ -160,7 +173,7 @@ public class ListadoBrigada extends javax.swing.JInternalFrame {
     private void encabezadoTabla() {
         modelo.addColumn("Nombre de Brigada");
         modelo.addColumn("Especialidad");
-        modelo.addColumn("Libre");
+        modelo.addColumn("Siniestro Asignado");
         jTable1.setModel(modelo);
     }
 
