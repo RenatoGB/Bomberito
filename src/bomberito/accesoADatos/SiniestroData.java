@@ -8,6 +8,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -147,14 +148,14 @@ public class SiniestroData {
         return siniestros;
     }
     
-    public void actSiniestrosRes(Siniestro sin){
+    public void actSiniestrosRes(LocalDate FechaResolucion,int puntuacion,boolean activo,int idSiniestro){
         try{
             String sql= "UPDATE siniestro set fechaResolucion = ?, puntuacion = ?, activo = ? WHERE idSiniestro = ?";
                     PreparedStatement ps = con.prepareStatement(sql);
-                    ps.setDate(1, Date.valueOf(sin.getFechaResolucion()));
-                    ps.setInt(2, sin.getPuntuacion());
-                    ps.setBoolean(3, sin.isActivo());
-                    ps.setInt(4, sin.getIdSiniestro());             
+                    ps.setDate(1, Date.valueOf(FechaResolucion));
+                    ps.setInt(2, puntuacion);
+                    ps.setBoolean(3, activo);
+                    ps.setInt(4, idSiniestro);             
             int rowsUpdated = ps.executeUpdate();
             if(rowsUpdated>0){
                 JOptionPane.showMessageDialog(null, "Siniestro Resuelto");
