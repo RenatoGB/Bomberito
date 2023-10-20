@@ -9,6 +9,10 @@ import bomberito.accesoADatos.BrigadaData;
 import bomberito.accesoADatos.SiniestroData;
 import bomberito.entidades.Brigada;
 import bomberito.entidades.Siniestro;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -30,6 +34,7 @@ public class ResolucionDeSiniestro extends javax.swing.JInternalFrame {
         controlBri=new BrigadaData();
         armarCabeceraTabla();
         cargarTabla();
+       // cargarComboPunt();
         
     }
 
@@ -79,7 +84,14 @@ public class ResolucionDeSiniestro extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel4.setText("Puntuacion:");
 
+        CBPunt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+
         jButton1.setText("Guardar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,9 +142,37 @@ public class ResolucionDeSiniestro extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try{
+        Date fRes=FechaRes.getDate();
+        LocalDate FechaResolucion= fRes.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        String punts=CBPunt.getSelectedItem().toString();
+        int puntuacion=Integer.parseInt(punts);
+        boolean activo=false;
+        int sinSelec = JTabla.getSelectedRow();
+        int idSiniestro = (Integer)JTabla.getValueAt(sinSelec,0);
+        
+        controlSin.actSiniestrosRes(FechaResolucion, puntuacion, activo, idSiniestro);
+        int idSelec=JTabla.getSelectedRow();
+        String brigadaString=(String)JTabla.getValueAt(idSelec, 3);
+        int inicio=brigadaString.indexOf('[');
+        int fin=brigadaString.indexOf(']');
+        if (inicio !=-1 && fin !=-1 && inicio<fin){
+            String numBrigada= brigadaString.substring(inicio+1,fin);
+            int idBrigada= Integer.parseInt(numBrigada);
+            boolean libre=true;
+        controlSin.actualizarBrigada(idBrigada, libre);
+        }
+        
+        } catch (NullPointerException npe) {
+            JOptionPane.showMessageDialog(null, "Datos incorrectos, intente nuevamente");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<Integer> CBPunt;
+    private javax.swing.JComboBox<String> CBPunt;
     private com.toedter.calendar.JDateChooser FechaRes;
     private javax.swing.JTable JTabla;
     private javax.swing.JButton jButton1;
@@ -170,10 +210,15 @@ public class ResolucionDeSiniestro extends javax.swing.JInternalFrame {
                 cosa.getIdSiniestro(),
                 cosa.getFechaSiniestro(),
                 cosa.getTipo(),
-                briNombreID, // Nombre e identificador de la brigada    cosa.getCodBrigada().getNombreBrigada(), <--- Solo sale el numero, solo puedo mostrar una cosa a la vez 
+                briNombreID, //Nombre e identificador de la brigada   cosa.getCodBrigada().getNombreBrigada(), <--- Solo sale el numero, solo puedo mostrar una cosa a la vez 
                 cosa.getDetalles()
             });
         }
     }
 
+   /* private void cargarComboPunt() {
+        for (int i = 1; i <= 10; i++) {
+            CBPunt.addItem(i);
+        }
+    }*/
 }

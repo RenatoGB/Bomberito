@@ -8,6 +8,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -93,7 +94,7 @@ public class SiniestroData {
         }
 
     }
-    
+
     public void actualizarBrigada(int idBrigada,boolean libre){
         String sql ="UPDATE brigada SET libre = ? WHERE idBrigada = ?";
         try{
@@ -146,11 +147,24 @@ public class SiniestroData {
         }
         return siniestros;
     }
-
-
     
-    
-    
-    
-    
+    public void actSiniestrosRes(LocalDate FechaResolucion,int puntuacion,boolean activo,int idSiniestro){
+        try{
+            String sql= "UPDATE siniestro set fechaResolucion = ?, puntuacion = ?, activo = ? WHERE idSiniestro = ?";
+                    PreparedStatement ps = con.prepareStatement(sql);
+                    ps.setDate(1, Date.valueOf(FechaResolucion));
+                    ps.setInt(2, puntuacion);
+                    ps.setBoolean(3, activo);
+                    ps.setInt(4, idSiniestro);             
+            int rowsUpdated = ps.executeUpdate();
+            if(rowsUpdated>0){
+                JOptionPane.showMessageDialog(null, "Siniestro Resuelto");
+            }else{
+                JOptionPane.showMessageDialog(null, "error123");
+            }
+            ps.close();
+        }catch(SQLException ex){
+         JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Siniestro");
+        }
+    }
 }
