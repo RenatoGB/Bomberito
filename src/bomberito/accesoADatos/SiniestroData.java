@@ -93,7 +93,7 @@ public class SiniestroData {
         }
 
     }
-    
+
     public void actualizarBrigada(int idBrigada,boolean libre){
         String sql ="UPDATE brigada SET libre = ? WHERE idBrigada = ?";
         try{
@@ -146,11 +146,24 @@ public class SiniestroData {
         }
         return siniestros;
     }
-
-
     
-    
-    
-    
-    
+    public void actSiniestrosRes(Siniestro sin){
+        try{
+            String sql= "UPDATE siniestro set fechaResolucion = ?, puntuacion = ?, activo = ? WHERE idSiniestro = ?";
+                    PreparedStatement ps = con.prepareStatement(sql);
+                    ps.setDate(1, Date.valueOf(sin.getFechaResolucion()));
+                    ps.setInt(2, sin.getPuntuacion());
+                    ps.setBoolean(3, sin.isActivo());
+                    ps.setInt(4, sin.getIdSiniestro());             
+            int rowsUpdated = ps.executeUpdate();
+            if(rowsUpdated>0){
+                JOptionPane.showMessageDialog(null, "Siniestro Resuelto");
+            }else{
+                JOptionPane.showMessageDialog(null, "error123");
+            }
+            ps.close();
+        }catch(SQLException ex){
+         JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Siniestro");
+        }
+    }
 }
