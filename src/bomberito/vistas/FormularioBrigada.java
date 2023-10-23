@@ -222,7 +222,7 @@ public class FormularioBrigada extends javax.swing.JInternalFrame {
         String nombreBrigada=jNombreBrigada.getText();
         String Especialidad= jEspecialidadBrigada.getSelectedItem()+"";
         Cuartel cuartelselec=(Cuartel)JCBXCuartel.getSelectedItem();        
-        Brigada asd=new Brigada(nombreBrigada,Especialidad,true,cuartelselec);        
+        Brigada asd=new Brigada(nombreBrigada,Especialidad,false,cuartelselec);        
         dataBrigada.nuevaBrigada(asd);
         //dataCuartel.traerCuartelID(idcuartel); 
         limpiar();

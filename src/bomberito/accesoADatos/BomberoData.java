@@ -99,21 +99,21 @@ public class BomberoData {
         }
     }
     
-        public void bajaBombero(int id){
-        String sql="UPDATE bombero SET activo=0, codBrigada=null WHERE idBombero=?";
+    public void bajaBombero(int id) {
+        String sql = "UPDATE bombero SET activo=0, codBrigada=null WHERE idBombero=?";
         try {
-            PreparedStatement ps=con.prepareStatement(sql);
+            PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             int exito = ps.executeUpdate();
-            if (exito==1) {
+            if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Bombero dado de baja");
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla bombero");
         }
     }
-        
-    public  int bomberosEnUnaBrigada(int id) {
+
+    public int bomberosEnUnaBrigada(int id) {
         int count = 0;
         try {
             String sql = "SELECT COUNT(*) FROM bombero WHERE codBrigada="+id;

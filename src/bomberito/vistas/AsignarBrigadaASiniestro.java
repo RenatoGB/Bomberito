@@ -66,9 +66,12 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         JCBXBrig = new javax.swing.JComboBox<>();
         JBoton = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         JTabla = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        BotonCalcularDis = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         jLabel6.setText("jLabel6");
 
@@ -100,9 +103,6 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel5.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel5.setText("\"Abnegación, Sacrificio y Desinterés\"");
-
         JTabla = new javax.swing.JTable(){
             public boolean isCellEditable(int row, int column){
                 return false;
@@ -124,6 +124,27 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
         JTabla.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(JTabla);
 
+        jButton1.setText("Salir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        BotonCalcularDis.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        BotonCalcularDis.setText("Distancia:");
+        BotonCalcularDis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonCalcularDisActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel7.setText("coso");
+        jLabel7.setToolTipText("");
+
+        jLabel8.setText("cosa");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,28 +153,42 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(212, 212, 212)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(304, 304, 304)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(21, 21, 21)
-                                    .addComponent(jLabel5))
-                                .addComponent(JBoton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
+                                .addGap(212, 212, 212)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(304, 304, 304)
+                                .addComponent(jLabel2)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(208, 208, 208))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(74, 74, 74)
+                                        .addComponent(JCBXCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JCBXCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(74, 74, 74)
-                                .addComponent(jLabel4)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JCBXBrig, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(118, Short.MAX_VALUE))
+                                .addComponent(JCBXBrig, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                                .addComponent(JBoton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(BotonCalcularDis)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(27, 27, 27)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,17 +198,22 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 23, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(JCBXBrig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(JCBXCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JCBXCuartel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JBoton))
                 .addGap(18, 18, 18)
-                .addComponent(JBoton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BotonCalcularDis)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel7))
+                    .addComponent(jButton1))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
@@ -210,18 +250,65 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
         }      
     }//GEN-LAST:event_JCBXCuartelActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void BotonCalcularDisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCalcularDisActionPerformed
+        int filaSelec = JTabla.getSelectedRow();
+        jLabel7.setText("");
+        //Cuartel cuartelSelec = (Cuartel) JCBXCuartel.getSelectedItem();
+
+        try {
+            Cuartel cuartelSelec = (Cuartel) JCBXCuartel.getSelectedItem();
+            double distanciaMinima = Double.MAX_VALUE;
+            double distancia=0;
+            Cuartel cuartelMasCercano = null;
+            int sinX = (Integer) JTabla.getValueAt(filaSelec, 3);
+            int sinY = (Integer) JTabla.getValueAt(filaSelec, 4);
+            int cuarX = cuartelSelec.getCoordX();
+            int cuarY = cuartelSelec.getCoordY();
+            double distanciaCuartelSelec=calcularDistancia(sinX, sinY, cuarX, cuarY);
+            for (Cuartel cuartel : controlCuar.traerCuarteles()){
+                int cuarX2=cuartel.getCoordX();
+                int cuarY2=cuartel.getCoordY();
+                
+                distancia=calcularDistancia(sinX, sinY, cuarX2, cuarY2);
+                
+                if(distancia < distanciaMinima){
+                    distanciaMinima=distancia;
+                    cuartelMasCercano=cuartel;
+                }
+            }
+            if(cuartelMasCercano != null){
+                jLabel7.setText("Cuartel mas cercano "+cuartelMasCercano.getNombreCuartel()+": "+distanciaMinima);
+            }else{
+                jLabel7.setText("No hay cuarteles disponibles para calcular la distancia.");
+            }
+            jLabel8.setText("Distancia con el cuartel seleccionado: "+cuartelSelec+": "+distanciaCuartelSelec);
+            //double res;
+            //res = calcularDistancia(sinX, sinY, cuarX, cuarY);
+            //jLabel7.setText(res + "");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            jLabel7.setText("Error: Selecciona una fila válida en la tabla.");
+        }
+    }//GEN-LAST:event_BotonCalcularDisActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonCalcularDis;
     private javax.swing.JButton JBoton;
     private javax.swing.JComboBox<Brigada> JCBXBrig;
     private javax.swing.JComboBox<Cuartel> JCBXCuartel;
     private javax.swing.JTable JTabla;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 
@@ -260,7 +347,7 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
  
     private void cargarComboCuartel(){
         for(Cuartel ctl: controlCuar.traerCuarteles()){
-            JCBXCuartel.addItem(new Cuartel(ctl.getIdCuartel(),ctl.getNombreCuartel()));
+            JCBXCuartel.addItem(ctl);
         }
     }
     
@@ -268,5 +355,20 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
         modelo.setRowCount(0);
         cargarTabla();
     }
+    
+    public double calcularDistancia(int x1, int y1,int x2,int y2){
+        /*int filaSelec= JTabla.getSelectedRow();
+        Cuartel cuartelSelec=(Cuartel)JCBXCuartel.getSelectedItem();
+        
+        int sinX=(Integer)JTabla.getValueAt(filaSelec, 3);
+        int sinY=(Integer)JTabla.getValueAt(filaSelec, 4);
+        int cuarX=cuartelSelec.getCoordX();
+        int cuarY=cuartelSelec.getCoordY();*/
+        
+        double distancia= Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+        return distancia;
+        
+    }
+    
     
 }

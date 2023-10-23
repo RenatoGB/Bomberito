@@ -107,4 +107,20 @@ public class BrigadaData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla brigada para modificar "+ex);
         }
     }    
+    
+    public void activarBrigada(boolean libre,Brigada id){
+        String sql = "UPDATE brigada set libre= ? WHERE idBrigada=?";
+        try{
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setBoolean(1, libre);
+            ps.setInt(2, id.getIdBrigada());
+            int exito=ps.executeUpdate();
+            if (exito==1) {
+                JOptionPane.showMessageDialog(null, "Brigada modificado");
+            }
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla brigada para modificar "+ex);
+        }
+    }
+    
 }

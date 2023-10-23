@@ -42,6 +42,7 @@ public class Principio extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
@@ -148,6 +149,14 @@ public class Principio extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jMenuItem9);
+
+        jMenuItem12.setText("Historial de Siniestros");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem12);
 
         jMenuBar1.add(jMenu4);
 
@@ -300,6 +309,15 @@ public class Principio extends javax.swing.JFrame {
         escritorio.moveToFront(Cms); // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        HistorialDeSiniestros HDS= new HistorialDeSiniestros();
+        HDS.setVisible(true);
+        escritorio.add(HDS);
+        escritorio.moveToFront(HDS); 
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -316,6 +334,7 @@ public class Principio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

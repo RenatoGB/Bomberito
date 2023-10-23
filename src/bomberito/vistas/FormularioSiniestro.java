@@ -10,8 +10,11 @@ import bomberito.accesoADatos.SiniestroData;
 import bomberito.entidades.Siniestro;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -19,12 +22,14 @@ import javax.swing.JOptionPane;
  */
 public class FormularioSiniestro extends javax.swing.JInternalFrame {
     SiniestroData control=null;
+    Calendar hora = new GregorianCalendar();
     /**
      * Creates new form Siniestros
      */
     public FormularioSiniestro() {
         control=new SiniestroData();
         initComponents();
+        
     }
 
     /**
@@ -51,6 +56,8 @@ public class FormularioSiniestro extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         JTDetalle = new javax.swing.JTextArea();
         FechaSin = new com.toedter.calendar.JDateChooser();
+        jLabel7 = new javax.swing.JLabel();
+        jSpinner1 = new javax.swing.JSpinner();
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 0));
@@ -65,6 +72,18 @@ public class FormularioSiniestro extends javax.swing.JInternalFrame {
         jLabel5.setText("Coord Y:");
 
         jLabel6.setText("Detalle :");
+
+        CoordX.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                CoordXKeyTyped(evt);
+            }
+        });
+
+        CoordY.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                CoordYKeyTyped(evt);
+            }
+        });
 
         JBNuevo.setText("Limpiar");
         JBNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -95,6 +114,8 @@ public class FormularioSiniestro extends javax.swing.JInternalFrame {
         JTDetalle.setWrapStyleWord(true);
         jScrollPane1.setViewportView(JTDetalle);
 
+        jLabel7.setText("Hora del siniestro:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,7 +143,10 @@ public class FormularioSiniestro extends javax.swing.JInternalFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(jLabel7)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel5)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(CoordY, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -135,7 +159,7 @@ public class FormularioSiniestro extends javax.swing.JInternalFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(CoordX, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(1, 1, 1)))
-                        .addContainerGap(27, Short.MAX_VALUE))))
+                        .addContainerGap(30, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
@@ -160,22 +184,29 @@ public class FormularioSiniestro extends javax.swing.JInternalFrame {
                         .addComponent(jLabel4)
                         .addComponent(CoordX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(FechaSin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(CoordY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel6))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(JBGuardar)
-                    .addComponent(JBNuevo))
-                .addGap(20, 20, 20))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(CoordY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton3)
+                            .addComponent(JBGuardar)
+                            .addComponent(JBNuevo)))
+                    .addComponent(jLabel6))
+                .addContainerGap())
         );
 
         pack();
@@ -213,6 +244,28 @@ public class FormularioSiniestro extends javax.swing.JInternalFrame {
         JTDetalle.setText("");
     }//GEN-LAST:event_JBNuevoActionPerformed
 
+    private void CoordXKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CoordXKeyTyped
+        if (CoordX.getText().length() >= 3) {
+            evt.consume();
+        }
+        int key = evt.getKeyChar();
+        boolean num = key >= 48 && key <= 57;
+        if (!num) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_CoordXKeyTyped
+
+    private void CoordYKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CoordYKeyTyped
+        if (CoordY.getText().length() >= 3) {
+            evt.consume();
+        }
+        int key = evt.getKeyChar();
+        boolean num = key >= 48 && key <= 57;
+        if (!num) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_CoordYKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CoordX;
@@ -229,6 +282,8 @@ public class FormularioSiniestro extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSpinner jSpinner1;
     // End of variables declaration//GEN-END:variables
 }

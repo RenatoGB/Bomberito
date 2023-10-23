@@ -323,7 +323,7 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbxBrigadasActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        if (txtDNI.getText().equals("")||txtApellido.getText().equals("")||txtCelular.getText().equals("")||txtNombre.getText().equals("")||dcNacimiento.equals("")) {
+        if (txtDNI.getText().equals("") || txtApellido.getText().equals("") || txtCelular.getText().equals("") || txtNombre.getText().equals("") || dcNacimiento.equals("")) {
             JOptionPane.showMessageDialog(null, "No puede haber campos vacios");
         } else {
             int dni = Integer.parseInt(txtDNI.getText());
@@ -331,24 +331,26 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
             String nombre = txtNombre.getText();
             Date fechaNacimiento = dcNacimiento.getDate();
             LocalDate fechita = fechaNacimiento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            String grupoSan = cbxGrupoSan.getSelectedItem()+"";
+            String grupoSan = cbxGrupoSan.getSelectedItem() + "";
             String celular = txtCelular.getText();
             Brigada brigadaSelec = (Brigada) cbxBrigadas.getSelectedItem();
-            int cant=controlBom.bomberosEnUnaBrigada(brigadaSelec.getIdBrigada());
-            if (cant>4) {
-                JOptionPane.showMessageDialog(null, "No se puede agregar mas de 5 miembros a una brigada");               
-            }else{
-            boolean activo=true;
-            Bombero bomba = new Bombero(dni, apellido, nombre, fechita, grupoSan, celular, brigadaSelec, activo);
-            controlBom.nuevoBombero(bomba);
-            limpiar();
-            tablaLlena();
+            int cant = controlBom.bomberosEnUnaBrigada(brigadaSelec.getIdBrigada());
+            if (cant == 1) {
+                boolean libre = true;
+                controlBri.activarBrigada(libre, brigadaSelec);              
+            }
+            if (cant > 4) {
+                JOptionPane.showMessageDialog(null, "No se puede agregar mas de 5 miembros a una brigada");
+            } else {
+                boolean activo = true;
+                Bombero bomba = new Bombero(dni, apellido, nombre, fechita, grupoSan, celular, brigadaSelec, activo);
+                controlBom.nuevoBombero(bomba);
+                limpiar();
+                tablaLlena();
             }
         }
-        
-        
     }//GEN-LAST:event_btnNuevoActionPerformed
-
+    
     private void btnAplicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplicarActionPerformed
         if (jTable1.getSelectedRow() != -1) {
             btnModificar.setEnabled(true);
