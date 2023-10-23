@@ -77,6 +77,34 @@ public class BomberoData {
         return bomberitos;
     }
     
+        public List<Bombero> traerBomberosInactivos() {
+        List<Bombero> bomberitos = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM bombero WHERE activo = 0 ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Bombero bom = new Bombero();
+                BrigadaData briDa = new BrigadaData();
+                bom.setIdBombero(rs.getInt("idBombero"));
+                bom.setDni(rs.getInt("dni"));
+                bom.setApellido(rs.getString("apellido"));
+                bom.setNombre(rs.getString("nombre"));
+                bom.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
+                bom.setGrupoSanguineo(rs.getString("grupoSanguineo"));
+                bom.setCelular(rs.getString("celular"));
+                bom.setCodBrigada(briDa.traerBrigadaID(rs.getInt("codBrigada")));
+                bom.setActivo(rs.getBoolean("activo"));
+                bomberitos.add(bom);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla bombero " + ex.getMessage());
+        }
+        return bomberitos;
+    }
+    
     public void modificarBombero(Bombero bomberito){
         String sql = "UPDATE bombero SET dni=?, apellido=?, nombre=?, fechaNacimiento=?, grupoSanguineo=?, celular=?, codBrigada=?"
                 + " WHERE idBombero=?";        

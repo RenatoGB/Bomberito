@@ -32,7 +32,8 @@ public class ListadoBombero extends javax.swing.JInternalFrame {
         controlBom=new BomberoData();
         initComponents();
         encabezadoTabla();
-        cargarCombo();       
+        cargarCombo();    
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null); 
     }
 
     /**
@@ -50,6 +51,7 @@ public class ListadoBombero extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jsalir = new javax.swing.JButton();
+        rbtmInactivos = new javax.swing.JRadioButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -82,6 +84,13 @@ public class ListadoBombero extends javax.swing.JInternalFrame {
             }
         });
 
+        rbtmInactivos.setText("Inactivos");
+        rbtmInactivos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtmInactivosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -94,14 +103,16 @@ public class ListadoBombero extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(309, 309, 309)
+                                .addComponent(jLabel2))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGap(14, 14, 14)
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
-                                .addComponent(cbxBrigada, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(309, 309, 309)
-                                .addComponent(jLabel2)))
-                        .addGap(0, 318, Short.MAX_VALUE)))
+                                .addComponent(cbxBrigada, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(137, 137, 137)
+                                .addComponent(rbtmInactivos)))
+                        .addGap(0, 248, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(342, 342, 342)
@@ -112,11 +123,12 @@ public class ListadoBombero extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel2)
-                .addGap(31, 31, 31)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(cbxBrigada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51)
+                    .addComponent(cbxBrigada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rbtmInactivos))
+                .addGap(50, 50, 50)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jsalir))
@@ -137,8 +149,7 @@ public class ListadoBombero extends javax.swing.JInternalFrame {
                   object.getNombre(),
                   object.getFechaNacimiento(),
                   object.getGrupoSanguineo(),
-                  object.getCelular(),
-                  object.isActivo()
+                  object.getCelular()
               });
             }
         }
@@ -149,6 +160,28 @@ public class ListadoBombero extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jsalirActionPerformed
 
+    private void rbtmInactivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtmInactivosActionPerformed
+        if (rbtmInactivos.isSelected()) {
+            cbxBrigada.setEnabled(false);
+            borrarFilas();
+        for (Bombero object : controlBom.traerBomberosInactivos()) {
+            if (object.isActivo()==false) {
+              modelo.addRow(new Object[]{
+                  object.getDni(),
+                  object.getApellido(),
+                  object.getNombre(),
+                  object.getFechaNacimiento(),
+                  object.getGrupoSanguineo(),
+                  object.getCelular()
+              });
+            }
+        }
+        }else{
+            cbxBrigada.setEnabled(true);
+            borrarFilas();
+        }
+    }//GEN-LAST:event_rbtmInactivosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<Brigada> cbxBrigada;
@@ -157,6 +190,7 @@ public class ListadoBombero extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton jsalir;
+    private javax.swing.JRadioButton rbtmInactivos;
     // End of variables declaration//GEN-END:variables
 
     private void cargarCombo() {
@@ -172,7 +206,6 @@ public class ListadoBombero extends javax.swing.JInternalFrame {
         modelo.addColumn("Fecha de Nacimiento");
         modelo.addColumn("Grupo Sangineo");
         modelo.addColumn("Celular");
-        modelo.addColumn("Activo");
         jTable1.setModel(modelo);
     }
 
