@@ -2,6 +2,7 @@
 package bomberito.entidades;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 
 public class Siniestro {
@@ -16,11 +17,12 @@ public class Siniestro {
     private int puntuacion;
     private Brigada codBrigada;
     private boolean activo;
+    private LocalTime horaSin;
     
     public Siniestro() {
     }
 
-    public Siniestro(String tipo, LocalDate fechaSiniestro, int coordX, int coordY, String detalles, LocalDate fechaResolucion, int puntuacion, Brigada codBrigada, boolean activo) {
+    public Siniestro(String tipo, LocalDate fechaSiniestro, int coordX, int coordY, String detalles, LocalDate fechaResolucion, int puntuacion, Brigada codBrigada, boolean activo,LocalTime horaSin) {
         this.tipo = tipo;
         this.fechaSiniestro = fechaSiniestro;
         this.coordX = coordX;
@@ -30,15 +32,17 @@ public class Siniestro {
         this.puntuacion = puntuacion;
         this.codBrigada = codBrigada;
         this.activo = activo;
+        this.horaSin = horaSin;
     }
 
-    public Siniestro(String tipo, LocalDate fechaSiniestro, int coordX, int coordY, String detalles,boolean activo) {
+    public Siniestro(String tipo, LocalDate fechaSiniestro, int coordX, int coordY, String detalles,boolean activo,LocalTime horaSin) {
         this.tipo = tipo;
         this.fechaSiniestro = fechaSiniestro;
         this.coordX = coordX;
         this.coordY = coordY;
         this.detalles = detalles;
         this.activo=activo;
+        this.horaSin=horaSin;
     }
 
     public Siniestro(Brigada codBrigada, int idSiniestro) {
@@ -127,6 +131,14 @@ public class Siniestro {
         this.activo = activo;
     }
 
+    public LocalTime getHoraSin() {
+        return horaSin;
+    }
 
-
+    public void setHoraSin(LocalTime horaSin) {
+        this.horaSin = horaSin;
+    }
+    
+    
+    
 }

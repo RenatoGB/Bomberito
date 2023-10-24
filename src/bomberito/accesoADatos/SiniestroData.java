@@ -7,7 +7,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -52,12 +54,14 @@ public class SiniestroData {
                 int idBrigada = rs.getInt("codBrigada");
                 if (!rs.wasNull()) {
                     Brigada brigada = new Brigada();
-                    brigada = bri.traerBrigadaID(idBrigada); 
+                    brigada = bri.traerBrigadaID(idBrigada);
                     sin.setCodBrigada(brigada);
                 }
                 //sin.setCodBrigada(bri.traerBrigadaID(rs.getInt("codBrigada")));  //Combinacion de clase siniestro con BrigadaData para traer la idBrigada al siniestro asignado
                 sin.setActivo(rs.getBoolean("activo"));
-
+                Time horaSinDB = rs.getTime("horaSin");
+                LocalTime horaSin = horaSinDB != null ? horaSinDB.toLocalTime() : LocalTime.MIN;
+                sin.setHoraSin(horaSin);
                 historial.add(sin);
             }
             ps.close();
@@ -69,8 +73,8 @@ public class SiniestroData {
     }
 
     public void NuevoSiniestro(Siniestro sin) {
-        String sql = "INSERT INTO siniestro(tipo, fechaSiniestro, coordX, coordY, detalles,activo)"
-                + "VALUE(?,?,?,?,?,?)";
+        String sql = "INSERT INTO siniestro(tipo, fechaSiniestro, coordX, coordY, detalles,activo,horaSin)"
+                + "VALUE(?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, sin.getTipo());
@@ -79,6 +83,7 @@ public class SiniestroData {
             ps.setInt(4, sin.getCoordY());
             ps.setString(5, sin.getDetalles());
             ps.setBoolean(6, sin.isActivo());
+            ps.setTime(7, Time.valueOf(sin.getHoraSin()));
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -107,6 +112,7 @@ public class SiniestroData {
                 sin.setCoordX(rs.getInt("coordX"));
                 sin.setCoordY(rs.getInt("coordY"));
                 sin.setDetalles(rs.getString("detalles"));
+
                 siniestres.add(sin);
             }
             ps.close();
@@ -188,7 +194,7 @@ public class SiniestroData {
 
     public void actSiniestrosRes(LocalDate FechaResolucion, int puntuacion, boolean activo, int idSiniestro) {
         try {
-            String sql = "UPDATE siniestro set fechaResolucion = ?, puntuacion = ?, activo = ? WHERE idSiniestro = ?";
+            String sql = "UPDATE siniestro SET fechaResolucion = ?, puntuacion = ?, activo = ? WHERE idSiniestro = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setDate(1, Date.valueOf(FechaResolucion));
             ps.setInt(2, puntuacion);
@@ -282,5 +288,5 @@ public class SiniestroData {
         }
         return siniestros;
     }
-    
+
 }
