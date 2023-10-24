@@ -5,6 +5,8 @@
  */
 package bomberito.vistas;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 /**
  *
  * @author shion
@@ -16,6 +18,9 @@ public class Principio extends javax.swing.JFrame {
      */
     public Principio() {
         initComponents();
+        getContentPane().setLayout(new BorderLayout());
+        getContentPane().add(escritorio, BorderLayout.CENTER);
+        setDefaultCloseOperation(Principio.EXIT_ON_CLOSE);
     }
 
     /**
@@ -59,7 +64,7 @@ public class Principio extends javax.swing.JFrame {
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 577, Short.MAX_VALUE)
+            .addGap(0, 627, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Bomberos");
@@ -83,11 +88,6 @@ public class Principio extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Brigadas");
-        jMenu2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu2ActionPerformed(evt);
-            }
-        });
 
         jMenuItem1.setText("Formulario Brigadas");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -108,11 +108,6 @@ public class Principio extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Cuartel");
-        jMenu3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu3ActionPerformed(evt);
-            }
-        });
 
         jMenuItem4.setText("Formulario Cuartel");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -188,7 +183,7 @@ public class Principio extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,72 +200,82 @@ public class Principio extends javax.swing.JFrame {
         formBrig.setVisible(true);
         escritorio.add(formBrig);
         escritorio.moveToFront(formBrig);
+        
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = formBrig.getSize();
+        formBrig.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        formBrig.show();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
-        FormularioBombero formBomb=new FormularioBombero();
+        FormularioBombero formBomb = new FormularioBombero();
         formBomb.setVisible(true);
         escritorio.add(formBomb);
         escritorio.moveToFront(formBomb);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
-        escritorio.removeAll();
-        escritorio.repaint();
-        FormularioCuartel formcuartel=new FormularioCuartel();
-        formcuartel.setVisible(true);
-        escritorio.add(formcuartel);
-        escritorio.moveToFront(formcuartel);  
-    }//GEN-LAST:event_jMenu3ActionPerformed
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = formBomb.getSize();
+        formBomb.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        formBomb.show();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
-        FormularioCuartel formcuartel=new FormularioCuartel();
+        FormularioCuartel formcuartel = new FormularioCuartel();
         formcuartel.setVisible(true);
         escritorio.add(formcuartel);
-        escritorio.moveToFront(formcuartel);     
+        escritorio.moveToFront(formcuartel);
+
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = formcuartel.getSize();
+        formcuartel.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        formcuartel.show();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
-        FormularioSiniestro sin=new FormularioSiniestro();
+        FormularioSiniestro sin = new FormularioSiniestro();
         sin.setVisible(true);
         escritorio.add(sin);
-        escritorio.moveToFront(sin);  
-        
+        escritorio.moveToFront(sin);
+
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = sin.getSize();
+        sin.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        sin.show();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
-        AsignarBrigadaASiniestro AsigBrigASin=new AsignarBrigadaASiniestro();
+        AsignarBrigadaASiniestro AsigBrigASin = new AsignarBrigadaASiniestro();
         AsigBrigASin.setVisible(true);
         escritorio.add(AsigBrigASin);
-        escritorio.moveToFront(AsigBrigASin);  
-        
+        escritorio.moveToFront(AsigBrigASin);
+
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = AsigBrigASin.getSize();
+        AsigBrigASin.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        AsigBrigASin.show();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
-        ListadoBombero listadoBombero=new ListadoBombero();
+        ListadoBombero listadoBombero = new ListadoBombero();
         listadoBombero.setVisible(true);
         escritorio.add(listadoBombero);
         escritorio.moveToFront(listadoBombero);
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
-    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
-        escritorio.removeAll();
-        escritorio.repaint();
-        ListadoBrigada listadoBrigada=new ListadoBrigada();
-        listadoBrigada.setVisible(true);
-        escritorio.add(listadoBrigada);
-        escritorio.moveToFront(listadoBrigada);
-    }//GEN-LAST:event_jMenu2ActionPerformed
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = listadoBombero.getSize();
+        listadoBombero.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        listadoBombero.show();
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         escritorio.removeAll();
@@ -279,16 +284,25 @@ public class Principio extends javax.swing.JFrame {
         listadoBrigada.setVisible(true);
         escritorio.add(listadoBrigada);
         escritorio.moveToFront(listadoBrigada);
+        
+                Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = listadoBrigada.getSize();
+        listadoBrigada.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        listadoBrigada.show();
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        // TODO add your handling code here:
         escritorio.removeAll();
         escritorio.repaint();
         ResolucionDeSiniestro ResDeSin=new ResolucionDeSiniestro();
         ResDeSin.setVisible(true);
         escritorio.add(ResDeSin);
         escritorio.moveToFront(ResDeSin);
+        
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = ResDeSin.getSize();
+        ResDeSin.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        ResDeSin.show();
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
@@ -297,7 +311,12 @@ public class Principio extends javax.swing.JFrame {
         Calculadora Cal= new Calculadora();
         Cal.setVisible(true);
         escritorio.add(Cal);
-        escritorio.moveToFront(Cal);     
+        escritorio.moveToFront(Cal);   
+        
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = Cal.getSize();
+        Cal.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        Cal.show();
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
@@ -306,7 +325,12 @@ public class Principio extends javax.swing.JFrame {
         CuartelMasCercano Cms= new CuartelMasCercano();
         Cms.setVisible(true);
         escritorio.add(Cms);
-        escritorio.moveToFront(Cms); // TODO add your handling code here:
+        escritorio.moveToFront(Cms); 
+        
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = Cms.getSize();
+        Cms.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        Cms.show();
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
@@ -316,6 +340,11 @@ public class Principio extends javax.swing.JFrame {
         HDS.setVisible(true);
         escritorio.add(HDS);
         escritorio.moveToFront(HDS); 
+        
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = HDS.getSize();
+        HDS.setLocation((desktopSize.width - FrameSize.width)/2, (desktopSize.height- FrameSize.height)/2);
+        HDS.show();
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     /**
@@ -344,4 +373,4 @@ public class Principio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
-}
+    }
