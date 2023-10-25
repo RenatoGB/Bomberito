@@ -182,7 +182,7 @@ public class HistorialDeSiniestros extends javax.swing.JInternalFrame {
             
             if(fechaSin.compareTo(fechaIn) >=0 && fechaSin.compareTo(fechaFin) <=0  ){
                 String IdNomBri;
-            if (sin.getCodBrigada() != null) {
+            if(sin.getCodBrigada() != null) {
                 IdNomBri = "[" + sin.getCodBrigada().getIdBrigada() + "] " + sin.getCodBrigada().getNombreBrigada();
             } else {
                 IdNomBri = "Sin brigada asignada";

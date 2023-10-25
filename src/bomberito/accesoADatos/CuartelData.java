@@ -2,6 +2,7 @@
 package bomberito.accesoADatos;
 
 import bomberito.entidades.Bombero;
+import bomberito.entidades.Brigada;
 import bomberito.entidades.Cuartel;
 import java.sql.Connection;
 import java.sql.Date;
@@ -116,4 +117,36 @@ public class CuartelData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla cuartel para modificar");
         }
     }
+        /*public List<Cuartel> traerCuarteleschony() {
+        List<Cuartel> cuartelitos = new ArrayList<>();
+        try {
+            String sql = "Select c.*, b.nombreBrigada FROM cuartel c "
+                    + "LEFT JOIN brigada b ON c.idCuartel = b.idBrigada ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                Cuartel cu = new Cuartel();
+                
+                cu.setIdCuartel(rs.getInt("idCuartel"));
+                cu.setNombreCuartel(rs.getString("nombreCuartel"));
+                cu.setDireccion(rs.getString("direccion"));
+                cu.setCoordX(rs.getInt("coordX"));
+                cu.setCoordY(rs.getInt("coordY"));
+                cu.setTelefono(rs.getString("telefono"));
+                cu.setCorreo(rs.getString("correo"));
+                
+                Brigada bri = new Brigada();
+                bri.setIdBrigada(rs.getInt("idBrigada"));
+                bri.setNombreBrigada(rs.getString("nombreBrigada"));
+                cu.setCodBrigada(bri);
+                
+                cuartelitos.add(cu);
+            }
+            ps.close();
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla cuartel " + ex.getMessage());
+        }
+        return cuartelitos;
+    }*/
 }

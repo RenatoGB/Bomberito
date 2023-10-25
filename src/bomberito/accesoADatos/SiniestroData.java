@@ -267,19 +267,19 @@ public class SiniestroData {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Siniestro sin = new Siniestro();
-
+                
                 sin.setIdSiniestro(rs.getInt("IdSiniestro"));
                 sin.setTipo(rs.getString("tipo"));
                 sin.setFechaSiniestro(rs.getDate("fechaSiniestro").toLocalDate());
                 sin.setCoordX(rs.getInt("coordX"));
                 sin.setCoordY(rs.getInt("coordY"));
                 sin.setDetalles(rs.getString("detalles"));
-
+                
                 Brigada bri = new Brigada();
                 bri.setIdBrigada(rs.getInt("codBrigada"));
                 bri.setNombreBrigada(rs.getString("nombreBrigada"));
                 sin.setCodBrigada(bri);
-
+                
                 siniestros.add(sin);
             }
             ps.close();

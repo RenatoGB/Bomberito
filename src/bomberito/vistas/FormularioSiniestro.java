@@ -240,7 +240,7 @@ public class FormularioSiniestro extends javax.swing.JInternalFrame {
         Date horaDate = (Date) jSpinner12.getValue();
         LocalTime horaSin = horaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
           // System.out.println("Hora obtenida desde jSpinner12: " + horaDate);
-            //System.out.println("Hora configurada en horaSin: " + horaSin);
+          //System.out.println("Hora configurada en horaSin: " + horaSin);
 
         Siniestro nuevo=new Siniestro(tipo,FechaSiniestro,coordX,coordY,detalle,activo,horaSin);
         control.NuevoSiniestro(nuevo);

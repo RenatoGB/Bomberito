@@ -10,6 +10,16 @@ import bomberito.accesoADatos.CuartelData;
 import bomberito.accesoADatos.SiniestroData;
 import bomberito.entidades.Cuartel;
 import bomberito.entidades.Siniestro;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.html.HTML;
 
@@ -82,6 +92,7 @@ public class CuartelMasCercano extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTablaCuartelesDistancia = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Cuartel mas cercano al siniestro");
@@ -173,6 +184,13 @@ public class CuartelMasCercano extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Cuarteles por distancia :");
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -214,7 +232,9 @@ public class CuartelMasCercano extends javax.swing.JInternalFrame {
                         .addComponent(jCoordenadaY, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(282, 282, 282)
-                        .addComponent(jLabel7)))
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)))
                 .addContainerGap(234, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -242,9 +262,11 @@ public class CuartelMasCercano extends javax.swing.JInternalFrame {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addComponent(jLabel7)
-                .addGap(45, 45, 45)
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jButton1))
+                .addGap(37, 37, 37)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 161, Short.MAX_VALUE))
         );
@@ -370,8 +392,51 @@ public class CuartelMasCercano extends javax.swing.JInternalFrame {
         }    // TODO add your handling code here:
     }//GEN-LAST:event_jTipoSiniestroActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        borrarFilaTabla2();
+        int auxX = 0;
+        int auxY = 0;
+        double aux=0;
+        
+        //double aux2=1000.0;
+        if (jCoordenadaX != null && jCoordenadaY != null) {
+            int auxXa = jTabladeSiniestro.getSelectedRow();
+            auxY = (Integer)jTabladeSiniestro.getValueAt(auxXa, 3);
+            //int auxYy = jTabladeSiniestro.getSelectedRow();
+            auxY = (Integer)jTabladeSiniestro.getValueAt(auxXa, 4);
+            
+            TreeMap<Integer,Cuartel> listaordenada = new TreeMap();
+            
+            for (Cuartel cuar : controlCuar.traerCuarteles()) {
+                aux = Math.sqrt((cuar.getCoordX() - auxX) * (cuar.getCoordX() - auxX)) + Math.sqrt((cuar.getCoordY() - auxY) * (cuar.getCoordY() - auxY));
+                int aux2=(int)aux;
+                listaordenada.put(aux2, cuar);
+            }
+
+            System.out.println(listaordenada);
+            
+            for (Entry<Integer, Cuartel> entry : listaordenada.entrySet()) {
+                Integer key = entry.getKey();
+                Cuartel value = entry.getValue();
+                modeloc.addRow(new Object[]{
+                    entry.getValue().getNombreCuartel(),
+                    entry.getValue().getDireccion(),
+                    entry.getValue().getTelefono(),
+                    entry.getValue().getCorreo()
+                });
+                
+            
+            }
+           
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un sinietro", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JTextField jCoordenadaX;
     private javax.swing.JTextField jCoordenadaY;
     private javax.swing.JTextField jIdSiniestro;
@@ -414,6 +479,12 @@ public class CuartelMasCercano extends javax.swing.JInternalFrame {
                 modelo.removeRow(i);
             }
                 
+    }
+    private void borrarFilaTabla2(){
+        int ind =modeloc.getRowCount() -1;
+            for(int i= ind;i>=0;i--){
+                modeloc.removeRow(i);
+            }              
     }
 
     private void cargarTabla(){
