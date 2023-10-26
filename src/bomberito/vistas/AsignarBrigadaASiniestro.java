@@ -12,6 +12,7 @@ import bomberito.entidades.Brigada;
 import bomberito.entidades.Cuartel;
 import bomberito.entidades.Siniestro;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -187,14 +188,15 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
-                                        .addGap(151, 151, 151)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                                        .addGap(126, 126, 126)
                                         .addComponent(jLabel5)
-                                        .addGap(139, 139, 139)))))))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(69, 69, 69)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -231,18 +233,18 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
 
     private void JBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBotonActionPerformed
         try{
-        ////////////////////////////////////////////////////////
+
         Brigada codBrigada = (Brigada) JCBXBrig.getSelectedItem();
         int sinSelec =JTabla.getSelectedRow();
         int idSiniestro= (Integer)JTabla.getValueAt(sinSelec, 0);
         Siniestro nuevo= new Siniestro(codBrigada,idSiniestro);
         controlSin.AsignarBrigada(nuevo);
-        ///////////////////////////////////////////////////////
+
         boolean libre=false;
         int idBrigada = codBrigada.getIdBrigada();
-        //↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-        controlSin.actualizarBrigada(idBrigada,libre);  //Al asignarlos directamente te ahorras de crear un constructor en la entidad Brigada
-        //↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
+        controlSin.actualizarBrigada(idBrigada,libre);  
+       
         actualizarTabla();
               
         }catch(NullPointerException npe){
@@ -274,55 +276,59 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void BotonCalcularDisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCalcularDisActionPerformed
-        int filaSelec = JTabla.getSelectedRow();
         jLabel7.setText("");
-
         try {
+
+            int filaSelec = JTabla.getSelectedRow();
             Cuartel cuartelSelec = (Cuartel) JCBXCuartel.getSelectedItem();
             double distanciaMinima = Double.MAX_VALUE;
-            double distancia=0;
+            double distancia = 0;
             Cuartel cuartelMasCercano = null;
             int sinX = (Integer) JTabla.getValueAt(filaSelec, 3);
             int sinY = (Integer) JTabla.getValueAt(filaSelec, 4);
             int cuarX = cuartelSelec.getCoordX();
             int cuarY = cuartelSelec.getCoordY();
-            double distanciaCuartelSelec=calcularDistancia(sinX, sinY, cuarX, cuarY);
-            for (Cuartel cuartel : controlCuar.traerCuarteles()){
-                int cuarX2=cuartel.getCoordX();
-                int cuarY2=cuartel.getCoordY();
+            double distanciaCuartelSelec = calcularDistancia(sinX, sinY, cuarX, cuarY);
+
+            for (Cuartel cuartel : controlCuar.traerCuarteles()) {
+                int cuarX2 = cuartel.getCoordX();
+                int cuarY2 = cuartel.getCoordY();
                 
-                distancia=calcularDistancia(sinX, sinY, cuarX2, cuarY2);
+                distancia = calcularDistancia(sinX, sinY, cuarX2, cuarY2);
                 
-                if(distancia < distanciaMinima){
-                    distanciaMinima=distancia;
-                    cuartelMasCercano=cuartel;
+                if (distancia < distanciaMinima) {
+                    distanciaMinima = distancia;
+                    cuartelMasCercano = cuartel;
+                    
+                    
+                    }
+                int idCuartelMasCercano = cuartelMasCercano.getIdCuartel();
+                String sinTipo = JTabla.getValueAt(filaSelec,2).toString();
+                
+
+                for (Brigada bri : controlBri.traerBrigadas()){
+                    if(bri.getNroCuartel().getIdCuartel() == idCuartelMasCercano && bri.isLibre() && bri.getEspecialidad().contains(sinTipo)){
+                        jLabel5.setText("Brigada recomendad: "+bri.getNombreBrigada());
+                    }
                 }
-                String cosa = JTabla.getValueAt(filaSelec, 2).toString();
-                for (Brigada bri : controlBri.traerBrigadas()) {
-                if ( bri.getIdBrigada() == cuartel.getIdCuartel() && bri.getEspecialidad().equals(cosa) ) {
-                    jLabel5.setText(bri.getNombreBrigada());
-                } 
             }
-            }
-            //String cosa = JTabla.getValueAt(filaSelec, 2).toString();
-            
-            /*for (Brigada bri : controlBri.traerBrigadas()) {
-                if ( bri.getIdBrigada() && bri.getEspecialidad().equals(cosa) ) {
-                    jLabel5.setText(bri.getNombreBrigada());
-                } 
-            }*/
-            
-            if(cuartelMasCercano != null){
-                jLabel7.setText("Cuartel mas cercano "+cuartelMasCercano.getNombreCuartel()+": "+distanciaMinima);
-            }else{
+
+            if (cuartelMasCercano != null ) {
+                DecimalFormat df = new DecimalFormat("0.00");
+                String disEn2Decimales = df.format(distanciaMinima);
+
+                jLabel7.setText("Cuartel mas cercano " + cuartelMasCercano.getNombreCuartel() + ": " + disEn2Decimales);
+            } else {
                 jLabel7.setText("No hay cuarteles disponibles para calcular la distancia.");
             }
-            jLabel8.setText("Distancia con el cuartel seleccionado: "+cuartelSelec+": "+distanciaCuartelSelec);
-            
+                DecimalFormat df = new DecimalFormat("0.00");
+                String disEn2Decimales = df.format(distanciaCuartelSelec);
+            jLabel8.setText("Distancia con el cuartel seleccionado: " + cuartelSelec + ": " + disEn2Decimales);
+
         } catch (ArrayIndexOutOfBoundsException e) {
             jLabel7.setText("Error: Selecciona una fila válida en la tabla.");
         }
-        
+
     }//GEN-LAST:event_BotonCalcularDisActionPerformed
 
 
@@ -359,7 +365,7 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
       JTabla.getColumnModel().getColumn(2).setPreferredWidth(330);
       JTabla.getColumnModel().getColumn(3).setPreferredWidth(25);
       JTabla.getColumnModel().getColumn(4).setPreferredWidth(25);
-      JTabla.getColumnModel().getColumn(5).setPreferredWidth(300);
+      JTabla.getColumnModel().getColumn(5).setPreferredWidth(330);
 
       
     }
@@ -389,14 +395,6 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
     }
     
     public double calcularDistancia(int x1, int y1,int x2,int y2){
-        /*int filaSelec= JTabla.getSelectedRow();
-        Cuartel cuartelSelec=(Cuartel)JCBXCuartel.getSelectedItem();
-        
-        int sinX=(Integer)JTabla.getValueAt(filaSelec, 3);
-        int sinY=(Integer)JTabla.getValueAt(filaSelec, 4);
-        int cuarX=cuartelSelec.getCoordX();
-        int cuarY=cuartelSelec.getCoordY();*/
-        
         double distancia= Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
         return distancia;
         

@@ -57,7 +57,7 @@ public class SiniestroData {
                     brigada = bri.traerBrigadaID(idBrigada);
                     sin.setCodBrigada(brigada);
                 }
-                //sin.setCodBrigada(bri.traerBrigadaID(rs.getInt("codBrigada")));  //Combinacion de clase siniestro con BrigadaData para traer la idBrigada al siniestro asignado
+                
                 sin.setActivo(rs.getBoolean("activo"));
                 Time horaSinDB = rs.getTime("horaSin");
                 LocalTime horaSin = horaSinDB != null ? horaSinDB.toLocalTime() : LocalTime.MIN;
