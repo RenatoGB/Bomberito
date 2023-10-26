@@ -306,8 +306,7 @@ public class CuartelMasCercano extends javax.swing.JInternalFrame {
         borrarFilaTabla();
         for (Siniestro prod : controlSin.traerSiniestrosParaAsignar()) {
             String aux = prod.getIdSiniestro()+ "";
-            if (aux.contains(jCoordenadaX.getText())) {
-               int guardarID = prod.getIdSiniestro();
+            if (aux.contains(jIdSiniestro.getText())) {
                 modelo.addRow(new Object[]{
                 prod.getIdSiniestro(),
                 prod.getFechaSiniestro(),
@@ -318,7 +317,7 @@ public class CuartelMasCercano extends javax.swing.JInternalFrame {
 });
             }
         }
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jIdSiniestroKeyReleased
 
     private void jCoordenadaXKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCoordenadaXKeyReleased
@@ -326,7 +325,6 @@ public class CuartelMasCercano extends javax.swing.JInternalFrame {
         for (Siniestro prod : controlSin.traerSiniestrosParaAsignar()) {
             String aux = prod.getCoordX()+ "";
             if (aux.contains(jCoordenadaX.getText())) {
-               int guardarCoordenadaX=prod.getCoordX();
                 modelo.addRow(new Object[]{
                 prod.getIdSiniestro(),
                 prod.getFechaSiniestro(),
@@ -347,7 +345,7 @@ public class CuartelMasCercano extends javax.swing.JInternalFrame {
         boolean num = key >= 48 && key <= 57;
         if (!num) {
             evt.consume();
-        }       // TODO add your handling code here:
+        }  
     }//GEN-LAST:event_jCoordenadaXKeyTyped
 
     private void jCoordenadaYKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCoordenadaYKeyTyped
@@ -358,7 +356,7 @@ public class CuartelMasCercano extends javax.swing.JInternalFrame {
         boolean num = key >= 48 && key <= 57;
         if (!num) {
             evt.consume();
-        }     // TODO add your handling code here:
+        }   
     }//GEN-LAST:event_jCoordenadaYKeyTyped
 
     private void jCoordenadaYKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCoordenadaYKeyReleased
@@ -366,7 +364,6 @@ public class CuartelMasCercano extends javax.swing.JInternalFrame {
         for (Siniestro prod : controlSin.traerSiniestrosParaAsignar()) {
             String aux = prod.getCoordY()+ "";
             if (aux.contains(jCoordenadaY.getText())) {
-               int guardarCoordenadaX=prod.getCoordX();
                 modelo.addRow(new Object[]{
                 prod.getIdSiniestro(),
                 prod.getFechaSiniestro(),
@@ -376,7 +373,7 @@ public class CuartelMasCercano extends javax.swing.JInternalFrame {
                 prod.getDetalles(),
 });
             }
-        } // TODO add your handling code here:
+        } 
     }//GEN-LAST:event_jCoordenadaYKeyReleased
 
     private void jTipoSiniestroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTipoSiniestroKeyReleased
@@ -384,11 +381,11 @@ public class CuartelMasCercano extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTipoSiniestroKeyReleased
 
     private void jTipoSiniestroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTipoSiniestroActionPerformed
-//                   borrarFilaTabla();
+      borrarFilaTabla();
         for (Siniestro prod : controlSin.traerSiniestrosParaAsignar()) {
-            String aux = prod.getTipo()+ "";
-            String aux2= jTipoSiniestro +"";
-            if (aux.contains(jTipoSiniestro+"")) {;
+            String aux = prod.getTipo();
+            String aux2= jTipoSiniestro.getSelectedItem()+"";
+            if (aux.contains(aux2)) {;
                 modelo.addRow(new Object[]{
                 prod.getIdSiniestro(),
                 prod.getFechaSiniestro(),
@@ -398,7 +395,7 @@ public class CuartelMasCercano extends javax.swing.JInternalFrame {
                 prod.getDetalles(),
 });
             }
-        }    // TODO add your handling code here:
+        }    
     }//GEN-LAST:event_jTipoSiniestroActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -423,8 +420,6 @@ borrarFilaTabla2();
                 int aux2 = (int) aux;
                 listaordenada.put(aux2, cuar);
             }
-
-            System.out.println(listaordenada);
 
             for (Entry<Integer, Cuartel> entry : listaordenada.entrySet()) {
                 Integer key = entry.getKey();
@@ -466,7 +461,8 @@ borrarFilaTabla2();
     private javax.swing.JTable jTabladeSiniestro;
     private javax.swing.JComboBox<String> jTipoSiniestro;
     // End of variables declaration//GEN-END:variables
- private void armarCabeceraTabla(){
+ 
+    private void armarCabeceraTabla(){
       modelo.addColumn("ID");
       modelo.addColumn("Fecha");
       modelo.addColumn("Tipo");
@@ -481,7 +477,7 @@ borrarFilaTabla2();
       jTabladeSiniestro.getColumnModel().getColumn(2).setPreferredWidth(330);
       jTabladeSiniestro.getColumnModel().getColumn(3).setPreferredWidth(25);
      jTabladeSiniestro.getColumnModel().getColumn(4).setPreferredWidth(25);
-     jTabladeSiniestro.getColumnModel().getColumn(5).setPreferredWidth(300);
+     jTabladeSiniestro.getColumnModel().getColumn(5).setPreferredWidth(320);
 
       
     }
