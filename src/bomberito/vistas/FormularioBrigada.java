@@ -219,6 +219,11 @@ public class FormularioBrigada extends javax.swing.JInternalFrame {
     }                                               
 
     private void jNuevaBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNuevaBrigadaActionPerformed
+        if(jNombreBrigada.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Nombre incompleto, intente de nuevo");
+        }else{
+            
+        
         String nombreBrigada=jNombreBrigada.getText();
         String Especialidad= jEspecialidadBrigada.getSelectedItem()+"";
         Cuartel cuartelselec=(Cuartel)JCBXCuartel.getSelectedItem();        
@@ -226,6 +231,7 @@ public class FormularioBrigada extends javax.swing.JInternalFrame {
         dataBrigada.nuevaBrigada(asd);
         //dataCuartel.traerCuartelID(idcuartel); 
         limpiar();
+    }
     }//GEN-LAST:event_jNuevaBrigadaActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -280,15 +286,20 @@ public class FormularioBrigada extends javax.swing.JInternalFrame {
                 Cuartel cuartelSelec = (Cuartel) JCBXCuartel.getSelectedItem();
                 listita.setNroCuartel(cuartelSelec);
                 dataBrigada.modificarBrigada(listita);
+                limpiar();
+                jNuevaBrigada.setEnabled(true);
+                btnModificar.setEnabled(false);
                 return;                
             }
         }
-        limpiar();
+        
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
         // TODO add your handling code here:
         limpiar();
+        jNuevaBrigada.setEnabled(true);
+        btnModificar.setEnabled(false);
         
     }//GEN-LAST:event_jbLimpiarActionPerformed
     private void cargarCombo(){  
@@ -334,6 +345,15 @@ public class FormularioBrigada extends javax.swing.JInternalFrame {
     
     private void limpiar(){
         jNombreBrigada.setText("");
+        borrarTabla();
+        cargarTabla();
+    }
+    
+    private void borrarTabla(){
+        int ind=modelo.getRowCount()-1;
+        for(int i=ind;i>=0;i--){
+            modelo.removeRow(i);
+        }
     }
 
 }
