@@ -9,6 +9,7 @@ public class Bomberito {
         Principio iniciar=new Principio();
         iniciar.setVisible(true);
         iniciar.setLocationRelativeTo(null);
+        
     }
     
 }
