@@ -215,7 +215,7 @@ public class FormularioBrigada extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCuartelBrigadaActionPerformed(java.awt.event.ActionEvent evt) {                                                
-        // TODO add your handling code here:
+        
     }                                               
 
     private void jNuevaBrigadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNuevaBrigadaActionPerformed
@@ -229,7 +229,6 @@ public class FormularioBrigada extends javax.swing.JInternalFrame {
         Cuartel cuartelselec=(Cuartel)JCBXCuartel.getSelectedItem();        
         Brigada asd=new Brigada(nombreBrigada,Especialidad,false,cuartelselec);        
         dataBrigada.nuevaBrigada(asd);
-        //dataCuartel.traerCuartelID(idcuartel); 
         limpiar();
     }
     }//GEN-LAST:event_jNuevaBrigadaActionPerformed
@@ -291,12 +290,10 @@ public class FormularioBrigada extends javax.swing.JInternalFrame {
                 btnModificar.setEnabled(false);
                 return;                
             }
-        }
-        
+        }        
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
-        // TODO add your handling code here:
         limpiar();
         jNuevaBrigada.setEnabled(true);
         btnModificar.setEnabled(false);

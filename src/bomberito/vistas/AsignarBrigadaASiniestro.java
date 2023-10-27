@@ -11,11 +11,9 @@ import bomberito.accesoADatos.SiniestroData;
 import bomberito.entidades.Brigada;
 import bomberito.entidades.Cuartel;
 import bomberito.entidades.Siniestro;
-import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -26,7 +24,6 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
         @Override
         public boolean isCellEditable(int row, int column) {
             return false;
-            //no me funciona, editar desde propiedades
         }
     };
     
@@ -246,7 +243,6 @@ public class AsignarBrigadaASiniestro extends javax.swing.JInternalFrame {
         actualizarTabla();
               
         }catch(NullPointerException npe){
-            //JOptionPane.showMessageDialog(null, "Datos incorrectos, intente nuevamente");
             JOptionPane.showMessageDialog(null, "Selecciona ambos Cuartel y Brigada.", "Error", JOptionPane.ERROR_MESSAGE);
         }catch(ArrayIndexOutOfBoundsException a){
             JOptionPane.showMessageDialog(null, "Seleccione un siniestro a asignar","Error",JOptionPane.ERROR_MESSAGE);

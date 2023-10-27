@@ -10,7 +10,6 @@ import bomberito.accesoADatos.CuartelData;
 import bomberito.accesoADatos.SiniestroData;
 import bomberito.entidades.Brigada;
 import bomberito.entidades.Cuartel;
-import bomberito.entidades.Siniestro;
 import javax.swing.table.DefaultTableModel;
 
 /**

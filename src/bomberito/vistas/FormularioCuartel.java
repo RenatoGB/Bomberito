@@ -281,7 +281,6 @@ public class FormularioCuartel extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jSalirActionPerformed
 
     private void jNombreCuartelKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jNombreCuartelKeyReleased
-        // TODO add your handling code here:
         borrarFilas();
         for (Cuartel prod : data.traerCuarteles()) {
             if (prod.getNombreCuartel().toLowerCase().contains(jNombreCuartel.getText().toLowerCase())) {
@@ -296,7 +295,6 @@ public class FormularioCuartel extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jNombreCuartelKeyReleased
 
     private void jNombreCuartelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jNombreCuartelKeyTyped
-        // TODO add your handling code here:
         if (jNombreCuartel.getText().length() >= 20) {
             evt.consume();
         }
@@ -362,7 +360,6 @@ public class FormularioCuartel extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jLimpiarActionPerformed
 
     private void jCoordenadaXKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCoordenadaXKeyTyped
-        // TODO add your handling code here:
         if (jCoordenadaX.getText().length() >= 3) {
             evt.consume();
         }
@@ -374,11 +371,10 @@ public class FormularioCuartel extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jCoordenadaXKeyTyped
 
     private void jCoordenadaXKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCoordenadaXKeyReleased
-        // TODO add your handling code here:
         borrarFilas();
         for (Cuartel prod : data.traerCuarteles()) {
             String aux = prod.getCoordX() + "";
-            if (aux.contains(jCoordenadaX.getText())) {  //Implementar ignoreCase
+            if (aux.contains(jCoordenadaX.getText())) {  
                 guardarID = prod.getIdCuartel();
                 modelo.addRow(new Object[]{
                     prod.getNombreCuartel(),
@@ -402,11 +398,10 @@ public class FormularioCuartel extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jCoordenadaYKeyTyped
 
     private void jCoordenadaYKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCoordenadaYKeyReleased
-        // TODO add your handling code here:
         borrarFilas();
         for (Cuartel prod : data.traerCuarteles()) {
             String aux = prod.getCoordY() + "";
-            if (aux.contains(jCoordenadaY.getText())) {  //Implementar ignoreCase
+            if (aux.contains(jCoordenadaY.getText())) {  
                 guardarID = prod.getIdCuartel();
                 modelo.addRow(new Object[]{
                     prod.getNombreCuartel(),
@@ -418,7 +413,6 @@ public class FormularioCuartel extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jCoordenadaYKeyReleased
 
     private void jTelefonoCuartelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTelefonoCuartelKeyTyped
-        // TODO add your handling code here:
         if (jTelefonoCuartel.getText().length() >= 20) {
             evt.consume();
         }
@@ -430,10 +424,9 @@ public class FormularioCuartel extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTelefonoCuartelKeyTyped
 
     private void jTelefonoCuartelKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTelefonoCuartelKeyReleased
-        // TODO add your handling code here:
         borrarFilas();
         for (Cuartel prod : data.traerCuarteles()) {
-            if (prod.getTelefono().contains(jTelefonoCuartel.getText())) {  //Implementar ignoreCase
+            if (prod.getTelefono().contains(jTelefonoCuartel.getText())) { 
                 guardarID = prod.getIdCuartel();
                 modelo.addRow(new Object[]{
                     prod.getNombreCuartel(),
@@ -445,7 +438,6 @@ public class FormularioCuartel extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTelefonoCuartelKeyReleased
 
     private void jDirecciónCuartelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jDirecciónCuartelKeyTyped
-        // TODO add your handling code here:
         if (jDirecciónCuartel.getText().length() >= 20) {
             evt.consume();
         }
@@ -463,10 +455,9 @@ public class FormularioCuartel extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jDirecciónCuartelKeyTyped
 
     private void jDirecciónCuartelKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jDirecciónCuartelKeyReleased
-        // TODO add your handling code here:
         borrarFilas();
         for (Cuartel prod : data.traerCuarteles()) {
-            if (prod.getDireccion().toLowerCase().contains(jDirecciónCuartel.getText().toLowerCase())) {  //Implementar ignoreCase
+            if (prod.getDireccion().toLowerCase().contains(jDirecciónCuartel.getText().toLowerCase())) {  
                 guardarID = prod.getIdCuartel();
                 modelo.addRow(new Object[]{
                     prod.getNombreCuartel(),
@@ -480,7 +471,7 @@ public class FormularioCuartel extends javax.swing.JInternalFrame {
     private void jCorreoCuartelKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCorreoCuartelKeyReleased
         borrarFilas();
         for (Cuartel prod : data.traerCuarteles()) {
-            if (prod.getCorreo().contains(jCorreoCuartel.getText())) {  //Implementar ignoreCase
+            if (prod.getCorreo().contains(jCorreoCuartel.getText())) { 
                 guardarID = prod.getIdCuartel();
                 modelo.addRow(new Object[]{
                     prod.getNombreCuartel(),

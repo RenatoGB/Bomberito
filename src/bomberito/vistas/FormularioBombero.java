@@ -40,7 +40,6 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
         initComponents();
         encabezadoTabla();
         cargarCombo();
-//        cargarMiembros();
         btnModificar.setEnabled(false);
         btnDarBaja.setEnabled(false);
         tablaLlena();
@@ -369,7 +368,6 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
                     txtNombre.setText(listaBombero.getNombre());
                     Date date = java.sql.Date.valueOf(listaBombero.getFechaNacimiento());
                     dcNacimiento.setDate(date);
-//                    txtGrupo.setText(listaBombero.getGrupoSanguineo());
                                     int itemCount2 = cbxGrupoSan.getItemCount();
                 for (int i = 0; i < itemCount2; i++) {
                     String item = cbxGrupoSan.getItemAt(i);
@@ -407,9 +405,6 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         borrarFilas();
-       // if (cbxGrupoSan.getSelectedIndex()!=0) {
-         //   JOptionPane.showMessageDialog(null, "Seleccione un grupo sanguineo correcto");
-       // }else{
         cargarCombo();
         int cambio = Integer.parseInt(txtDNI.getText());
         Date fechaNacimiento=dcNacimiento.getDate();
@@ -436,7 +431,6 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
                 return;                
             }
         } 
-        //}
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnDarBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDarBajaActionPerformed
@@ -518,7 +512,7 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtDNIKeyTyped
 
     private void cbxGrupoSanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxGrupoSanActionPerformed
-//        txtGrupo.setText(cbxGrupoSan.getSelectedItem().toString());
+
     }//GEN-LAST:event_cbxGrupoSanActionPerformed
 
     private void txtDNIKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIKeyReleased
@@ -542,7 +536,6 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtDNIKeyReleased
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
-        // TODO add your handling code here:
         limpiar();
         btnNuevo.setEnabled(true);
         btnModificar.setEnabled(false);
@@ -611,17 +604,6 @@ public class FormularioBombero extends javax.swing.JInternalFrame {
             modelo.removeRow(f);
         }
     }
-    
-//    private void cargarMiembros(){
-//        for (Brigada i: controlBri.traerBrigadas()) {
-//            if (controlBom.bomberosEnUnaBrigada(i.getIdBrigada())>5) {
-//                System.out.println("Se a superado los 5 miembros ");
-//            }
-//            int muestra=controlBom.bomberosEnUnaBrigada(i.getIdBrigada());
-//            System.out.println("Nombre Brigada = "+i.getNombreBrigada());
-//            System.out.println("Cantidad de Miembros = "+muestra);
-//        }
-//    }
     
     private void limpiar(){
         txtDNI.setText("");

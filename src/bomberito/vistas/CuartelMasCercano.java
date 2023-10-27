@@ -31,13 +31,11 @@ public class CuartelMasCercano extends javax.swing.JInternalFrame {
         @Override
         public boolean isCellEditable(int row, int column) {
             return false;
-            //no me funciona, editar desde propiedades
         }
     };private DefaultTableModel modeloc = new DefaultTableModel() {
         @Override
         public boolean isCellEditable(int row, int column) {
             return false;
-            //no me funciona, editar desde propiedades
         }
     };
         SiniestroData controlSin=null;
@@ -284,11 +282,11 @@ public class CuartelMasCercano extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCoordenadaXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCoordenadaXActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jCoordenadaXActionPerformed
 
     private void jCoordenadaYActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCoordenadaYActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jCoordenadaYActionPerformed
 
     private void jIdSiniestroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jIdSiniestroKeyTyped

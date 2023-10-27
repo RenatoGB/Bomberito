@@ -16,7 +16,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
-import javax.swing.JTextField;
 import javax.swing.SpinnerDateModel;
 
 /**
@@ -239,8 +238,6 @@ public class FormularioSiniestro extends javax.swing.JInternalFrame {
         boolean activo=true;
         Date horaDate = (Date) jSpinner12.getValue();
         LocalTime horaSin = horaDate.toInstant().atZone(ZoneId.systemDefault()).toLocalTime();
-          // System.out.println("Hora obtenida desde jSpinner12: " + horaDate);
-          //System.out.println("Hora configurada en horaSin: " + horaSin);
 
         Siniestro nuevo=new Siniestro(tipo,FechaSiniestro,coordX,coordY,detalle,activo,horaSin);
         control.NuevoSiniestro(nuevo);

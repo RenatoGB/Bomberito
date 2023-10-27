@@ -7,7 +7,6 @@ package bomberito.vistas;
 
 import bomberito.accesoADatos.BrigadaData;
 import bomberito.accesoADatos.SiniestroData;
-import bomberito.entidades.Brigada;
 import bomberito.entidades.Siniestro;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -34,7 +33,6 @@ public class ResolucionDeSiniestro extends javax.swing.JInternalFrame {
         controlBri=new BrigadaData();
         armarCabeceraTabla();
         cargarTabla();
-       // cargarComboPunt();
         
     }
 

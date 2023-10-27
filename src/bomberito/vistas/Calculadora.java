@@ -195,81 +195,81 @@ public class Calculadora extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCoordenadaXInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCoordenadaXInicialActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jCoordenadaXInicialActionPerformed
 
     private void jCoordenadaYInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCoordenadaYInicialActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jCoordenadaYInicialActionPerformed
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
-  double Calculo=0;
-  try {
-     int CoorXIni= Integer.parseInt(jCoordenadaXInicial.getText());
-     int CoorXFin= Integer.parseInt(jCoordenadaXFinal.getText());
-     int CoorYIni= Integer.parseInt(jCoordenadaYInicial.getText());
-     int CoorYFin= Integer.parseInt(jCoordenadaYFinal.getText());
-     Calculo = Math.sqrt((CoorXFin-CoorXIni)*(CoorXFin-CoorXIni))+ Math.sqrt((CoorYFin-CoorYIni)*(CoorYFin-CoorYIni));
- jDistancia.setText(Calculo+"");
-        }catch (NumberFormatException nfe){
+        double Calculo = 0;
+        try {
+            int CoorXIni = Integer.parseInt(jCoordenadaXInicial.getText());
+            int CoorXFin = Integer.parseInt(jCoordenadaXFinal.getText());
+            int CoorYIni = Integer.parseInt(jCoordenadaYInicial.getText());
+            int CoorYFin = Integer.parseInt(jCoordenadaYFinal.getText());
+            Calculo = Math.sqrt((CoorXFin - CoorXIni) * (CoorXFin - CoorXIni)) + Math.sqrt((CoorYFin - CoorYIni) * (CoorYFin - CoorYIni));
+            jDistancia.setText(Calculo + "");
+        } catch (NumberFormatException nfe) {
             JOptionPane.showMessageDialog(null, "No pueden existir campos vacios para este calculo");
         }
     }//GEN-LAST:event_btnCalcularActionPerformed
 
     private void jCoordenadaXInicialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCoordenadaXInicialKeyTyped
-            if (jCoordenadaXInicial.getText().length() >= 3) {
+        if (jCoordenadaXInicial.getText().length() >= 3) {
             evt.consume();
         }
         int key = evt.getKeyChar();
         boolean num = key >= 48 && key <= 57;
 
-        if (!num ) {
+        if (!num) {
             evt.consume();
         }
     }//GEN-LAST:event_jCoordenadaXInicialKeyTyped
 
     private void jCoordenadaYInicialKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCoordenadaYInicialKeyTyped
-                   if (jCoordenadaYInicial.getText().length() >= 3) {
+        if (jCoordenadaYInicial.getText().length() >= 3) {
             evt.consume();
         }
         int key = evt.getKeyChar();
         boolean num = key >= 48 && key <= 57;
 
-        if (!num ) {
+        if (!num) {
             evt.consume();
         }
     }//GEN-LAST:event_jCoordenadaYInicialKeyTyped
 
     private void jCoordenadaXFinalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCoordenadaXFinalKeyTyped
-                   if (jCoordenadaXFinal.getText().length() >= 3) {
+        if (jCoordenadaXFinal.getText().length() >= 3) {
             evt.consume();
         }
         int key = evt.getKeyChar();
         boolean num = key >= 48 && key <= 57;
 
-        if (!num ) {
+        if (!num) {
             evt.consume();
         }
     }//GEN-LAST:event_jCoordenadaXFinalKeyTyped
 
     private void jCoordenadaYFinalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCoordenadaYFinalKeyTyped
-             if (jCoordenadaYFinal.getText().length() >= 3) {
+        if (jCoordenadaYFinal.getText().length() >= 3) {
             evt.consume();
         }
         int key = evt.getKeyChar();
         boolean num = key >= 48 && key <= 57;
 
-        if (!num ) {
+        if (!num) {
             evt.consume();
         }
     }//GEN-LAST:event_jCoordenadaYFinalKeyTyped
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-       dispose();
+        dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-     limpiar();     
+        limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
 
@@ -289,7 +289,8 @@ public class Calculadora extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
-  public void limpiar() {
+  
+    public void limpiar() {
         jCoordenadaXInicial.setText("");
         jCoordenadaXFinal.setText("");
         jCoordenadaYInicial.setText("");

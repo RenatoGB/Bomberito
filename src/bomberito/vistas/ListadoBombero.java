@@ -157,7 +157,6 @@ public class ListadoBombero extends javax.swing.JInternalFrame {
 
     private void jsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jsalirActionPerformed
      dispose();
-        // TODO add your handling code here:
     }//GEN-LAST:event_jsalirActionPerformed
 
     private void rbtmInactivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtmInactivosActionPerformed
