@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-10-2023 a las 23:16:47
+-- Tiempo de generación: 27-10-2023 a las 23:11:18
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `bomberos`
 --
+CREATE DATABASE IF NOT EXISTS `bomberos` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `bomberos`;
 
 -- --------------------------------------------------------
 
@@ -46,7 +48,7 @@ CREATE TABLE `bombero` (
 INSERT INTO `bombero` (`idBombero`, `dni`, `apellido`, `nombre`, `fechaNacimiento`, `grupoSanguineo`, `celular`, `codBrigada`, `activo`) VALUES
 (3, 36229255, 'Santillan Cardozo', 'Ramiro Joaq', '1991-08-31', 'A-', '3875372356', 15, 1),
 (5, 12345699, 'Sanchez', 'Lucas Eze', '1990-10-20', 'A+', '2434645645', 12, 1),
-(6, 4651256, 'Martinez', 'Ramon', '1993-10-21', 'B-', '156456156', 7, 1),
+(6, 4651256, 'Martinez', 'Ramon', '1993-10-21', 'B-', '156456156', 17, 1),
 (7, 98745611, 'Puerta', 'Jose Luis', '1982-10-15', 'AB-', '45645456', 7, 1),
 (8, 12345678, 'Gonzalez', 'Juan', '1990-05-15', 'A+', '123-456-7890', 13, 1),
 (9, 23456789, 'Martinez', 'Maria', '1985-09-20', 'B-', '234-567-8901', 6, 1),
@@ -61,7 +63,7 @@ INSERT INTO `bombero` (`idBombero`, `dni`, `apellido`, `nombre`, `fechaNacimient
 (19, 12958568, 'Cardozo', 'Beti', '1958-10-22', 'A+', '456456456456', 7, 1),
 (24, 312312, 'fggfgf', 'asdasdasd', '2023-10-14', 'a+', '12312312123', NULL, 0),
 (25, 55555555, 'Suarez', 'Ramon', '1945-10-20', 'AB+', '165615561', NULL, 0),
-(26, 12121212, 'Martinez', 'Mario', '1978-10-22', 'A+', '5115456456', 12, 1),
+(26, 12121212, 'Martinez', 'Mario', '1978-10-22', 'A+', '5115456456', 16, 1),
 (27, 11202021, 'Rodriguez', 'Fernando', '1999-10-29', 'O+', '5454654564', 12, 1),
 (28, 77777777, 'Ramirez', 'Lucas', '1998-10-23', 'AB+', '456456456456', 14, 1);
 
@@ -115,7 +117,7 @@ CREATE TABLE `cuartel` (
 --
 
 INSERT INTO `cuartel` (`idCuartel`, `nombreCuartel`, `direccion`, `coordX`, `coordY`, `telefono`, `correo`) VALUES
-(1, 'Santa Lucia', 'Santa Catalina 2606', 24, 65, '3875372356', 'losalvamos@gmail.com'),
+(1, 'Santa Lucia', 'Santa Catalina 2606', 24, 651, '3875372356', 'losalvamos@gmail.com'),
 (2, 'Locura  Total', 'Donde sea', 255, 190, '35455645', 'ayudatotal@gmail.com'),
 (3, 'Atocha', 'Batalla de Salta 22', 1, 17, '561456564', 'locos@gmail.com');
 
@@ -187,7 +189,7 @@ ALTER TABLE `siniestro`
 -- AUTO_INCREMENT de la tabla `bombero`
 --
 ALTER TABLE `bombero`
-  MODIFY `idBombero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `idBombero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `brigada`
@@ -205,7 +207,7 @@ ALTER TABLE `cuartel`
 -- AUTO_INCREMENT de la tabla `siniestro`
 --
 ALTER TABLE `siniestro`
-  MODIFY `idSiniestro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idSiniestro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
