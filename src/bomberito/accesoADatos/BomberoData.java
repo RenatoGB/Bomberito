@@ -23,27 +23,33 @@ public class BomberoData {
     }
     
     public void nuevoBombero(Bombero bomberito){
-        String sql = "INSERT INTO bombero(dni,apellido,nombre,fechaNacimiento,grupoSanguineo, celular, codBrigada, activo)"
-                + "VALUE (?,?,?,?,?,?,?,?)";
-        
+        String verificarDNI = "SELECT dni FROM bombero WHERE dni = ?";
         try {
-            PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, bomberito.getDni());
-            ps.setString(2, bomberito.getApellido());
-            ps.setString(3, bomberito.getNombre());
-            ps.setDate(4, Date.valueOf(bomberito.getFechaNacimiento()));
-            ps.setString(5, bomberito.getGrupoSanguineo());
-            ps.setString(6, bomberito.getCelular());
-            ps.setInt(7, bomberito.getCodBrigada().getIdBrigada());
-            ps.setBoolean(8, true);
-            ps.executeUpdate();
-            
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                bomberito.setIdBombero(rs.getInt(1));
-                JOptionPane.showMessageDialog(null, "Bombero guardado");
+            PreparedStatement psDNI = con.prepareStatement(verificarDNI);
+            psDNI.setInt(1, bomberito.getDni());
+            ResultSet dniResultado = psDNI.executeQuery();
+            if (dniResultado.next()) {
+                JOptionPane.showMessageDialog(null, "El DNI ya existe en la base de datos. No se puede agregar.");
+            } else {
+                String sql = "INSERT INTO bombero(dni,apellido,nombre,fechaNacimiento,grupoSanguineo, celular, codBrigada, activo)"
+                        + "VALUE (?,?,?,?,?,?,?,?)";
+                PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                ps.setInt(1, bomberito.getDni());
+                ps.setString(2, bomberito.getApellido());
+                ps.setString(3, bomberito.getNombre());
+                ps.setDate(4, Date.valueOf(bomberito.getFechaNacimiento()));
+                ps.setString(5, bomberito.getGrupoSanguineo());
+                ps.setString(6, bomberito.getCelular());
+                ps.setInt(7, bomberito.getCodBrigada().getIdBrigada());
+                ps.setBoolean(8, true);
+                ps.executeUpdate();
+                ResultSet rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    bomberito.setIdBombero(rs.getInt(1));
+                    JOptionPane.showMessageDialog(null, "Bombero guardado");
+                }
+                ps.close();
             }
-            ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla bombero");
         }
